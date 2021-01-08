@@ -23,4 +23,19 @@ export default [{
   jobFee: 4500,
   jobIsLive: true,
 }, {
+  jobTitle: 'Android Developer',
+  jobDescription: 'We are looking for an Android Developer who possesses a passion for pushing mobile technologies to the limits. They will work with our team of engineers to design and build a map application for pet walkers',
+  jobDeadline: '10 October 2021',
+  jobPhoto: 'https://resources.workable.com/wp-content/uploads/2013/04/android-developer-640x230.jpg',
+  jobCategory: 'Android-Dev',
+  jobFee: 10000,
+  jobIsLive: true,
+}, {
+  jobTitle: 'Talented Designer needed for Portfolio Website',
+  jobDescription: 'I need a developer that can create and publish my portfolio website hosting my photograpohy collection. The fee is negotiable but I need a running website in 30 days',
+  jobDeadline: '08 Feb 2021',
+  jobPhoto: 'https://www.thephotoargus.com/wp-content/uploads/2011/08/Portfolio-02.jpg',
+  jobCategory: 'Front-End',
+  jobFee: 2000,
+  jobIsLive: true,
 }]
