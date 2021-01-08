@@ -1,22 +1,23 @@
 import mongoose from 'mongoose'
 import faker from 'faker'
-import User from '../models/user.js'
-import { dbURI } from '../config/environment.js'
+import connectToDatabase from '../lib/connectToDB.js'
+//import User from '../models/user.js'
+
 
 async function seedDatabase() {
   try {
-    await mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+    await connectToDatabase()
 
-    console.log('ðŸ¤– Database Connected')
+    console.log('🤖 Database Connected')
 
     await mongoose.connection.db.dropDatabase()
 
-    console.log('ðŸ¤– Database dropped')
+    console.log('🤖 Database dropped')
 
     const users = [] // ! an array to push my 100 fake users into
 
     for (let index = 0; index < 100; index++) { // ! looping to created 300 users
-      const username = faker.internet.userName() // ! generating a fake username
+      const name = faker.internet.userName() // ! generating a fake username
       const firstName = faker.name.firstName() // ! A fake first name
       const lastName = faker.name.lastName() // ! A fake last name
       const email = `${firstName}${lastName}@email.com` // ! concatening them together to make the email
