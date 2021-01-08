@@ -13,13 +13,13 @@ async function startServer(){
 
     //*Makes req.body avaliable 
     app.use(express.json())
-		
+    
     //*Logger logs each request to the console
     app.use(logger)
-
+    
     //*Routes all routes
     app.use(router)
-  
+    
     app.listen(4000, () => console.log(`Up and running on port ${port}`))
   } catch (err){
     console.log('Something went wrong when starting the app')
