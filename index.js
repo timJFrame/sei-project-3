@@ -2,7 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import Job from './models/job.js'
 import { port } from './config/enviroment.js'
-export const dbUri = 'mongodb://localhost/deverr-db'
+
 const app = express()
 
 
@@ -11,11 +11,7 @@ app.use(express.json())
 
 async function startServer(){
   try {
-    await mongoose.connect(dbUri, {
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useUnifiedTopology: true,
-    })
+    
     console.log('Database has connected')
     app.listen(4000, () => console.log(`Up and running on port ${port}`))
   } catch (err){
