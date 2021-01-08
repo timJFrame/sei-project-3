@@ -6,9 +6,4 @@ const bidderSchema = new mongoose.Schema({
   bidderIsAvailable: { type: Boolean, required: true },
 })
 
-// bidderSchema.virtual('passwordConfirmation')
-//   .set(function(passwordConfirmation) {
-//     this._passwordConfirmation = passwordConfirmation
-//   })
-
 export default mongoose.model('Bidder', bidderSchema)
