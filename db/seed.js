@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import connectToDatabase from '../lib/connectToDB.js'
 import auctioneersSeed from './data/auctioneersSeed.js'
-//import Auctioneer from '../models/auctioneer.js'
+import Auctioneer from '../models/auctioneer.js'
 
 
 async function seedDatabase() {
