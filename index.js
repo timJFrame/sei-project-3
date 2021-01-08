@@ -1,17 +1,28 @@
 import express from 'express'
-import mongoose from 'mongoose'
 import Job from './models/job.js'
 import { port } from './config/enviroment.js'
+import logger from './lib/logger.js'
+import connectToDatabase from './lib/connectToDB.js'
 
 const app = express()
 
 
 
-app.use(express.json())
+
 
 async function startServer(){
   try {
+
+    await connectToDatabase()
     console.log('Database has connected')
+
+    //*Makes req.body avaliable 
+    app.use(express.json())
+		
+    //*Logger logs each request to the console
+    app.use(logger)
+
+  
     app.listen(4000, () => console.log(`Up and running on port ${port}`))
   } catch (err){
     console.log('Something went wrong when starting the app')
@@ -19,10 +30,7 @@ async function startServer(){
   }
 }
 
-app.use((req, res, next ) => {
-  console.log(`Incoming request from: ${req.method}- ${req.url}`)
-  next()
-})
+
 
 //*GET ALL JOBS
 app.get('/jobs', async (req, res) => {
