@@ -11,7 +11,6 @@ app.use(express.json())
 
 async function startServer(){
   try {
-    
     console.log('Database has connected')
     app.listen(4000, () => console.log(`Up and running on port ${port}`))
   } catch (err){
