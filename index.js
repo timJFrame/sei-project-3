@@ -1,5 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import Job from './models/job.js'
 
 
 const dbUri = 'mongodb://localhost/deverr-db'
@@ -26,10 +27,10 @@ app.use((req, res, next ) => {
   next()
 })
 
-// app.get('/jobs', async (req, res) => {
-//   const jobs = await jobs.find()
-//   return res.status.json(jobs)
-// })
+app.get('/jobs', async (req, res) => {
+  const jobs = await Job.find()
+  return res.status(200).json(jobs)
+})
 
 
 startServer()
