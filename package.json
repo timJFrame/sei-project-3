@@ -1,0 +1,17 @@
+{
+  "name": "sei-project-3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:timJFrame/sei-project-3.git",
+  "author": "timframe <t.f.retouching@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.11.10",
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "dev": "npx nodemon"
+  }
+}
