@@ -10,7 +10,8 @@ import mongoose from 'mongoose'
 // const jobCommentsSchema = new mongoose.Schema({
 //   text: { type: String, required: true, maxlength: 300 },
 //   rating: { type: Number, required: true, min: 1, max: 5 },
-//   owner: { type: mongoose.Schema.ObjectId, ref: 'Auctioneer', required: true },
+//   isAuctioneer: { type: mongoose.Schema.ObjectId, ref: 'Auctioneer', default: null },
+//  isBidder: { type: mongoose.Schema.ObjectId, ref: 'Bidder', default: null },
 // }, {
 //   timestamps: true,
 // })
