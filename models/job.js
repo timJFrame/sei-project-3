@@ -18,7 +18,7 @@ import mongoose from 'mongoose'
 const jobSchema = new mongoose.Schema({
   jobTitle: { type: String, required: true, unique: true },
   jobDescription: { type: String, required: true, maxlength: 300 },
-  jobDeadLine: { type: String, required: true },
+  jobDeadline: { type: String, required: true },
   jobPhoto: { type: String, required: true },
   jobCategories: { type: String, required: true },
   jobFee: { type: Number, required: true, min: 1 },
