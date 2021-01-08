@@ -6,13 +6,8 @@ import connectToDatabase from './lib/connectToDB.js'
 
 const app = express()
 
-
-
-
-
 async function startServer(){
   try {
-
     await connectToDatabase()
     console.log('Database has connected')
 
@@ -39,7 +34,8 @@ app.get('/jobs', async (req, res) => {
 })
 
 //*POST JOB
-app.post('/jobs', async(req, res) => {
+
+app.post('/jobs', async(req, res) =>  {
   try {
     const newJob = await Job.create(req.body)
     return res.status(201).json(newJob)
@@ -50,7 +46,7 @@ app.post('/jobs', async(req, res) => {
 })
 
 //*GET SINGLE JOB
-app.get('jobs/:id', async(req, res) => {
+app.get('/jobs/:id', async(req, res) => {
   const { id } = req.params
   try {
     const job = await Job.findById(id)
@@ -62,5 +58,32 @@ app.get('jobs/:id', async(req, res) => {
   }
 })
 
+//*DELETE JOB
+app.delete('/jobs/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const jobToDelete = await Job.findById(id)
+    if (!jobToDelete) throw new Error()
+    await jobToDelete.remove()
+    return res.sendStatus(204)
+  } catch (err){
+    console.log(err)
+    return res.status(404).json({ 'message': 'Not Found' })
+  }
+})
+
+//*EDIT JOB
+app.put('/jobs/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const jobToEdit = await Job.findById(id)
+    if (!jobToEdit) throw new Error()
+    Object.assign(jobToEdit, req.body)
+    await jobToEdit.save()
+  } catch (err){
+    console.log(err)
+    return res.status(404).json( { message: 'Not Found' } )
+  }
+})
 
 startServer()
