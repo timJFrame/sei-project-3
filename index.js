@@ -12,56 +12,92 @@ const app = express()
 
 
 async function startServer() {
-  try {
+  async function startServer() {
+    try {
+      await connectToDatabase()
+      console.log('Database has connected')
+      console.log(categories[Math.random(categories.length)])
+      //*Makes req.body available 
+      app.use(express.json())
 
-    await connectToDatabase()
-    console.log('Database has connected')
-    console.log(categories[Math.random(categories.length)])
-    //*Makes req.body available 
-    app.use(express.json())
-
-    //*Logger logs each request to the console
-    app.use(logger)
+      //*Logger logs each request to the console
+      app.use(logger)
 
 
-    app.listen(4000, () => console.log(`Up and running on port ${port}`))
-  } catch (err) {
-    console.log('Something went wrong when starting the app')
-    console.log(err)
+      app.listen(4000, () => console.log(`Up and running on port ${port}`))
+    } catch (err) {
+      console.log('Something went wrong when starting the app')
+      console.log(err)
+    }
   }
-}
 
 
 
-//*GET ALL JOBS
-app.get('/jobs', async (req, res) => {
-  const jobs = await Job.find()
-  return res.status(200).json(jobs)
-})
+  //*GET ALL JOBS
+  app.get('/jobs', async (req, res) => {
+    const jobs = await Job.find()
+    return res.status(200).json(jobs)
+  })
 
-//*POST JOB
-app.post('/jobs', async (req, res) => {
-  try {
-    const newJob = await Job.create(req.body)
-    return res.status(201).json(newJob)
-  } catch (err) {
-    console.log(err)
-    return res.status(422).json(err)
-  }
-})
+  //*POST JOB
+<<<<<<< HEAD
+  app.post('/jobs', async (req, res) => {
+=======
 
-//*GET SINGLE JOB
-app.get('jobs/:id', async (req, res) => {
-  const { id } = req.params
-  try {
-    const job = await Job.findById(id)
-    if (!job) throw new Error()
-    return res.status(200).json(job)
-  } catch (err) {
-    console.log(err)
-    return res.status(404).json({ 'message': 'Not Found' })
-  }
-})
+app.post('/jobs', async(req, res) =>  {
+>>>>>>> development
+    try {
+      const newJob = await Job.create(req.body)
+      return res.status(201).json(newJob)
+    } catch (err) {
+      console.log(err)
+      return res.status(422).json(err)
+    }
+  })
 
+  //*GET SINGLE JOB
+<<<<<<< HEAD
+  app.get('jobs/:id', async (req, res) => {
+=======
+app.get('/jobs/:id', async(req, res) => {
+>>>>>>> development
+    const { id } = req.params
+    try {
+      const job = await Job.findById(id)
+      if (!job) throw new Error()
+      return res.status(200).json(job)
+    } catch (err) {
+      console.log(err)
+      return res.status(404).json({ 'message': 'Not Found' })
+    }
+  })
 
-startServer()
+  //*DELETE JOB
+  app.delete('/jobs/:id', async (req, res) => {
+    const { id } = req.params
+    try {
+      const jobToDelete = await Job.findById(id)
+      if (!jobToDelete) throw new Error()
+      await jobToDelete.remove()
+      return res.sendStatus(204)
+    } catch (err) {
+      console.log(err)
+      return res.status(404).json({ 'message': 'Not Found' })
+    }
+  })
+
+  //*EDIT JOB
+  app.put('/jobs/:id', async (req, res) => {
+    const { id } = req.params
+    try {
+      const jobToEdit = await Job.findById(id)
+      if (!jobToEdit) throw new Error()
+      Object.assign(jobToEdit, req.body)
+      await jobToEdit.save()
+    } catch (err) {
+      console.log(err)
+      return res.status(404).json({ message: 'Not Found' })
+    }
+  })
+
+  startServer()
