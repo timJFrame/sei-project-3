@@ -1,12 +1,11 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import Job from './models/job.js'
-
-
-
-const dbUri = 'mongodb://localhost/deverr-db'
+import { port } from './config/enviroment.js'
+export const dbUri = 'mongodb://localhost/deverr-db'
 const app = express()
-const port = 4000
+
+
 
 app.use(express.json())
 
