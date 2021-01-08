@@ -4,7 +4,7 @@ function auctioneersSeed() {
 
   const auctioneerArray = [] // ! an array to push my 100 fake users into
 
-  for (let index = 0; index < 100; index++) { // ! looping to created 100 users
+  for (let index = 0; index < 40; index++) { // ! looping to created 100 users
     const name = faker.company.companyName() // ! A fake company Name
     const email = `${name}@email.com` // ! concatening them together to make the email
     const photo = faker.image.business() // ! and a fake profile image
