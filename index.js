@@ -4,8 +4,9 @@ import { port } from './config/environment.js'
 import logger from './lib/logger.js'
 import connectToDatabase from './lib/connectToDB.js'
 
-const app = express()
+import { categories } from './util/categories.js'
 
+const app = express()
 
 
 
@@ -15,7 +16,7 @@ async function startServer() {
 
     await connectToDatabase()
     console.log('Database has connected')
-
+    console.log(categories[Math.random(categories.length)])
     //*Makes req.body available 
     app.use(express.json())
 

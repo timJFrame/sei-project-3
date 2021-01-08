@@ -1,0 +1,1 @@
+export const categories = ['Front-End', 'Back-End', 'Android-Dev', 'Game-Dev', 'UI-Dev', 'Apple-Dev']

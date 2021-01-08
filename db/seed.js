@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import connectToDatabase from '../lib/connectToDB.js'
 import auctioneersSeed from './data/auctioneersSeed.js'
-//import User from '../models/user.js'
+//import Auctioneer from '../models/auctioneer.js'
 
 
 async function seedDatabase() {
@@ -16,7 +16,7 @@ async function seedDatabase() {
 
     const auctioneers = auctioneersSeed()
 
-    const createdAuctioneers = await User.create(auctioneers) // ! then pass that users array
+    const createdAuctioneers = await Auctioneer.create(auctioneers) // ! then pass that users array
 
     console.log(`😎 Created ${createdAuctioneers.length}`)
 

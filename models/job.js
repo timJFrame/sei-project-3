@@ -19,11 +19,11 @@ const jobCommentsSchema = new mongoose.Schema({
 })
 
 const jobSchema = new mongoose.Schema({
-  jobTitle: { type: String, required: true, unique: true },
+  jobTitle: { type: String, required: true },
   jobDescription: { type: String, required: true, maxlength: 300 },
   jobDeadline: { type: String, required: true },
   jobPhoto: { type: String, required: true },
-  jobCategories: { type: String, required: true },
+  jobCategory: { type: String, required: true },
   jobFee: { type: Number, required: true, min: 1 },
   jobIsLive: { type: Boolean, required: true },
   jobOwner: { type: mongoose.Schema.ObjectId, ref: 'Auctioneer', required: true },

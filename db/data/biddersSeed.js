@@ -1,8 +1,9 @@
 import faker from 'faker'
+import { categories } from '../../util/categories.js'
 
-function auctioneersSeed() {
+function biddersSeed() {
 
-  const auctioneerArray = [] // ! an array to push my 100 fake users into
+  const bidderArray = [] // ! an array to push my 100 fake users into
 
   for (let index = 0; index < 100; index++) { // ! looping to created 100 users
     const name = faker.company.companyName() // ! A fake company Name
@@ -10,18 +11,24 @@ function auctioneersSeed() {
     const photo = faker.image.business() // ! and a fake profile image
     const bio = faker.company.catchPhrase() //! fake bio
     const city = faker.address.city() //! fake city
-    auctioneerArray.push({
+    const bidderCategories = categories[Math.random()]
+    const bidderIsAvailable = faker.random.boolean() //!random boolean
+
+
+    bidderArray.push({
       name,
       email,
       photo,
       bio,
       city,
       password: 'pass', // ! setting all the passwords the same
+      passwordConfirmation: 'pass',
+      bidderIsAvailable,
     })
   }
   return (
-    auctioneerArray
+    bidderArray
   )
 }
 
-export default auctioneersSeed
+export default biddersSeed
