@@ -1,8 +1,8 @@
 import express from 'express'
-import Job from './models/job.js'
 import { port } from './config/enviroment.js'
 import logger from './lib/logger.js'
 import connectToDatabase from './lib/connectToDB.js'
+import router from './config/router.js'
 
 const app = express()
 
@@ -17,6 +17,8 @@ async function startServer(){
     //*Logger logs each request to the console
     app.use(logger)
 
+    //*Routes all routes
+    app.use(router)
   
     app.listen(4000, () => console.log(`Up and running on port ${port}`))
   } catch (err){
@@ -24,66 +26,5 @@ async function startServer(){
     console.log(err)
   }
 }
-
-
-
-//*GET ALL JOBS
-app.get('/jobs', async (req, res) => {
-  const jobs = await Job.find()
-  return res.status(200).json(jobs)
-})
-
-//*POST JOB
-
-app.post('/jobs', async(req, res) =>  {
-  try {
-    const newJob = await Job.create(req.body)
-    return res.status(201).json(newJob)
-  } catch (err){
-    console.log(err)
-    return res.status(422).json(err)
-  }
-})
-
-//*GET SINGLE JOB
-app.get('/jobs/:id', async(req, res) => {
-  const { id } = req.params
-  try {
-    const job = await Job.findById(id)
-    if (!job) throw new Error()
-    return res.status(200).json(job)
-  } catch (err) {
-    console.log(err)
-    return res.status(404).json({ 'message': 'Not Found' })
-  }
-})
-
-//*DELETE JOB
-app.delete('/jobs/:id', async (req, res) => {
-  const { id } = req.params
-  try {
-    const jobToDelete = await Job.findById(id)
-    if (!jobToDelete) throw new Error()
-    await jobToDelete.remove()
-    return res.sendStatus(204)
-  } catch (err){
-    console.log(err)
-    return res.status(404).json({ 'message': 'Not Found' })
-  }
-})
-
-//*EDIT JOB
-app.put('/jobs/:id', async (req, res) => {
-  const { id } = req.params
-  try {
-    const jobToEdit = await Job.findById(id)
-    if (!jobToEdit) throw new Error()
-    Object.assign(jobToEdit, req.body)
-    await jobToEdit.save()
-  } catch (err){
-    console.log(err)
-    return res.status(404).json( { message: 'Not Found' } )
-  }
-})
 
 startServer()
