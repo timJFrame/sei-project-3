@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 
+
 const dbUri = 'mongodb://localhost/deverr-db'
 const app = express()
 const port = 4000
