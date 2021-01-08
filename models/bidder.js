@@ -1,12 +1,7 @@
 import mongoose from 'mongoose'
 
 const bidderSchema = new mongoose.Schema({
-  bidderName: { type: String, required: true, unique: true },
-  bidderEmail: { type: String, required: true, unique: true },
-  bidderPassword: { type: String, required: true },
-  bidderBio: { type: String, required: true },
-  bidderPhoto: { type: String, required: true },
-  bidderCity: { type: String },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   bidderCategories: { type: String, required: true },
   bidderIsAvailable: { type: Boolean, required: true },
 })

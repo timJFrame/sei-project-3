@@ -1,12 +1,7 @@
 import mongoose from 'mongoose'
 
 const auctioneerSchema = new mongoose.Schema({
-  auctioneerName: { type: String, required: true, unique: true },
-  auctioneerEmail: { type: String, required: true, unique: true },
-  auctioneerPassword: { type: String, required: true },
-  auctioneerBio: { type: String, required: true },
-  auctioneerPhoto: { type: String, required: true },
-  auctioneerCity: { type: String }
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
 })
 
 // auctioneerSchema.virtual('passwordConfirmation')
