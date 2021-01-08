@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import connectToDatabase from '../lib/connectToDB.js'
+import auctioneersSeed from './data/auctioneersSeed.js'
 //import User from '../models/user.js'
 
 
@@ -13,22 +14,22 @@ async function seedDatabase() {
 
     console.log('🤖 Database dropped')
 
+    const auctioneers = auctioneersSeed()
 
+    const createdAuctioneers = await User.create(auctioneers) // ! then pass that users array
 
-    const createdUsers = await User.create(users) // ! then pass that users array
-
-    console.log(`ðŸ¤– Created ${createdUsers.length}`)
+    console.log(`😎 Created ${createdAuctioneers.length}`)
 
     await mongoose.connection.close()
 
-    console.log('ðŸ¤– Goodbye')
+    console.log('🤖 Goodbye')
 
   } catch (err) {
-    console.log('ðŸ¤– Something went wrong')
+    console.log('😞 Something went wrong')
     console.log(err)
 
     await mongoose.connection.close()
-    console.log('ðŸ¤– Goodbye')
+    console.log('👋🏼 Goodbye')
   }
 }
 
