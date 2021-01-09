@@ -180,7 +180,7 @@ export default [{
 ,{
   jobTitle: 'Restructure exsisting wesbite to responsive design',
   jobDescription: 'Looking for someone to covert exsisting website into a repsonsive website that can be viewed on any device',
-  jobDeadline: '5 Days',
+  jobDeadline: '5 days',
   jobPhoto: 'https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
   jobCategory: 'Front-End',
   jobFee: 500,
@@ -188,7 +188,7 @@ export default [{
 },{
   jobTitle: 'Apple Guru Required',
   jobDescription: 'The majority of the business logic is encapsulated in a .Net DLL, which has been prepped as a .Net Standard DLL for portability to Mac.  I just need to get the UI sorted out, which has been a challenge since I know very little about Xcode.',
-  jobDeadline: '30 Days',
+  jobDeadline: '30 days',
   jobPhoto: 'https://www.pexels.com/photo/white-and-black-laptop-computer-907489/',
   jobCategory: 'Apple-Dev',
   jobFee: 2000,
@@ -196,7 +196,7 @@ export default [{
 },{
   jobTitle: 'Xcode Developer Needed',
   jobDescription: 'An App which works on iOS and Android. Basically reads QR codes and updates a Firebase database.',
-  jobDeadline: '7 Days',
+  jobDeadline: '7 days',
   jobPhoto: 'https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
   jobCategory: 'Apple-Dev',
   jobFee: 15000,
@@ -204,7 +204,7 @@ export default [{
 },{
   jobTitle: 'https://www.upwork.com/freelance-jobs/backend-rest-api/',
   jobDescription: 'We are looking for a developer who has experience with the MS Graph API and integrating it in to our Ruby on Rails web application stack. We currently have end users authenticate with an Oauth process to connect their Outlook account to sync their calendar events in our application. We are experience issues with MS Graph and the webhook notifications to keep our events in sync.',
-  jobDeadline: '30 Days',
+  jobDeadline: '30 days',
   jobPhoto: 'https://images.pexels.com/photos/614117/pexels-photo-614117.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
   jobCategory: 'Back-End',
   jobFee: 4500,
@@ -212,7 +212,7 @@ export default [{
 },{
   jobTitle: 'Unity developer for 3D realistic animal and scene simulation x rendering',
   jobDescription: 'We want to simulate an animal and environment as realistic as possible in 3D space in order to capture realistic render image sequence over time.',
-  jobDeadline: '120 Days',
+  jobDeadline: '120 days',
   jobPhoto: 'https://images.pexels.com/photos/3829227/pexels-photo-3829227.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
   jobCategory: 'Game-Dev',
   jobFee: 9000,
@@ -220,7 +220,7 @@ export default [{
 },{
   jobTitle: 'Product Inventory Feed (FTP) & API integrations',
   jobDescription: 'We are looking to hire a freelancer/ web developer to build us a platform that downloads our distributor products inventory levels and pricing and updates every hour.We are looking to hire a freelancer/ web developer to build us a platform that downloads our distributor products inventory levels and pricing and updates every hour. The end goal of the platform is to be able to import all these into an online portal so we can search for a product and the search results will be the pricing and inventory for that product from each distributor. ',
-  jobDeadline: '1 Day',
+  jobDeadline: '1 day',
   jobPhoto: 'https://images.pexels.com/photos/251225/pexels-photo-251225.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
   jobCategory: 'Front-End',
   jobFee: 300,
@@ -228,7 +228,7 @@ export default [{
 },{
   jobTitle: 'ASP.net core 5 - Simple App that retrieves and displays data using current Industry Data Protection',
   jobDescription: 'ASP.net core 5 - Simple skeleton App that can retrieve and display data using current Industry Data Protection.  I have some knowledge on the topic but I am missing the industry secrets on data protections.',
-  jobDeadline: '1 Day',
+  jobDeadline: '1 day',
   jobPhoto: 'https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
   jobCategory: 'Back-End',
   jobFee: 250,
@@ -236,10 +236,51 @@ export default [{
 },{
   jobTitle: 'Creating interface between ARDUINO MEGA 2560 and credit and debit card using PN532',
   jobDescription: 'We need somebody who can create program to interface between Arduino Mega 2560 and NFC Reader PN532 and get data from card which we can send to api for transaction approval. I have attached link which can be useful for programmer to more understand our requirement.',
-  jobDeadline: '15 Days',
+  jobDeadline: '15 days',
   jobPhoto: 'https://images.pexels.com/photos/326522/pexels-photo-326522.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
   jobCategory: 'Android-Dev',
   jobFee: 2000,
   jobIsLive: true,
-}
-]
+}, 
+/// from here:
+{
+  jobTitle: 'Unity developer for 3D realistic animal and scene simulation x rendering',
+  jobDescription: 'We want to simulate an animal and environment as realistic as possible in 3D space in order to capture realistic render image sequence over time. Required skills: Unity dev, C# scripting, Unity Shader, Lighting, Shadow, Water Simulation etc.',
+  jobDeadline: '200 days',
+  jobPhoto: 'https://images.pexels.com/photos/1329325/pexels-photo-1329325.jpeg',
+  jobCategory: 'Game-Dev',
+  jobFee: 10000,
+  jobIsLive: true,
+}, {
+  jobTitle: 'JavaScript / PHP Game with 100 simultaneous players',
+  jobDescription: 'Title Recap: Past coder wanting to create a game with up to 100 simultaneous players per server instance. I am trying to be a bit vague and secretive. Milestone 1: Have parts of the server function correctly with 100 "virtual" live players. Other milestones to be revealed / determined later. Experience working as a game coder/dev particularly for a 100-ish player game is a huge plus',
+  jobDeadline: '250 days',
+  jobPhoto: 'https://images.pexels.com/photos/3556927/pexels-photo-3556927.jpeg',
+  jobCategory: 'Game-Dev',
+  jobFee: 5000,
+  jobIsLive: true,
+}, {
+  jobTitle: 'Developer needed for social strategy VR game',
+  jobDescription: 'Virtual reality social strategy game. Beginning stages development',
+  jobDeadline: '360 days',
+  jobPhoto: 'https://images.pexels.com/photos/3761137/pexels-photo-3761137.jpeg',
+  jobCategory: 'Game-Dev',
+  jobFee: 7000,
+  jobIsLive: true,
+}, {
+  jobTitle: 'Looking for Independent JAVA/AWS DEVELOPER',
+  jobDescription: 'Deliverable will be discussed during call. Looking for independent contractor. NO ENTRY LEVEL. Skills: JAVA and AWS. Possible full time if initial months went well. This job post is for a startup and also willing to offer equity later on with salary.',
+  jobDeadline: '200 days',
+  jobPhoto: 'https://images.pexels.com/photos/3761137/pexels-photo-3761137.jpeg',
+  jobCategory: 'Back-End',
+  jobFee: 90000,
+  jobIsLive: true,
+}, {
+  jobTitle: 'Need Laravel API developer for video streaming API',
+  jobDescription: 'Need to develop an API by using agora.io through which video live streaming can be implemented. Part time freelancer can work.I am willing to pay higher rates for the most experienced freelancers ',
+  jobDeadline: '10 days',
+  jobPhoto: 'https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg',
+  jobCategory: 'Back-End',
+  jobFee: 6000,
+  jobIsLive: true,
+}]
