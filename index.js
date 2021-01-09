@@ -19,9 +19,9 @@ async function startServer() {
     app.use(logger)
 
     //*Routes all routes
-    app.use(router)
+    app.use('/api', router)
 
-    app.listen(4000, () => console.log(`Up and running on port ${port}`))
+    app.listen(port, () => console.log(`Up and running on port ${port}`))
   } catch (err) {
     console.log('Something went wrong when starting the app')
     console.log(err)

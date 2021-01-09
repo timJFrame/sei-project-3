@@ -16,7 +16,7 @@
   },
   "scripts": {
     "dev": "npx nodemon",
-    "seed": "node db/seeds.js"
-
+    "seed": "node db/seeds.js",
+    "dev-fullstack": "concurrently \"yarn dev\" \"cd client && yarn start\""
   }
 }
