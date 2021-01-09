@@ -4,7 +4,7 @@ function auctioneersSeed() {
 
   const auctioneerArray = [] // ! an array to push my 100 fake users into
 
-  for (let index = 0; index < 5; index++) { // ! looping to created 100 users
+  for (let index = 0; index < 2; index++) { // ! looping to created 100 users
 
     const name = faker.company.companyName() // ! A fake company Name
     const email = faker.internet.email() // ! concatening them together to make the email
@@ -17,10 +17,11 @@ function auctioneersSeed() {
       photo,
       bio,
       city,
-      password: 'pass', // ! setting all the passwords the same
+      password: 'pass',
+      passwordConfirmation: 'pass', // ! setting all the passwords the same
     })
   }
-  console.log(auctioneerArray)
+
   return (
     auctioneerArray
   )

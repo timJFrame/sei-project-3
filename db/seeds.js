@@ -18,7 +18,7 @@ async function seedDatabase() {
 
     const auctioneers = auctioneersSeed()
 
-    const createdAuctioneers = await Auctioneer.create({ user: auctioneers }) // ! then pass that users array
+    const createdAuctioneers = await Auctioneer.create(auctioneers) // ! then pass that users array
 
     console.log(`😎 Created ${createdAuctioneers.length} Auctioneers`)
 
