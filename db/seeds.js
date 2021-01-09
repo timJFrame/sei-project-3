@@ -6,7 +6,7 @@ import Auctioneer from '../models/auctioneer.js'
 import Bidder from '../models/bidder.js'
 import Job from '../models/job.js'
 import jobsData from '../db/data/jobsSeed.js'
-import users from '../models/user.js'
+import User from '../models/user.js'
 
 async function seedDatabase() {
   try {
@@ -17,9 +17,7 @@ async function seedDatabase() {
     await mongoose.connection.db.dropDatabase()
 
     console.log('🤖 Database dropped')
-
     const auctioneers = auctioneersSeed()
-
     const createdAuctioneers = await Auctioneer.create(auctioneers) // ! then pass that users array
 
     console.log(`😎 Created ${createdAuctioneers.length} Auctioneers`)
@@ -29,14 +27,15 @@ async function seedDatabase() {
     const createdBidders = await Bidder.create(bidders) // ! then pass that users array
 
     console.log(`😎 Created ${createdBidders.length} Bidders`)
+    // console.log(Auctioneer._id)
 
-    const jobDataWithOwners = jobsData.map(job => {
-      job.owner = users[0]._id
-      return job
-    })
+    // const jobDataWithOwners = jobsData.map(job => {
+    //   job.owner = Us[0]._id
+    //   return job
+    // })
 
-    const jobs = await Job.create(jobDataWithOwners)
-    console.log(`POW! Fresh Database containing ${jobs.length} jobs`)
+    // const jobs = await Job.create(jobDataWithOwners)
+    // console.log(`POW! Fresh Database containing ${jobs.length} jobs`)
 
     await mongoose.connection.close()
 

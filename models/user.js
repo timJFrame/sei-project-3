@@ -12,11 +12,6 @@ const userSchema = new mongoose.Schema({
   city: { type: String },
 })
 
-userSchema.virtual('userTemplate', {
-  ref: 'User',
-  localField: '_id',
-  foreignField: 'user'
-})
 
 userSchema.set('toJSON', { // this method makes sure the passwords are never sent in the responses, when user objects are converted to JSON
   virtuals: true,
@@ -29,12 +24,12 @@ userSchema.set('toJSON', { // this method makes sure the passwords are never sen
 
 userSchema // creating a virtual field on the schema - this is a field that will only exist when creating a new user and will not be stored in the database
   .virtual('passwordConfirmation')
-  .set(function(passwordConfirmation) {
+  .set(function (passwordConfirmation) {
     this._passwordConfirmation = passwordConfirmation
   })
 
 userSchema
-  .pre('validate', function(next) { // custom checks to run before mongoose's own validation
+  .pre('validate', function (next) { // custom checks to run before mongoose's own validation
     if (this.isModified('password') && this.password !== this._passwordConfirmation) {
       this.invalidate('passwordConfirmation', 'does not match') // if password and confirmation don't match, we invalidate at this point, the whole process stops and no user is created
     }
@@ -42,7 +37,7 @@ userSchema
   })
 
 // validation
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
   if (this.isModified('password')) {
     this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync()) // once the password is checked we want to hash the password (encrypt it) and the store it
   }
@@ -50,7 +45,7 @@ userSchema.pre('save', function(next) {
 })
 
 // save
-userSchema.methods.validatePassword = function(password) {
+userSchema.methods.validatePassword = function (password) {
   return bcrypt.compareSync(password, this.password)
 }
 userSchema.plugin(uniqueValidator)
