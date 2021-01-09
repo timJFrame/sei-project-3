@@ -1,14 +1,13 @@
 import Auctioneer from '../models/auctioneer.js'
 
 
-
-//*GET ALL JOBS
+//*GET ALL AUCTIONEERS
 async function auctioneerIndex (req, res) {
   const auctioneer = await Auctioneer.find()
   return res.status(200).json(auctioneer)
 }
 
-//*POST JOB
+//*POST AUCTIONEER
 async function auctioneerCreate (req, res) {
   try {
     const newAuctioneer = await Auctioneer.create(req.body)
@@ -19,7 +18,7 @@ async function auctioneerCreate (req, res) {
   }
 }
 
-//*GET SINGLE JOB
+//*GET SINGLE AUCTIONEER
 async function auctioneerShow (req, res) {
   const { id } = req.params
   try {
@@ -32,7 +31,7 @@ async function auctioneerShow (req, res) {
   }
 }
 
-//*DELETE JOB
+//*DELETE AUCTIONEER
 async function auctioneerDelete (req, res) {
   const { id } = req.params
   try {
@@ -46,7 +45,7 @@ async function auctioneerDelete (req, res) {
   }
 }
 
-//*EDIT JOB
+//*EDIT AUCTIONEER
 async function auctioneerUpdate (req, res){
   const { id } = req.params
   try {
