@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
 userSchema.virtual('userTemplate', {
   ref: 'User',
   localField: '_id',
-  foreignField: 'user'
+  foreignField: 'user',
 })
 
 userSchema.set('toJSON', { // this method makes sure the passwords are never sent in the responses, when user objects are converted to JSON
