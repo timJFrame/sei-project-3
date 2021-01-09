@@ -3,37 +3,39 @@ import Bidder from '../models/bidder.js'
 
 
 //*GET ALL BIDDERS
-async function bidderIndex (req, res) {
-  const bidders = await Bidder.find()
-  return res.status(200).json(bidders)
+async function bidderIndex (req, res, next) {
+  try {
+    const bidders = await Bidder.find()
+    return res.status(200).json(bidders)
+  } catch (err){
+    next(err)
+  }
 }
 
 //*POST BIDDER
-async function bidderCreate (req, res) {
+async function bidderCreate (req, res, next) {
   try {
     const newBidder = await Bidder.create(req.body)
     return res.status(201).json(newBidder)
   } catch (err){
-    console.log(err)
-    return res.status(422).json(err)
+    next(err)
   }
 }
 
 //*GET SINGLE BIDDER
-async function bidderShow (req, res) {
+async function bidderShow (req, res, next) {
   const { id } = req.params
   try {
     const bidder = await Bidder.findById(id)
     if (!bidder) throw new Error()
     return res.status(200).json(bidder)
   } catch (err) {
-    console.log(err)
-    return res.status(404).json({ 'message': 'Not Found' })
+    next(err)
   }
 }
 
 //*DELETE BIDDER
-async function bidderDelete (req, res) {
+async function bidderDelete (req, res, next) {
   const { id } = req.params
   try {
     const bidderToDelete = await Bidder.findById(id)
@@ -41,22 +43,21 @@ async function bidderDelete (req, res) {
     await bidderToDelete.remove()
     return res.sendStatus(204)
   } catch (err){
-    console.log(err)
-    return res.status(404).json({ 'message': 'Not Found' })
+    next(err)
   }
 }
 
 //*EDIT BIDDER
-async function bidderUpdate (req, res){
+async function bidderUpdate (req, res, next){
   const { id } = req.params
   try {
     const bidderToEdit = await Bidder.findById(id)
     if (!bidderToEdit) throw new Error()
     Object.assign(bidderToEdit, req.body)
     await bidderToEdit.save()
+    return res.status(202).json(bidderToEdit)
   } catch (err){
-    console.log(err)
-    return res.status(404).json( { message: 'Not Found' } )
+    next(err)
   }
 }
 

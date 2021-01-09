@@ -78,4 +78,15 @@ export default [{
   jobCategory: 'Game-Dev',
   jobFee: 2000,
   jobIsLive: true,
-}]
+}
+, {
+  jobTitle: 'Professional SEO audit report needed',
+  jobDescription: 'Looking for Technical SEO Audit And Analysis, including: List of 301 redirects, List of 4xx errors on the website, List of 5xx errors, robots.txt recommendations, Sitemap optimization suggestions',
+  jobDeadline: '09 September 2021',
+  jobPhoto: 'https://media.istockphoto.com/photos/oops-404-error-page-not-found-futuristic-robot-concept-with-wire-picture-id642741626',
+  jobCategory: 'Back-End',
+  jobFee: 1000,
+  jobIsLive: true,
+}
+
+]
