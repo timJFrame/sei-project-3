@@ -27,7 +27,7 @@ function biddersSeed() {
       password: 'pass', // ! setting all the passwords the same
       passwordConfirmation: 'pass',
       bidderCategories,
-      bidderIsAvailable
+      bidderIsAvailable,
     })
   }
   return (

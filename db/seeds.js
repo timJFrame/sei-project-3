@@ -37,11 +37,12 @@ async function seedDatabase() {
 
     // CREATE JOBS
     const jobs = await Job.create(jobDataWithOwners)
-    console.log(`POW! Fresh Database containing ${jobs.length} jobs`)
 
+    console.log(`POW! Fresh Database containing ${jobs.length} jobs`)
+  
     await mongoose.connection.close()
     console.log('🤖 Goodbye')
-
+    
   } catch (err) {
     console.log('😞 Something went wrong')
     console.log(err)
