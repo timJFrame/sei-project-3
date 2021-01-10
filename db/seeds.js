@@ -13,6 +13,7 @@ async function seedDatabase() {
     // Connect to db
     await connectToDatabase()
     console.log('🤖 Database Connected')
+    
     await mongoose.connection.db.dropDatabase()
     console.log('🤖 Database dropped')
 
@@ -37,7 +38,6 @@ async function seedDatabase() {
 
     // CREATE JOBS
     const jobs = await Job.create(jobDataWithOwners)
-
     console.log(`POW! Fresh Database containing ${jobs.length} jobs`)
   
     await mongoose.connection.close()

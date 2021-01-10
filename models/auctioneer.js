@@ -1,4 +1,6 @@
 import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
+import uniqueValidator from 'mongoose-unique-validator'
 
 const auctioneerSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
@@ -18,19 +20,34 @@ auctioneerSchema.set('toJSON', { // this method makes sure the passwords are nev
   },
 })
 
-export default mongoose.model('Auctioneer', auctioneerSchema)
+// Virtual setter for passwordConfirmation field not stored in db
+auctioneerSchema.virtual('passwordConfirmation')
+  .set(function(passwordConfirmation) {
+    this._passwordConfirmation = passwordConfirmation
+  })
 
-// const auctioneerSchema = new mongoose.Schema({
-//   user: [{ type: mongoose.Schema.ObjectId, ref: 'User', required: true }],
-// })
-// console.log(auctioneerSchema)
-// auctioneerSchema.virtual('jobsCreated', {
-//   ref: 'Job',
-//   localField: '_id',
-//   foreignField: 'jobOwner'
-// })
-// export default mongoose.model('Auctioneer', auctioneerSchema)
-// const auctioneerSchema = new mongoose.Schema({
-//   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-// })
-// export default mongoose.model('Auctioneer', auctioneerSchema)
+// PREVALIDATION: only check this if it is the first time user is created or if the password has been changed
+auctioneerSchema.pre('validate', function(next) {
+  if (this.isModified('password') && this.password !== this._passwordConfirmation) {
+    this.invalidate('passwordConfirmation', 'does not match')
+  }
+  // if they match, next() so mongoose can run own validation
+  next()
+})
+
+// PRESAVE: Replace password with encrypted hash before saving
+auctioneerSchema.pre('save', function(next) {
+  if (this.isModified('password')) {
+    this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync())
+  }
+  next()
+})
+
+// Check password against encrypted password to see if they match
+auctioneerSchema.methods.validatePassword = function(password) {
+  return bcrypt.compareSync(password, this.password)
+}
+
+auctioneerSchema.plugin(uniqueValidator)
+
+export default mongoose.model('Auctioneer', auctioneerSchema)

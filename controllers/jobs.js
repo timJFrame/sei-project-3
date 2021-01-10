@@ -1,4 +1,3 @@
-
 import Job from '../models/job.js'
 
 
@@ -60,6 +59,36 @@ async function jobUpdate (req, res, next){
     next(err)
   }
 }
+
+// todo !!!
+// async function filmCommentCreate(req, res, next) {
+//   const { id } = req.params
+//   try {
+//     const film = await Film.findById(id)
+//     if (!film) throw new Error(notFound)
+//     const newComment = { ...req.body, owner: req.currentUser._id }
+//     film.comments.push(newComment)
+//     await film.save()
+//     return res.status(201).json(film)
+//   } catch (err) {
+//     next(err)
+//   }
+// }
+
+// async function filmCommentDelete(req, res, next) {
+//   const { id, commentId } = req.params
+//   try {
+//     const film = await Film.findById(id)
+//     if (!film) throw new Error(notFound)
+//     const commentToDelete = film.comments.id(commentId)
+//     if (!commentToDelete) throw new Error(notFound)
+//     if (!commentToDelete.owner.equals(req.currentUser._id)) throw new Error(forbidden)
+//     await commentToDelete.remove()
+//     await film.save()
+//     return res.sendStatus(204)
+//   } catch (err) {
+//     next(err)
+//   }
 
 export default {
   index: jobIndex,

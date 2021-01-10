@@ -19,6 +19,7 @@ function auctioneersSeed() {
       photo,
       bio,
       city,
+      isAuctioneer: true,
       password: 'pass',
       passwordConfirmation: 'pass', // ! setting all the passwords the same
     })
