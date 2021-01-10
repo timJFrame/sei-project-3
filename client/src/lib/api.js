@@ -11,3 +11,8 @@ export function getAllJobs(){
 export function getSingleJob(id){
   return axios.get(`${baseUrl}/jobs/${id}`)
 }
+
+//*Create new Job
+export function createJob(formdata){
+  return axios.post(`${baseUrl}/jobs`, formdata)
+}

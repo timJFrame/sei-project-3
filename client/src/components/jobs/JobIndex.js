@@ -17,7 +17,7 @@ function JobIndex(){
     getData()
   }, [])
 	
-  console.log(jobs)
+ 
 	
   return (
     <div className="job-index-container">

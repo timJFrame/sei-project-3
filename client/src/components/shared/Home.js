@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function Home(){
+
   return (
     <div className="home-page-container">
       <div className="hero-image-container">
@@ -12,9 +13,10 @@ function Home(){
       <div className="categories-container">
 
 				
-        <div className="catergory-cards glass-morphism">
+        <div  className="catergory-cards glass-morphism">
           <Link to="/jobs">Andriod Developer</Link>
         </div>
+
         <div className="catergory-cards glass-morphism">
           <Link to="/jobs">
 					Apple Developer

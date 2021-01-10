@@ -9,6 +9,7 @@ import Nav from './components/shared/Nav'
 //*Job Folder
 import JobIndex from './components/jobs/JobIndex'
 import JobShow from './components/jobs/JobShow'
+import JobNew from './components/jobs/JobNew'
 
 function App(){
   return (
@@ -16,7 +17,8 @@ function App(){
       <Nav />
       <Switch>
         <Route exact path="/" component={Home}/>
-        <Route  path="/jobs/:id" component={JobShow}></Route>
+        <Route  path="/jobs/new" component={JobNew}/>
+        <Route  path="/jobs/:id" component={JobShow}/>
         <Route path="/jobs" component={JobIndex}/>
       </Switch>
     </BrowserRouter>
