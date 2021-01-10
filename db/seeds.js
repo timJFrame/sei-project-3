@@ -14,18 +14,14 @@ async function seedDatabase() {
     console.log('🤖 Database Connected')
 
     await mongoose.connection.db.dropDatabase()
-
     console.log('🤖 Database dropped')
 
     const auctioneers = auctioneersSeed()
     const createdAuctioneers = await Auctioneer.create(auctioneers) // ! then pass that users array
-
     console.log(`😎 Created ${createdAuctioneers.length} Auctioneers`)
 
     const bidders = biddersSeed()
-
     const createdBidders = await Bidder.create(bidders) // ! then pass that users array
-
     console.log(`😎 Created ${createdBidders.length} Bidders`)
 
     const jobDataWithOwners = jobsData.map(job => {
@@ -36,11 +32,11 @@ async function seedDatabase() {
     const jobs = await Job.create(jobDataWithOwners)
 
     console.log(`POW! Fresh Database containing ${jobs.length} jobs`)
-
+   
     await mongoose.connection.close()
 
     console.log('🤖 Goodbye')
-
+    
   } catch (err) {
     console.log('😞 Something went wrong')
     console.log(err)

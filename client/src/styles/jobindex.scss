@@ -1,0 +1,22 @@
+.job-index-container {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+.job-card{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width:300px;
+	height: 200px;
+	text-align: center;
+	margin: 10px;
+
+	.job-card-image{
+		max-width: 65%;
+	}
+}
+
