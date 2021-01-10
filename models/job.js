@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
 
-// Create Job Bids Schema
+// Create JOB BIDS Schema
 const jobBidsSchema = new mongoose.Schema({
   text: { type: String, required: true, maxlength: 300 },
   owner: { type: mongoose.Schema.ObjectId, ref: 'Bidder', required: true },
@@ -9,7 +9,7 @@ const jobBidsSchema = new mongoose.Schema({
   timestamps: true,
 })
 
-// Create Job Bids Schema
+// Create COMMENTS Schema
 const jobCommentsSchema = new mongoose.Schema({
   text: { type: String, required: true, maxlength: 300 },
   rating: { type: Number, required: true, min: 1, max: 5 },

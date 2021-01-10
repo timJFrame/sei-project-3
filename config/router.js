@@ -31,10 +31,10 @@ router.route('/auctioneers/:id')
   .put(secureRoute, auctioneers.update)
   .delete(secureRoute, auctioneers.delete)
 
-router.route('/auctioneers/register')
+router.route('/register/auctioneers')
   .post(auth.registerAuctioneer)
 
-router.route('/auctioneers/login')
+router.route('/login/auctioneers')
   .post(auth.loginAuctioneer)
 
 
@@ -48,10 +48,10 @@ router.route('/bidders/:id')
   .put(secureRoute, bidders.update)
   .delete(secureRoute, bidders.delete)
 
-router.route('/bidders/register')
+router.route('/register/bidders')
   .post(auth.registerBidder)
 
-router.route('/bidders/login')
+router.route('/login/bidders')
   .post(auth.loginBidder)
 
 export default router

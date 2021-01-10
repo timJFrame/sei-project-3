@@ -1,10 +1,11 @@
 import Job from '../models/job.js'
+import { notFound, forbidden } from '../lib/errorHandler.js'
 
 
 //*GET ALL JOBS
 async function jobIndex (req, res, next) {
   try {
-    const jobs = await Job.find()
+    const jobs = await Job.find().populate('jobOwner')
     return res.status(200).json(jobs)
   } catch (err){
     next(err)
@@ -14,7 +15,8 @@ async function jobIndex (req, res, next) {
 //*POST JOB
 async function jobCreate (req, res, next) {
   try {
-    const newJob = await Job.create(req.body)
+    const newJobData = { ...req.body, jobOwner: req.currentUser._id }
+    const newJob = await Job.create(newJobData)
     return res.status(201).json(newJob)
   } catch (err){
     next(err)
@@ -25,8 +27,8 @@ async function jobCreate (req, res, next) {
 async function jobShow (req, res, next) {
   const { id } = req.params
   try {
-    const job = await Job.findById(id)
-    if (!job) throw new Error()
+    const job = await Job.findById(id).populate('jobOwner')
+    if (!job) throw new Error(notFound)
     return res.status(200).json(job)
   } catch (err) {
     next(err)
@@ -38,7 +40,8 @@ async function jobDelete (req, res, next) {
   const { id } = req.params
   try {
     const jobToDelete = await Job.findById(id)
-    if (!jobToDelete) throw new Error()
+    if (!jobToDelete) throw new Error(notFound)
+    if (!jobToDelete.jobOwner.equals(req.currentUser._id)) throw new Error(forbidden)
     await jobToDelete.remove()
     return res.sendStatus(204)
   } catch (err){
@@ -51,7 +54,8 @@ async function jobUpdate (req, res, next){
   const { id } = req.params
   try {
     const jobToEdit = await Job.findById(id)
-    if (!jobToEdit) throw new Error()
+    if (!jobToEdit) throw new Error(notFound)
+    if (!jobToEdit.jobOwner.equals(req.currentUser._id)) throw new Error(forbidden)
     Object.assign(jobToEdit, req.body)
     await jobToEdit.save()
     return res.status(202).json(jobToEdit)
