@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
 
-
+// Create Job Bids Schema
 const jobBidsSchema = new mongoose.Schema({
   text: { type: String, required: true, maxlength: 300 },
   owner: { type: mongoose.Schema.ObjectId, ref: 'Bidder', required: true },
@@ -9,6 +9,7 @@ const jobBidsSchema = new mongoose.Schema({
   timestamps: true,
 })
 
+// Create Job Bids Schema
 const jobCommentsSchema = new mongoose.Schema({
   text: { type: String, required: true, maxlength: 300 },
   rating: { type: Number, required: true, min: 1, max: 5 },
@@ -26,11 +27,12 @@ const jobSchema = new mongoose.Schema({
   jobCategory: { type: String, required: true },
   jobFee: { type: Number, required: true, min: 1 },
   jobIsLive: { type: Boolean, required: true },
-  // removed required to allow testing, to add 'required: true' once we have finlised links in place
-  jobOwner: { type: mongoose.Schema.ObjectId, ref: 'Auctioneer' },
+  jobOwner: { type: mongoose.Schema.ObjectId, ref: 'Auctioneer', required: true },
   jobBids: [jobBidsSchema],
   jobComments: [jobCommentsSchema],
 })
+
+jobSchema.set('toJSON', { virtuals: true })
 
 jobSchema.plugin(uniqueValidator)
 
