@@ -20,6 +20,11 @@ router.route('/jobs/:id')
   .put(secureRoute, jobs.update)
   .delete(secureRoute, jobs.delete)
 
+router.route('/jobs/:id/bids')
+  .post(secureRoute, jobs.createBid)
+
+router.route('/jobs/:id/bids/:bidId')
+  .delete(secureRoute, jobs.deleteBid)
   
 // todo * AUCTIONEER ROUTES
 router.route('/auctioneers')
