@@ -1,20 +1,24 @@
 import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-class App extends React.Component {
-  async componentDidMount() {
-    try {
-      const responseJobs = await fetch('/api/jobs')
-      const dataJobs = await responseJobs.json()
-      console.log(dataJobs)
+//*Shared Folder
+import Home from './components/shared/Home'
+import Nav from './components/shared/Nav'
 
-    } catch (err) {
-      console.log(err)
-    }
-  }
+//*Job Folder
+import JobIndex from './components/jobs/JobIndex'
 
-  render() {
-    return <h1>Hello world!</h1>
-  }
+function App(){
+  return (
+    <BrowserRouter>
+      <Nav />
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route path="/jobs" component={JobIndex}/>
+      </Switch>
+    </BrowserRouter>
+  )
 }
+
 
 export default App
