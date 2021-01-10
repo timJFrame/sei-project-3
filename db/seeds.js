@@ -9,10 +9,10 @@ import jobsData from '../db/data/jobsSeed.js'
 
 async function seedDatabase() {
   try {
+
     // Connect to db
     await connectToDatabase()
     console.log('🤖 Database Connected')
-
     await mongoose.connection.db.dropDatabase()
     console.log('🤖 Database dropped')
 
@@ -28,7 +28,6 @@ async function seedDatabase() {
 
     // MAP THROUGH JOBS DB, FOR EACH JOB ASSIGN A KEY NAMED JOB OWNER REFERENCING AUCTIONEERS DB
     const jobDataWithOwners = jobsData.map(job => {
-
       // Creating a random index number var
       const randomIndexNumber = Math.round(Math.random() * (createdAuctioneers.length - 1))
       // Assign each job to a random auctioneer
@@ -38,18 +37,17 @@ async function seedDatabase() {
 
     // CREATE JOBS
     const jobs = await Job.create(jobDataWithOwners)
-    console.log(`POW!💥 Fresh Database containing ${jobs.length} jobs`)
-    
+    console.log(`POW! Fresh Database containing ${jobs.length} jobs`)
+
     await mongoose.connection.close()
     console.log('🤖 Goodbye')
 
   } catch (err) {
     console.log('😞 Something went wrong')
     console.log(err)
-
+    
     await mongoose.connection.close()
     console.log('👋🏼 Goodbye')
   }
 }
-
 seedDatabase()
