@@ -7,6 +7,9 @@
 $font-color: rgb(14, 11, 31);
 
 *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Poppins' ,'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
 }
 
@@ -19,6 +22,10 @@ $font-color: rgb(14, 11, 31);
   border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
+a{
+  text-decoration: none;
+  color: $font-color;
+}
 
 body{
 	background: rgb(222,28,210);
