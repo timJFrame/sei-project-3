@@ -2,17 +2,21 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-function Nav (){
+function Nav() {
   return (
     <header>
-      <nav>
-        <div className="nav-container">
-          <Link to="/" className="nav-item">Home</Link>
-          <Link to="/jobs" className="nav-item">Jobs</Link>
+      <nav className="glass-morphism">
+        <div>
+          <Link to="/">DEVERR</Link>
         </div>
+        <div className="navButtonsGroup">
+          <Link to="/jobs" className="navButton">Jobs</Link>
+          <Link to="#" className="navButton">Login</Link>
+        </div>
+
       </nav>
     </header>
-	
+
   )
 }
 
