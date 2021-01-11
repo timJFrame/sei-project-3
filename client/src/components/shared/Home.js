@@ -18,7 +18,7 @@ function Home(){
         </div>
 
         <div className="catergory-cards glass-morphism">
-          <Link to="/jobs">
+          <Link to="/jobs" apple={'apple'}>
 					Apple Developer
           </Link>
 					 </div>

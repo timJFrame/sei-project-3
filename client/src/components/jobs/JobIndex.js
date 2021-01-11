@@ -4,7 +4,8 @@ import JobCard from './JobCard'
 
 
 
-function JobIndex(){
+
+function JobIndex( { apple } ){
 
   const [jobs, setJobs] = React.useState(null)
 
@@ -20,7 +21,7 @@ function JobIndex(){
     getData()
   }, [])
 	
- 
+  console.log(apple)
 	
   return (
     <div className="job-index-container">

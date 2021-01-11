@@ -5,6 +5,9 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Home from './components/shared/Home'
 import Nav from './components/shared/Nav'
 
+//*Auth 
+import Register from './components/auth/Register'
+import Login from './components/auth/Login'
 
 //*Job Folder
 import JobIndex from './components/jobs/JobIndex'
@@ -22,6 +25,8 @@ function App(){
         <Route  path="/jobs/new" component={JobNew}/>
         <Route  path="/jobs/:id" component={JobShow}/>
         <Route path="/jobs" component={JobIndex}/>
+        <Route path="/register" component={Register}/>
+        <Route path="/login" component={Login}/>
       </Switch>
     </BrowserRouter>
   )

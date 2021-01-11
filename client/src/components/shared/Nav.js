@@ -11,7 +11,8 @@ function Nav() {
         </div>
         <div className="navButtonsGroup">
           <Link to="/jobs" className="navButton">Jobs</Link>
-          <Link to="#" className="navButton">Login</Link>
+          <Link to="/login" className="navButton">Login</Link>
+          <Link to="/register" className="navButton">Register</Link>
         </div>
 
       </nav>
