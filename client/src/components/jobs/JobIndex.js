@@ -4,7 +4,7 @@ import JobCard from './JobCard'
 
 
 
-function JobIndex(){
+function JobIndex() {
 
   const [jobs, setJobs] = React.useState(null)
 
@@ -13,28 +13,26 @@ function JobIndex(){
       try {
         const { data } = await getAllJobs()
         setJobs(data)
-      } catch (err){
+      } catch (err) {
         console.log(err)
       }
     }
     getData()
   }, [])
-	
- 
-	
+
   return (
     <div className="job-index-container">
       {jobs ?
         jobs.map(job => (
-          <JobCard key={job._id}  {...job}/>
+          <JobCard key={job._id}  {...job} />
         ))
         :
         <h2>Loading</h2>
       }
 
-			
 
-	 </div>
+
+    </div>
   )
 
 }

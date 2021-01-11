@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function Home(){
+function Home() {
 
   return (
     <div className="home-page-container">
@@ -12,39 +12,39 @@ function Home(){
       </div>
       <div className="categories-container">
 
-				
-        <div  className="catergory-cards glass-morphism">
-          <Link to="/jobs">Andriod Developer</Link>
+
+        <div className="catergory-cards glass-morphism">
+          <Link to="/jobs">Android Developer</Link>
         </div>
 
         <div className="catergory-cards glass-morphism">
           <Link to="/jobs">
-					Apple Developer
+            Apple Developer
           </Link>
-					 </div>
-					 <div className="catergory-cards glass-morphism">
+        </div>
+        <div className="catergory-cards glass-morphism">
           <Link to="/jobs">
-						Bac End Developer
+            Back-End Developer
           </Link>
-					 </div>
-					 <div className="catergory-cards glass-morphism">
+        </div>
+        <div className="catergory-cards glass-morphism">
           <Link to="/jobs">
-						Front End Developer
+            Front-End Developer
           </Link>
-					 </div>
-					 <div className="catergory-cards glass-morphism">
+        </div>
+        <div className="catergory-cards glass-morphism">
           <Link to="/jobs">
-						Game Developer
+            Game Developer
           </Link>
-					 </div>
-					 <div className="catergory-cards glass-morphism">
+        </div>
+        <div className="catergory-cards glass-morphism">
           <Link to="/jobs">
-						UI Developer
+            UI Developer
           </Link>
-					 </div>
+        </div>
       </div>
     </div>
-	
+
   )
 }
 
