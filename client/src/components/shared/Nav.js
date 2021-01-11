@@ -7,7 +7,7 @@ function Nav() {
     <header>
       <nav className="glass-morphism">
         <div>
-          <Link to="/" id="deverr-title">DEVERR</Link>
+          <Link to="/" className="deverr-title">DEVERR</Link>
         </div>
         <div className="navButtonsGroup">
           <Link to="/jobs" className="btn">Jobs</Link>

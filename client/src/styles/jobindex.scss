@@ -1,3 +1,5 @@
+@import '_variables';
+
 .job-index-container {
 	display: flex;
 	align-items: center;
@@ -9,16 +11,35 @@
 .job-card{
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: flex-start;
 	align-items: center;
-	width:200px;
-	height: 250px;
+	width:280px;
+	height: 400px;
 	text-align: center;
-	margin: 10px;
+  margin: 10px;
+
 
 	.job-card-image{
-    max-width: 65%;
+    margin-top: 10px;
+    width: 15rem;
     border-radius: $gm-border-radius;
-	}
+    box-shadow: $gm-shadow-sm;
+  }
+  .card-header{
+    background: $gm-background-2;
+    height: 130px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 15px 15px 0 0;
+    justify-content: space-evenly;
+
+    .card-title{
+      color: rgb(11, 77, 216) ;
+      
+      
+    }
+  }
 }
 
