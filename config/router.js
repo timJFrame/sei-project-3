@@ -32,9 +32,13 @@ router.route('/jobs/:id/comments/:commentId')
 //? * BIDS
 router.route('/jobs/:id/bids')
   .post(secureRoute, jobs.createBid)
-
+  
+// ! Only auctioneers can see bids
+  .get(secureRoute, jobs.getBids)
+  
 router.route('/jobs/:id/bids/:bidId')
   .delete(secureRoute, jobs.deleteBid)
+
 
 // todo * USER ROUTES
 router.route('/users')
