@@ -23,10 +23,8 @@ async function seedDatabase() {
 
     // CREATING BIDDERS DB
     const bidders = biddersSeed()
-    console.log('bidders: ', bidders)
     const createdBidders = await User.create(bidders) // ! then pass that users array
     console.log(`😎 Created ${createdBidders.length} Bidders`)
-    console.log(createdBidders)
 
     // MAP THROUGH JOBS DB, FOR EACH JOB ASSIGN A KEY NAMED JOB OWNER REFERENCING AUCTIONEERS DB
     const jobDataWithOwners = jobsData.map(job => {

@@ -1,18 +1,20 @@
 import mongoose from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
 
-// Create JOB BIDS Schema
-const jobBidsSchema = new mongoose.Schema({
+// Create COMMENTS Schema
+const jobCommentsSchema = new mongoose.Schema({
   text: { type: String, required: true, maxlength: 300 },
   owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
 }, {
   timestamps: true,
 })
 
-// Create COMMENTS Schema
-const jobCommentsSchema = new mongoose.Schema({
+// Create BIDS Schema
+const jobBidsSchema = new mongoose.Schema({
   text: { type: String, required: true, maxlength: 300 },
-  rating: { type: Number, required: true, min: 1, max: 5 },
+  status: { type: String, default: 'pending' },
+  fee: { type: Number, required: true, min: 1 },
+  photo: { type: String },
   owner: { type: mongoose.Schema.ObjectId, ref: 'User', default: null }
 }, {
   timestamps: true,
