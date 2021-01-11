@@ -1,8 +1,6 @@
 import mongoose from 'mongoose'
 import connectToDatabase from '../lib/connectToDB.js'
-// import Auctioneer from '../models/auctioneer.js'
 import auctioneersSeed from './data/auctioneersSeed.js'
-// import Bidder from '../models/bidder.js'
 import biddersSeed from './data/biddersSeed.js'
 import Job from '../models/job.js'
 import jobsData from '../db/data/jobsSeed.js'

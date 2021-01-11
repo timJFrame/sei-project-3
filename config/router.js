@@ -5,7 +5,6 @@ import auth from '../controllers/auth.js'
 import secureRoute from '../lib/secureRoute.js'
 
 const router = express.Router()
-
 // todo * JOB ROUTES
 router.route('/jobs')
   .get(jobs.index)
@@ -30,7 +29,7 @@ router.route('/users')
   .get(users.index)
 
 // Only logged in users can see a single auctioneer profile, update or delete a profile
-router.route('/auctioneers/:id')
+router.route('/users/:id')
   .get(secureRoute, users.show)
   .put(secureRoute, users.update)
   .delete(secureRoute, users.delete)
