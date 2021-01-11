@@ -1,7 +1,6 @@
 import express from 'express'
 import jobs from '../controllers/jobs.js'
-import auctioneers from '../controllers/auctioneers.js'
-import bidders from '../controllers/bidders.js'
+import users from '../controllers/users.js'
 import auth from '../controllers/auth.js'
 import secureRoute from '../lib/secureRoute.js'
 
@@ -26,37 +25,20 @@ router.route('/jobs/:id/bids')
 router.route('/jobs/:id/bids/:bidId')
   .delete(secureRoute, jobs.deleteBid)
   
-// todo * AUCTIONEER ROUTES
-router.route('/auctioneers')
-  .get(auctioneers.index)
+// todo * USER ROUTES
+router.route('/users')
+  .get(users.index)
 
 // Only logged in users can see a single auctioneer profile, update or delete a profile
 router.route('/auctioneers/:id')
-  .get(secureRoute, auctioneers.show)
-  .put(secureRoute, auctioneers.update)
-  .delete(secureRoute, auctioneers.delete)
+  .get(secureRoute, users.show)
+  .put(secureRoute, users.update)
+  .delete(secureRoute, users.delete)
 
-router.route('/register/auctioneers')
-  .post(auth.registerAuctioneer)
+router.route('/register')
+  .post(auth.registerUser)
 
-router.route('/login/auctioneers')
-  .post(auth.loginAuctioneer)
-
-
-// todo * BIDDER ROUTES 
-router.route('/bidders')
-  .get(bidders.index)
-
-// Only logged in users can see a single bidder profile, update or delete a bidder
-router.route('/bidders/:id')
-  .get(secureRoute, bidders.show)
-  .put(secureRoute, bidders.update)
-  .delete(secureRoute, bidders.delete)
-
-router.route('/register/bidders')
-  .post(auth.registerBidder)
-
-router.route('/login/bidders')
-  .post(auth.loginBidder)
+router.route('/login')
+  .post(auth.loginUser)
 
 export default router

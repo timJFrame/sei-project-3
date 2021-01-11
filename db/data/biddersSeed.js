@@ -26,6 +26,7 @@ function biddersSeed() {
       city,
       password: 'pass', // ! setting all the passwords the same
       passwordConfirmation: 'pass',
+      isAuctioneer: false,
       bidderCategories,
       bidderIsAvailable,
     })
