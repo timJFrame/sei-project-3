@@ -2,6 +2,13 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 import uniqueValidator from 'mongoose-unique-validator'
 
+const favouritedBySchema = new mongoose.Schema({
+  favourited: { type: Boolean },
+  owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true  },
+}, {
+  timestamps: true,
+})
+
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true, maxlength: 40 },
   email: { type: String, required: true, unique: true },
@@ -9,12 +16,18 @@ const userSchema = new mongoose.Schema({
   bio: { type: String, required: true },
   photo: { type: String, required: true },
   city: { type: String },
-  isAuctioneer: { type: Boolean, default: false }, // * defaulted to false
-  bidderCategories: [{ type: String }], // * <-- not required now
-  bidderIsAvailable: { type: Boolean, default: false }, // * might aswell default this to false as well
+  isAuctioneer: { type: Boolean, default: false }, // * default to false
+  bidderCategories: [{ type: String }], 
+  bidderIsAvailable: { type: Boolean, default: false }, // * default to false
+  favouritedBy: [favouritedBySchema], //! Implement like a comment
 })
 
-// * See the pre validate hook futher down for the validations
+// Go through all the jobs and find the ones where owner matches my local _id field
+userSchema.virtual('createdJobs', {
+  ref: 'Job',
+  localField: '_id',
+  foreignField: 'jobOwner',
+})
 
 userSchema.set('toJSON', {
   virtuals: true,

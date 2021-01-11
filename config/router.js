@@ -8,52 +8,50 @@ const router = express.Router()
 
 // todo * JOB ROUTES
 router.route('/jobs')
-  .get(jobs.index)
+  .get(jobs.index) // Show all jobs
+  .post(secureRoute, jobs.create) // Create job - Auctioneers only
 
-  // Only logged in users can create job
-  .post(secureRoute, jobs.create)
-
-// Only logged in users can see a single job, update or delete a job
 router.route('/jobs/:id')
-  .get( jobs.show)
-  .put( jobs.update)
-  .delete(jobs.delete)
+  .get( jobs.show) // See a single job - Logged in users only
+  .put( jobs.update) // Update a job - Only Auctioneer who made this
+  .delete(jobs.delete) // Delete a job - Only Auctioneer who made this
 
-// Only logged in users can comment and see comments
-//? * COMMENTS
-router.route('/jobs/:id/comments')
+// todo * COMMENTS
+router.route('/jobs/:id/comments') // Comment and see comments - Logged in users only
   .post(secureRoute, jobs.createComment)
   .get(secureRoute, jobs.getComments)
 
 router.route('/jobs/:id/comments/:commentId')
-  .delete(secureRoute, jobs.deleteComment)
+  .delete(secureRoute, jobs.deleteComment) // Delete a comment - Only Auctioneer who posted job and Bidder who wrote comment
 
-// Only bidders can place bid
-//? * BIDS
+// todo * BIDS
 router.route('/jobs/:id/bids')
-  .post(secureRoute, jobs.createBid)
+  .post(secureRoute, jobs.createBid) // Only bidders can place bid
   
-// ! Only auctioneers can see bids
-  .get(secureRoute, jobs.getBids)
+  .get(secureRoute, jobs.getBids) // Only Auctioneer who posted can see bid
   
 router.route('/jobs/:id/bids/:bidId')
-  .delete(secureRoute, jobs.deleteBid)
+  .delete(secureRoute, jobs.deleteBid) // Only bidders can delete bid
 
 
 // todo * USER ROUTES
 router.route('/users')
-  .get(users.index)
+  .get(users.index) // Show all users
 
-// Only logged in users can see a single user profile, update or delete a profile
-router.route('/users/:id')
-  .get(secureRoute, users.show)
-  .put(secureRoute, users.update)
-  .delete(secureRoute, users.delete)
+router.route('/users/:id') 
+  .get(secureRoute, users.show) // See a single user profile - only signed in users
+  .put(secureRoute, users.update) // ! Update a profile - Only user who created it
+  .delete(secureRoute, users.delete) // ! Delete a profile - Only user who created it
+
+// todo * FAVOURITES
+// router.route('/users/:id/favourite') // ! see people who favourited this user - to ACTIVATE
+//   .post(secureRoute, users.favourited) // ! Logged in users only
 
 router.route('/register')
-  .post(auth.registerUser)
+  .post(auth.registerUser) // Register new user
 
 router.route('/login')
-  .post(auth.loginUser)
+  .post(auth.loginUser) // Login user
   
+
 export default router

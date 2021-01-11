@@ -12,19 +12,20 @@ async function userIndex (req, res, next) {
   }
 }
 
-//*GET SINGLE USER
-async function userShow (req, res, next) {
-  const { id } = req.params
+//* GET SINGLE USER
+async function userProfile (req, res, next) {
+  // const { id } = req.params
   try {
-    const user = await User.findById(id)
+    const user = await User.findById(req.currentUser._id).populate('createdJobs').populate('favouritedBy')
     if (!user) throw new Error(notFound)
+
     return res.status(200).json(user)
   } catch (err) {
     next(err)
   }
 }
 
-//*DELETE USER
+//! DELETE USER
 async function userDelete (req, res, next) {
   const { id } = req.params
   try {
@@ -37,12 +38,13 @@ async function userDelete (req, res, next) {
   }
 }
 
-//*EDIT USER
+//! EDIT USER
 async function userUpdate (req, res, next){
   const { id } = req.params
   try {
     const userToEdit = await User.findById(id)
     if (!userToEdit) throw new Error(notFound)
+
     Object.assign(userToEdit, req.body)
     await userToEdit.save()
     return res.status(202).json(userToEdit)
@@ -51,10 +53,31 @@ async function userUpdate (req, res, next){
   }
 }
 
+//! FAVOURITED
+async function favouriteUser (req, res, next) {
+  const { id } = req.params
+  try {
+    // We search for the user we want to favourite by their id
+    const userToFavourite = await User.findById(id)
+    // If we can't find that user, throw error
+    if (!userToFavourite) throw new Error(notFound)
+
+    // ! We declare an add favourite const with
+    const addFavourite = { ...req.body, owner: req.currentUser._id }
+    userToFavourite.favouritedBy.push(addFavourite)
+    await userToFavourite.save()
+    userToFavourite.favouritedBy.push()
+
+    return res.status(200).json(userToFavourite)
+  } catch (err) {
+    next(err)
+  }
+}
+
 export default {
   index: userIndex,
-  // create: userCreate,
-  show: userShow,
+  show: userProfile,
   delete: userDelete,
-  update: userUpdate
+  update: userUpdate,
+  favourite: favouriteUser
 }

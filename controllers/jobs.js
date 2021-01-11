@@ -34,13 +34,20 @@ async function jobShow (req, res, next) {
   }
 }
 
-//*DELETE JOB
+// ! DELETE JOB - CHECK AGAIN
 async function jobDelete (req, res, next) {
+  // getting info of person making the request
   const { id } = req.params
+
   try {
+    // find job
     const jobToDelete = await Job.findById(id)
     if (!jobToDelete) throw new Error(notFound)
+
+    console.log('current user ', id)
+    // ! if job owner is not person making request
     if (!jobToDelete.jobOwner.equals(req.currentUser._id)) throw new Error(forbidden)
+
     await jobToDelete.remove()
     return res.sendStatus(204)
   } catch (err){
