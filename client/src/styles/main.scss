@@ -3,32 +3,33 @@
 @import 'jobindex';
 @import 'jobshow';
 @import 'buttons';
+@import '_variables';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,700;1,300&display=swap');
 
-$font-color: rgb(14, 11, 31);
-$deverr-color: -webkit-linear-gradient(90deg, rgba(38, 3, 163, 0.637) 0%, rgba(11, 183, 206, 0.623) 100%);
 
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins' ,'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+  color: $font-color;
 }
 
+
 .glass-morphism{
-  background: rgb(242,242,249);
-  background: linear-gradient(130deg, rgba(242,242,249,0.8) 0%, rgba(253,254,254,0.2) 100%);
-  box-shadow: 0 10px 20px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 4px );
-  -webkit-backdrop-filter: blur( 4px );
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.555);
+  background: $gm-background-1;
+  box-shadow: $gm-shadow;
+  backdrop-filter: $gm-blur;
+  -webkit-backdrop-filter: $gm-blur;
+  border-radius: $gm-border-radius;
+  border: $gm-border;
 }
 
 a{
   text-decoration: none;
   color: $font-color;
 }
+
 
 body{
 	background: rgb(222,28,210);
@@ -39,7 +40,7 @@ body{
 	
 }
 
-#deverr-title{
+.deverr-title{
   background: $deverr-color;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
