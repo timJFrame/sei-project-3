@@ -1,7 +1,6 @@
 import Job from '../models/job.js'
 import { notFound, forbidden, notBidder } from '../lib/errorHandler.js'
 
-
 //*GET ALL JOBS
 async function jobIndex (req, res, next) {
   try {
@@ -79,6 +78,26 @@ async function jobCommentCreate(req, res, next) {
   }
 }
 
+//* GET COMMENTS
+async function commentIndex (req, res, next) {
+  const { id } = req.params
+  try {
+    const job = await Job.findById(id)
+    if (!job) throw new Error(notFound)
+    console.log('length: ', job.jobComments.length)
+    console.log('comments array: ', job.jobComments)
+    
+    // if the comment array is empty(no comments yet), throw error
+    if (job.jobComments.length === 0) throw new Error(notFound)
+
+    // find and return all comments to a job
+    const allComments = await job.jobComments
+    return res.status(200).json(allComments)
+  } catch (err){
+    next(err)
+  }
+}
+
 //*DELETE COMMENT
 async function jobCommentDelete(req, res, next) {
   const { id, commentId } = req.params
@@ -113,7 +132,6 @@ async function jobBidCreate(req, res, next) {
     job.jobBids.push(newBid)
     await job.save()
     return res.status(201).json(job)
-
   } catch (err) {
     next(err)
   }
@@ -145,6 +163,7 @@ export default {
   update: jobUpdate,
   delete: jobDelete,
   createComment: jobCommentCreate,
+  getComments: commentIndex,
   deleteComment: jobCommentDelete,
   createBid: jobBidCreate,
   deleteBid: jobBidDelete,
