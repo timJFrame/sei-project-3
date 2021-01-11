@@ -4,11 +4,7 @@ import axios from 'axios'
 const uploadUrl = process.env.REACT_APP_CLOUDINARY_URL
 const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
 
-console.log(uploadUrl, uploadPreset)
-
-
 function ImageUpload( { onChange, name, value, labelText } ){
-
   const handleUpload = async event => {
     const data = new FormData()
     data.append('file', event.target.files[0])
@@ -16,9 +12,6 @@ function ImageUpload( { onChange, name, value, labelText } ){
     const res = await axios.post(uploadUrl, data)
     onChange({ target: { name, value: res.data.url } })
   }
-
-
-
 
   return (
     <>

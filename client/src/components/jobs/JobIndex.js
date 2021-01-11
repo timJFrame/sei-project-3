@@ -19,7 +19,6 @@ function JobIndex() {
     }
     getData()
   }, [])
-
   return (
     <div className="job-index-container">
       {jobs ?
