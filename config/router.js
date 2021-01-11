@@ -15,9 +15,9 @@ router.route('/jobs')
 
 // Only logged in users can see a single job, update or delete a job
 router.route('/jobs/:id')
-  .get(secureRoute, jobs.show)
-  .put(secureRoute, jobs.update)
-  .delete(secureRoute, jobs.delete)
+  .get( jobs.show)
+  .put( jobs.update)
+  .delete(jobs.delete)
 
 router.route('/jobs/:id/bids')
   .post(secureRoute, jobs.createBid)

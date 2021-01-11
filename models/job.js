@@ -13,7 +13,7 @@ const jobBidsSchema = new mongoose.Schema({
 const jobCommentsSchema = new mongoose.Schema({
   text: { type: String, required: true, maxlength: 300 },
   rating: { type: Number, required: true, min: 1, max: 5 },
-  owner: { type: mongoose.Schema.ObjectId, ref: 'User', default: null }
+  owner: { type: mongoose.Schema.ObjectId, ref: 'User', default: null },
 }, {
   timestamps: true,
 })
