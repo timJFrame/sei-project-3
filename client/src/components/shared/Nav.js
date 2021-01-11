@@ -10,8 +10,10 @@ function Nav() {
           <Link to="/">DEVERR</Link>
         </div>
         <div className="navButtonsGroup">
-          <Link to="/jobs" className="navButton">Jobs</Link>
-          <Link to="#" className="navButton">Login</Link>
+          <Link to="/jobs" className="btn">Jobs</Link>
+          <Link to="#" className="btn-secondary-xs">Login</Link>
+          <Link to="#" className="btn-submit-lg">Register</Link>
+          <Link to="#" className="btn-cancel-xl">Delete</Link>
         </div>
 
       </nav>

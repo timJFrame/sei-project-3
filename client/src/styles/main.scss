@@ -2,6 +2,7 @@
 @import 'nav';
 @import 'jobindex';
 @import 'jobshow';
+@import 'buttons';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,700;1,300&display=swap');
 
 $font-color: rgb(14, 11, 31);
@@ -14,12 +15,13 @@ $font-color: rgb(14, 11, 31);
 }
 
 .glass-morphism{
-  background:  rgba( 255, 255, 255, 0.25 );
+  background: rgb(242,242,249);
+  background: linear-gradient(130deg, rgba(242,242,249,0.8) 0%, rgba(253,254,254,0.2) 100%);
   box-shadow: 0 10px 20px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 4px );
   -webkit-backdrop-filter: blur( 4px );
   border-radius: 15px;
-  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  border: 1px solid rgba(255, 255, 255, 0.555);
 }
 
 a{
