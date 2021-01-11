@@ -16,3 +16,13 @@ export function getSingleJob(id){
 export function createJob(formdata){
   return axios.post(`${baseUrl}/jobs`, formdata)
 }
+
+//*Get a job
+export function editJob(id, formdata){
+  return axios.put(`${baseUrl}/jobs/${id}`, formdata)
+}
+
+//*Delete a job
+export function deleteJob(id){
+  return axios.delete(`${baseUrl}/jobs/${id}`)
+}
