@@ -5,8 +5,8 @@ $submit: rgba(21, 153, 87, 0.77);
 $white: rgb(233, 247, 247);
 $white-shaded: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(225, 228, 228) 100%);
 $gray: rgba(59, 57, 57, 0.815);
-$xs: 0.5rem;
-$sm: 0.65rem;
+$xs: 0.6rem;
+$sm: 0.7rem;
 $lg: 1rem;
 $xl: 1.3rem;
 $transition: all 0.03s ease-in-out;
@@ -31,11 +31,10 @@ $transition: all 0.03s ease-in-out;
     box-shadow: inset 2px 2px 5px -1px #1111118f, inset -3px -3px 9px -2px #ffffff54;
     color: darken($color: $color_2, $amount: 10);
     font-size: calc($size - 10%)
-
-	}
+  }
 }
 
-
+// Normal Buttons
 .btn {
   @include mybutton($white-shaded, $standard);
 }
@@ -51,7 +50,7 @@ $transition: all 0.03s ease-in-out;
 .btn-xl {
   @include mybutton($white-shaded, $standard, $xl);
 }
-
+// Secondary Buttons
 .btn-secondary {
   @include mybutton($secondary, $white);
 }
@@ -67,7 +66,7 @@ $transition: all 0.03s ease-in-out;
 .btn-secondary-xl {
   @include mybutton($secondary, $white, $xl);
 }
-
+// Green Buttons
 .btn-submit {
   @include mybutton($submit, $white);
 } 
@@ -83,7 +82,7 @@ $transition: all 0.03s ease-in-out;
 .btn-submit-xl {
   @include mybutton($submit, $white, $xl);
 } 
-
+// Red Buttons
 .btn-cancel {
   @include mybutton($cancel, $white);
 }
