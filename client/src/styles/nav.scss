@@ -1,5 +1,5 @@
 nav{
-  height: 40px;
+  height: 60px;
   border-radius: 0 0 15px 15px !important;
   position: fixed;
   width: 95vw;
@@ -9,32 +9,21 @@ nav{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
   & div{
     margin: 0 40px;
   }
 }
-
 header{
   display: flex;
   justify-content: center;
 }
-
 .navButtonsGroup{
   margin: 0 15px;
-
-}
-.navButton{
-  margin: 0 1px;
-  padding: 8px 20px;
-  &:hover{
-    background-color: rgba(0, 0, 0, 0.035);
-    transition: ease-in 120ms;
-  }
+  
 }
 
 @media screen and (max-width: 600px){
   nav{
-    width: 100vw;
-  }
+    width: 100vh
+  }  
 }

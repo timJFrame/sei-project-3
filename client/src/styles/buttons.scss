@@ -1,0 +1,102 @@
+$cancel: linear-gradient(-90deg, rgba(163, 3, 32, 0.863) 0%, rgba(206, 11, 47, 0.781) 100% );
+$secondary: linear-gradient(-90deg, rgba(38, 3, 163, 0.637) 0%, rgba(11, 183, 206, 0.623) 100% ) ;
+$standard: rgba(2, 51, 100, 0.678);
+$submit: rgba(21, 153, 87, 0.77);
+$white: rgb(233, 247, 247);
+$white-shaded: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(225, 228, 228) 100%);
+$gray: rgba(59, 57, 57, 0.815);
+$xs: 0.6rem;
+$sm: 0.7rem;
+$lg: 1rem;
+$xl: 1.3rem;
+$transition: all 0.03s ease-in-out;
+
+// mixin
+@mixin mybutton($color_1, $color_2, $size: 0.7rem) {
+  margin: 0 2px 5px;
+  border-radius: 15px;
+  padding: 8px 30px;
+	box-shadow: 1px 1px 3px -1px #121312c7, -1px -1px 2px -1px #ffffff77;
+  font-size: $size;
+  color: $color_2;
+  text-shadow: none;
+  background: $color_1;
+	transition: $transition;
+	&:hover {
+    color: adjust-color($color_2, $lightness: 20%) ; 
+    box-shadow: 3px 3px 5px -1px #121312c7, -2px -2px 4px -1px #ffffff77;
+	}
+	&:active:focus {
+		border:none;
+    box-shadow: inset 2px 2px 5px -1px #1111118f, inset -3px -3px 9px -2px #ffffff54;
+    color: darken($color: $color_2, $amount: 10);
+    font-size: calc($size - 10%)
+  }
+}
+
+// Normal Buttons
+.btn {
+  @include mybutton($white-shaded, $standard);
+}
+.btn-xs {
+  @include mybutton($white-shaded, $standard, $xs);
+}
+.btn-sm {
+  @include mybutton($white-shaded, $standard, $sm);
+}
+.btn-lg {
+  @include mybutton($white-shaded, $standard, $lg);
+}
+.btn-xl {
+  @include mybutton($white-shaded, $standard, $xl);
+}
+// Secondary Buttons
+.btn-secondary {
+  @include mybutton($secondary, $white);
+}
+.btn-secondary-xs {
+  @include mybutton($secondary, $white, $xs);
+}
+.btn-secondary-sm {
+  @include mybutton($secondary, $white, $sm);
+}
+.btn-secondary-lg {
+  @include mybutton($secondary, $white, $lg);
+}
+.btn-secondary-xl {
+  @include mybutton($secondary, $white, $xl);
+}
+// Green Buttons
+.btn-submit {
+  @include mybutton($submit, $white);
+} 
+.btn-submit-xs {
+  @include mybutton($submit, $white, $xs);
+} 
+.btn-submit-sm {
+  @include mybutton($submit, $white, $sm);
+} 
+.btn-submit-lg {
+  @include mybutton($submit, $white, $lg);
+} 
+.btn-submit-xl {
+  @include mybutton($submit, $white, $xl);
+} 
+// Red Buttons
+.btn-cancel {
+  @include mybutton($cancel, $white);
+}
+.btn-cancel-xs {
+  @include mybutton($cancel, $white, $xs);
+}
+.btn-cancel-sm {
+  @include mybutton($cancel, $white, $sm);
+}
+.btn-cancel-lg {
+  @include mybutton($cancel, $white, $lg);
+}
+.btn-cancel-xl {
+  @include mybutton($cancel, $white, $xl);
+}
+
+

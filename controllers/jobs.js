@@ -1,6 +1,5 @@
 import Job from '../models/job.js'
-import { notFound, forbidden, notBidder } from '../lib/errorHandler.js'
-
+import { notFound, forbidden, notBidder, notOwner } from '../lib/errorHandler.js'
 
 //*GET ALL JOBS
 async function jobIndex (req, res, next) {
@@ -79,6 +78,24 @@ async function jobCommentCreate(req, res, next) {
   }
 }
 
+//* GET COMMENTS
+async function commentIndex (req, res, next) {
+  const { id } = req.params
+  try {
+    const job = await Job.findById(id)
+    if (!job) throw new Error(notFound)
+    
+    // if the comment array is empty(no comments yet), throw error
+    if (job.jobComments.length === 0) throw new Error(notFound)
+
+    // find and return all comments to a job
+    const allComments = await job.jobComments
+    return res.status(200).json(allComments)
+  } catch (err){
+    next(err)
+  }
+}
+
 //*DELETE COMMENT
 async function jobCommentDelete(req, res, next) {
   const { id, commentId } = req.params
@@ -111,10 +128,38 @@ async function jobBidCreate(req, res, next) {
     // Place bid
     const newBid = { ...req.body, owner: req.currentUser._id }
     job.jobBids.push(newBid)
+    console.log('job bids before save: ', job.jobBids)
     await job.save()
+    console.log('job bids after save: ', job.jobBids)
     return res.status(201).json(job)
 
   } catch (err) {
+    next(err)
+  }
+}
+
+// GET BID
+async function jobBidIndex(req, res, next) {
+  const { id } = req.params
+
+  try {
+    const job = await Job.findById(id)
+    if (!job) throw new Error(notFound)
+
+    console.log('length of job Bids: ', job.jobBids.length)
+    console.log('bids array: ', job.jobBids)
+    
+    // if the bids array is empty(no bids yet), throw error
+    if (job.jobBids.length === 0) throw new Error(notFound)
+
+    // if current user is not the person who posted the job, throw new error: you can only see bids for jobs you posted
+    if (!job.jobOwner.equals(req.currentUser._id)) throw new Error(notOwner)
+
+    // find and return all bids to a job
+    const allBids = await job.jobBids
+    return res.status(200).json(allBids)
+
+  } catch (err){
     next(err)
   }
 }
@@ -145,7 +190,9 @@ export default {
   update: jobUpdate,
   delete: jobDelete,
   createComment: jobCommentCreate,
+  getComments: commentIndex,
   deleteComment: jobCommentDelete,
   createBid: jobBidCreate,
+  getBids: jobBidIndex,
   deleteBid: jobBidDelete,
 }

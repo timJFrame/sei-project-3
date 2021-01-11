@@ -19,21 +19,23 @@ router.route('/jobs/:id')
   .put( jobs.update)
   .delete(jobs.delete)
 
-// Only logged in users can comment 
+// Only logged in users can comment and see comments
 //? * COMMENTS
 router.route('/jobs/:id/comments')
   .post(secureRoute, jobs.createComment)
+  .get(secureRoute, jobs.getComments)
 
 router.route('/jobs/:id/comments/:commentId')
   .delete(secureRoute, jobs.deleteComment)
-  
-// ! GET COMMENTS - write route
 
 // Only bidders can place bid
 //? * BIDS
 router.route('/jobs/:id/bids')
   .post(secureRoute, jobs.createBid)
-
+  
+// ! Only auctioneers can see bids
+  .get(secureRoute, jobs.getBids)
+  
 router.route('/jobs/:id/bids/:bidId')
   .delete(secureRoute, jobs.deleteBid)
 
@@ -53,5 +55,5 @@ router.route('/register')
 
 router.route('/login')
   .post(auth.loginUser)
-
+  
 export default router
