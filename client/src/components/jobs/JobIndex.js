@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { getAllJobs } from '../../lib/api'
 import JobCard from './JobCard'
 
@@ -11,8 +10,12 @@ function JobIndex(){
 
   React.useEffect(() => {
     const getData = async () => {
-      const { data } = await getAllJobs()
-      setJobs(data)
+      try {
+        const { data } = await getAllJobs()
+        setJobs(data)
+      } catch (err){
+        console.log(err)
+      }
     }
     getData()
   }, [])

@@ -1,11 +1,10 @@
 import mongoose from 'mongoose'
 import connectToDatabase from '../lib/connectToDB.js'
-import Auctioneer from '../models/auctioneer.js'
 import auctioneersSeed from './data/auctioneersSeed.js'
-import Bidder from '../models/bidder.js'
 import biddersSeed from './data/biddersSeed.js'
 import Job from '../models/job.js'
 import jobsData from '../db/data/jobsSeed.js'
+import User from '../models/user.js'
 
 async function seedDatabase() {
   try {
@@ -19,12 +18,12 @@ async function seedDatabase() {
 
     // CREATING AUCTIONEERS DB
     const auctioneers = auctioneersSeed()
-    const createdAuctioneers = await Auctioneer.create(auctioneers) // ! then pass that users array
+    const createdAuctioneers = await User.create(auctioneers) // ! then pass that users array
     console.log(`😎 Created ${createdAuctioneers.length} Auctioneers`)
 
     // CREATING BIDDERS DB
     const bidders = biddersSeed()
-    const createdBidders = await Bidder.create(bidders) // ! then pass that users array
+    const createdBidders = await User.create(bidders) // ! then pass that users array
     console.log(`😎 Created ${createdBidders.length} Bidders`)
 
     // MAP THROUGH JOBS DB, FOR EACH JOB ASSIGN A KEY NAMED JOB OWNER REFERENCING AUCTIONEERS DB

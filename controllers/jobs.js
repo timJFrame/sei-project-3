@@ -1,6 +1,5 @@
 import Job from '../models/job.js'
-import { notFound, forbidden } from '../lib/errorHandler.js'
-
+import { notFound, forbidden, notBidder } from '../lib/errorHandler.js'
 
 //*GET ALL JOBS
 async function jobIndex (req, res, next) {
@@ -27,7 +26,7 @@ async function jobCreate (req, res, next) {
 async function jobShow (req, res, next) {
   const { id } = req.params
   try {
-    const job = await Job.findById(id).populate('jobOwner').populate('jobBids.owner')
+    const job = await Job.findById(id).populate('jobOwner').populate('jobBids.owner').populate('jobComments.owner')
     if (!job) throw new Error(notFound)
     return res.status(200).json(job)
   } catch (err) {
@@ -64,22 +63,81 @@ async function jobUpdate (req, res, next){
   }
 }
 
-// todo !!!
-async function jobBidCreate(req, res, next) {
+//*PLACE COMMENT
+async function jobCommentCreate(req, res, next) {
   const { id } = req.params
   try {
     const job = await Job.findById(id)
     if (!job) throw new Error(notFound)
-    const newBid = { ...req.body, owner: req.currentUser._id }
-    job.jobBids.push(newBid)
+    const newComment = { ...req.body, owner: req.currentUser._id }
+    job.jobComments.push(newComment)
     await job.save()
     return res.status(201).json(job)
-
   } catch (err) {
     next(err)
   }
 }
 
+//* GET COMMENTS
+async function commentIndex (req, res, next) {
+  const { id } = req.params
+  try {
+    const job = await Job.findById(id)
+    if (!job) throw new Error(notFound)
+    console.log('length: ', job.jobComments.length)
+    console.log('comments array: ', job.jobComments)
+    
+    // if the comment array is empty(no comments yet), throw error
+    if (job.jobComments.length === 0) throw new Error(notFound)
+
+    // find and return all comments to a job
+    const allComments = await job.jobComments
+    return res.status(200).json(allComments)
+  } catch (err){
+    next(err)
+  }
+}
+
+//*DELETE COMMENT
+async function jobCommentDelete(req, res, next) {
+  const { id, commentId } = req.params
+  try {
+    const job = await Job.findById(id)
+    if (!job) throw new Error(notFound)
+    const commentToDelete = job.jobComments.id(commentId)
+    if (!commentToDelete) throw new Error(notFound)
+
+    // If this is not the person who made the comment and not the person who posted the job, throw error
+    if (!commentToDelete.owner.equals(req.currentUser._id) && !job.jobOwner.equals(req.currentUser._id)) throw new Error(forbidden)
+    await commentToDelete.remove()
+    await job.save()
+    return res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+}
+
+//*PLACE BID
+async function jobBidCreate(req, res, next) {
+  const { id } = req.params
+  try {
+    const job = await Job.findById(id)
+    if (!job) throw new Error(notFound)
+
+    // if owner is an auctioneer throw new error: you must be a bidder to place a bid
+    if (req.currentUser.isAuctioneer === true) throw new Error(notBidder)
+
+    // Place bid
+    const newBid = { ...req.body, owner: req.currentUser._id }
+    job.jobBids.push(newBid)
+    await job.save()
+    return res.status(201).json(job)
+  } catch (err) {
+    next(err)
+  }
+}
+
+//*DELETE BID
 async function jobBidDelete(req, res, next) {
   const { id, bidId } = req.params
   try {
@@ -104,6 +162,9 @@ export default {
   show: jobShow,
   update: jobUpdate,
   delete: jobDelete,
+  createComment: jobCommentCreate,
+  getComments: commentIndex,
+  deleteComment: jobCommentDelete,
   createBid: jobBidCreate,
   deleteBid: jobBidDelete,
 }
