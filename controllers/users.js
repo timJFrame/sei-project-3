@@ -16,7 +16,7 @@ async function userIndex (req, res, next) {
 async function userProfile (req, res, next) {
   const { id } = req.params
   try {
-    const user = await User.findById(id).populate('createdJobs').populate('favouritedBy')
+    const user = await User.findById(id).populate('createdJobs').populate('favouritedBy').populate('favouriteUsers')
     if (!user) throw new Error(notFound)
 
     return res.status(200).json(user)
@@ -55,20 +55,23 @@ async function userUpdate (req, res, next){
   }
 }
 
-//! FAVOURITED
+//* FAVOURITE A USER
 async function favouriteUser (req, res, next) {
+  // get the user id from request
   const { id } = req.params
+
   try {
     // We search for the user we want to favourite by their id
-    const userToFavourite = await User.findById(id)
+    const userToFavourite = await User.findById(id) // search for user to favourite (by id)
     // If we can't find that user, throw error
     if (!userToFavourite) throw new Error(notFound)
 
-    // ! We declare an add favourite const with
+    // We declare an add favourite const carrying the favourited boolean and add the owner to it
     const addFavourite = { ...req.body, owner: req.currentUser._id }
+
+    //push this into the array of favouritedBy
     userToFavourite.favouritedBy.push(addFavourite)
     await userToFavourite.save()
-    userToFavourite.favouritedBy.push()
 
     return res.status(200).json(userToFavourite)
   } catch (err) {

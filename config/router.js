@@ -45,9 +45,10 @@ router.route('/users/:id')
 
 
 // todo * FAVOURITES
-// router.route('/users/:id/favourite') // ! see people who favourited this user - to ACTIVATE
-//   .post(secureRoute, users.favourited) // ! Logged in users only
+router.route('/users/:id/favourite') // Show all users who favourited this user 
+  .post(secureRoute, users.favourite) // Logged in users only
 
+// todo * USER REGISTER & LOGIN
 router.route('/register')
   .post(auth.registerUser) // Register new user
 
