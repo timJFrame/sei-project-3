@@ -20,12 +20,13 @@ function JobCard({ _id, jobTitle, jobPhoto }) {
           <div className="card-body-text">
             <p>{jobTitle}</p>
           </div>
-          <div className="card-body-footer">
-            <hr />
-            <div className="card-footer-container"><div className="card-footer-left">
-              <p>something</p>
-            </div>
-              <div className="carde-footer-right">
+          <hr />
+          <div className="card-body-footer-container">
+            <div className="card-footer-body">
+              <div className="card-footer-element">
+                <p>something</p>
+              </div>
+              <div className="card-footer-element">
                 <p>something</p>
               </div>
             </div>

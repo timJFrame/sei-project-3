@@ -15,6 +15,14 @@
   color: $font-basic;
 }
 
+hr{
+  border-top: 1px solid rgba(214, 213, 213, 0.747);
+  border-bottom: 0 ;
+  border-left: 0 ;
+  border-right: 0 ;
+  width: 95%;
+  margin-left: 5px;
+}
 
 .glass-morphism{
   background: $gm-background-1;
