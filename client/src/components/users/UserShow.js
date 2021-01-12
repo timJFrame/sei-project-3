@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { getSingleUser } from '../../lib/api'
 
 function UserShow(){
@@ -15,9 +16,6 @@ function UserShow(){
     }
     getData()
   }, [])
-
-  console.log(user)
-
 
   return (
     <>{user ?
@@ -41,8 +39,12 @@ function UserShow(){
         <div className="profile-bio">
           <p>Is avaliable now: {user.isbidderIsAvailable}</p>
         </div>
-        
         }
+        <div className="div-button-container">
+          <button className="edit-button">
+            <Link to="/users/edit">Edit Profile</Link>
+          </button>
+        </div>
 
       </div>
       :

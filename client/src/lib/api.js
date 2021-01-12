@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { getToken, getUserId } from './auth'
 
+//*Base URL for all
 const baseUrl = '/api'
 
 //*Sets a users tokem into the request header  
@@ -9,8 +10,6 @@ function headers(){
     headers: { Authorization: `Bearer ${getToken()}` }
   }
 }
-
-
 
 //*Get All Jobs
 export function getAllJobs(){

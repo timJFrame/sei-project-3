@@ -37,7 +37,7 @@ function JobCard({ _id, jobTitle, jobPhoto }) {
         </div>
       </div>
     </div>
-    </Link >
+   
   )
 }
 

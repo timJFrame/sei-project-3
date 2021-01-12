@@ -2,7 +2,7 @@ import React from 'react'
 import useForm from '../../utils/useform'
 import { registerUser } from '../../lib/api'
 import { useHistory } from 'react-router-dom' 
-import  UserForm  from '../users/UserFom'
+import UserForm from '../users/UserForm'
 
 function Register(){
   const history = useHistory()
