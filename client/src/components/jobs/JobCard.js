@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function JobCard({ _id, jobTitle, jobPhoto }) {
+function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee }) {
   return (
 
     <div className="job-card glass-morphism">
@@ -16,7 +16,7 @@ function JobCard({ _id, jobTitle, jobPhoto }) {
             <img src={jobPhoto} alt={jobTitle} className="card-user-avatar" />
           </div>
           <div className="card-user-name">
-            <p className="">Auctioneer Name</p>
+            <p className="">{jobOwner.name}</p>
           </div>
         </div>
         <div className="card-body-text">
@@ -24,20 +24,24 @@ function JobCard({ _id, jobTitle, jobPhoto }) {
             <p>{jobTitle}</p>
           </Link>
         </div>
-        <hr />
         <div className="card-body-footer-container">
+          <hr />
           <div className="card-footer-body">
             <div className="card-footer-element">
-              <p>something</p>
+              <p>Bids: <span>{numberOfBids}</span></p>
             </div>
             <div className="card-footer-element">
-              <p>something</p>
+              <p>Starting Fee: <span>{jobFee}£</span></p>
             </div>
           </div>
         </div>
       </div>
     </div>
+<<<<<<< HEAD
    
+=======
+
+>>>>>>> development
   )
 }
 

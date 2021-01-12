@@ -15,6 +15,12 @@
   color: $font-basic;
 }
 
+span{
+  color: $font-blue;
+  font-weight: 600;
+  font-size: 110%;
+}
+
 hr{
   border-top: 1px solid rgba(214, 213, 213, 0.747);
   border-bottom: 0 ;
@@ -22,6 +28,7 @@ hr{
   border-right: 0 ;
   width: 95%;
   margin-left: 5px;
+  padding-bottom: 4px;
 }
 
 .glass-morphism{
