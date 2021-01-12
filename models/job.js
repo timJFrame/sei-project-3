@@ -33,6 +33,26 @@ const jobSchema = new mongoose.Schema({
   jobComments: [jobCommentsSchema],
 })
 
+// Implement virtual field returning average bid value for a job
+jobSchema.virtual('avgBid').get(
+  function(){
+    if (!this.jobBids.length) return 'No bids have been placed'
+
+    const avg = this.jobBids.reduce((sum, curr) => {
+      return sum + curr.fee
+    }, 0)
+    return Math.round(avg / this.jobBids.length)
+  })
+
+// Implement virtual field returning number of bids placed for a job
+jobSchema.virtual('numberOfBids').get(
+  function(){
+    // if (!this.jobBids.length) return 'No bids have been placed'
+
+    return this.jobBids.length
+  }
+)
+
 jobSchema.set('toJSON', { virtuals: true })
 
 jobSchema.plugin(uniqueValidator)

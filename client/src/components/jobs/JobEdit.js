@@ -25,7 +25,7 @@ function EditJob(){
     }
     getData()
   }, [id, setFormdata])
-	
+
 
   const handleSubmit = async e => {
     e.preventDefault()

@@ -1,5 +1,5 @@
 import Job from '../models/job.js'
-import { notFound, forbidden, notBidder, notOwner } from '../lib/errorHandler.js'
+import { notFound, forbidden, notBidder, notOwner, notAuctioneer } from '../lib/errorHandler.js'
 
 //*GET ALL JOBS
 async function jobIndex (req, res, next) {
@@ -14,6 +14,10 @@ async function jobIndex (req, res, next) {
 //*POST JOB
 async function jobCreate (req, res, next) {
   try {
+    // if owner is not an auctioneer throw new error: you must be a bidder to place a bid
+    if (!req.currentUser.isAuctioneer === true) throw new Error(notAuctioneer)
+
+    // else create the new job
     const newJobData = { ...req.body, jobOwner: req.currentUser._id }
     const newJob = await Job.create(newJobData)
     return res.status(201).json(newJob)

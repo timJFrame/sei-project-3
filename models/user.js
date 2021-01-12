@@ -45,6 +45,15 @@ userSchema.set('toJSON', {
   },
 })
 
+// Implement virtual field returning number of people who favourited this user
+userSchema.virtual('numberOfUsersWhoFavourited').get(
+  function(){
+    if (!this.favouritedBy.length) return 'Be the first to favourite'
+
+    return this.favouritedBy.length
+  }
+)
+
 // Virtual setter for passwordConfirmation field not stored in db
 userSchema.virtual('passwordConfirmation')
   .set(function(passwordConfirmation) {
@@ -79,5 +88,7 @@ userSchema.methods.validatePassword = function(password) {
 }
 
 userSchema.plugin(uniqueValidator)
+
+userSchema.set('toJSON', { virtuals: true })
 
 export default mongoose.model('User', userSchema)
