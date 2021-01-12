@@ -5,13 +5,34 @@ function JobCard({ _id, jobTitle, jobPhoto }) {
   return (
     <Link to={`/jobs/${_id}`}>
       <div className="job-card glass-morphism">
-        <div className="card-header">
-          <h3 className="card-title">Job Title</h3>
-          <p>{jobTitle}</p>
+        <div className="card-image-container">
+          <img src={jobPhoto} alt={jobTitle} className="card-image" />
         </div>
-        <img src={jobPhoto} alt={jobTitle} className="job-card-image" />
+        <div className="card-body">
+          <div className="card-body-user">
+            <div className="">
+              <img src={jobPhoto} alt={jobTitle} className="card-user-avatar" />
+            </div>
+            <div className="card-user-name">
+              <p className="">Auctioneer Name</p>
+            </div>
+          </div>
+          <div className="card-body-text">
+            <p>{jobTitle}</p>
+          </div>
+          <div className="card-body-footer">
+            <hr />
+            <div className="card-footer-container"><div className="card-footer-left">
+              <p>something</p>
+            </div>
+              <div className="carde-footer-right">
+                <p>something</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </Link >
+    </Link>
   )
 }
 
