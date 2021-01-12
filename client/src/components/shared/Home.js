@@ -3,6 +3,20 @@ import { Link } from 'react-router-dom'
 
 function Home() {
 
+  let category = ''
+
+
+  const setCategory = (category) => {
+    window.localStorage.setItem('catergory', category)
+  }
+
+  const handleClick = (e) => {
+    category = e.target.id
+    setCategory(category)
+  }
+
+  
+
   return (
     <div className="home-page-container">
       <div className="hero-image-container">
@@ -12,36 +26,47 @@ function Home() {
       </div>
       <div className="categories-container">
 
-
-        <div className="catergory-cards glass-morphism">
-          <Link to="/jobs">Android Developer</Link>
+      
+        <div onClick={handleClick}>
+          <div className="catergory-cards glass-morphism "  id="Android-Dev">
+            <Link to="/jobs" id="Android-Dev">Android Developer</Link>
+          </div>
         </div>
 
-        <div className="catergory-cards glass-morphism">
-          <Link to="/jobs">
-            Apple Developer
-          </Link>
+        <div onClick={handleClick}>
+          <div className="catergory-cards glass-morphism "  id="Apple-Dev">
+            <Link to="/jobs" id="Apple-Dev">Apple Developer</Link>
+          </div>
         </div>
-        <div className="catergory-cards glass-morphism">
-          <Link to="/jobs">
-            Back-End Developer
-          </Link>
+
+
+        <div onClick={handleClick}>
+          <div className="catergory-cards glass-morphism "  id="Back-End">
+            <Link to="/jobs" id="Back-End">Back-End Developer</Link>
+          </div>
         </div>
-        <div className="catergory-cards glass-morphism">
-          <Link to="/jobs">
-            Front-End Developer
-          </Link>
+
+       
+        <div onClick={handleClick}>
+          <div className="catergory-cards glass-morphism "  id="Front-End">
+            <Link to="/jobs" id="Front-End">Front-End Developer</Link>
+          </div>
         </div>
-        <div className="catergory-cards glass-morphism">
-          <Link to="/jobs">
-            Game Developer
-          </Link>
+
+
+        <div onClick={handleClick}>
+          <div className="catergory-cards glass-morphism "  id="Game-Dev">
+            <Link to="/jobs" id="Game-Dev">Game-Developer</Link>
+          </div>
         </div>
-        <div className="catergory-cards glass-morphism">
-          <Link to="/jobs">
-            UI Developer
-          </Link>
+
+       
+        <div onClick={handleClick}>
+          <div className="catergory-cards glass-morphism "  id="UI-Dev">
+            <Link to="/jobs" id="UI-Dev">UI Developer</Link>
+          </div>
         </div>
+
       </div>
     </div>
 
