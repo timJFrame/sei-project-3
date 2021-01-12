@@ -32,8 +32,6 @@ function JobShow(){
   }
 
 
-  console.log(job)
-
   return (
     <div className="job-show-container glass-morphism"> 
       {job ?
@@ -50,7 +48,7 @@ function JobShow(){
             <button className="delete-button" onClick={handleDelete}>
               Delete
             </button>
-            <button><Link to={`jobs/${id}/`}>Edit</Link></button>
+            <button><Link to={`/jobs/${id}/edit`}>Edit</Link></button>
           </div>
         </>
         :

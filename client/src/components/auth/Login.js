@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 
 function Login(){
   const history = useHistory()
-
+  const [error, setError] = React.useState(false)
   const [formdata, setFormdata] = React.useState({
     email: '',
     password: ''
@@ -20,13 +20,17 @@ function Login(){
       e.preventDefault()
       console.log('submitted')
       const { data } = await loginUser(formdata)
-      console.log('logged in')
+      console.log(data)
       setToken(data.token)
-      history.push('/jobs')
-      
+   
+      history.push('/users/')
     } catch (err){
-      console.log(err)
+      setError(true)
     }
+  }
+
+  const handleFocus = () => {
+    setError(false)
   }
 
   return (
@@ -41,6 +45,7 @@ function Login(){
               name="email"
               value={formdata.email}
               onChange={handleChange}
+              onFocus={handleFocus}
             />
           </div>
         </div>
@@ -52,8 +57,10 @@ function Login(){
               name="password"
               value={formdata.password}
               onChange={handleChange}
+              onFocus={handleFocus}
             />
           </div>
+          {error && <p className="error">Sorry your username or passowrd is incorrect</p>}
         </div>
         <div className="field">
           <button type="submit" >Submit</button>

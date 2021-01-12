@@ -7,3 +7,19 @@ export function setToken (token){
 export function getToken(){
   return window.localStorage.getItem('token')
 }
+
+//*Gets payload
+
+function getPayload(){
+  const token = getToken()
+  if (!token) return false
+  const parts = token.split('.')
+  if (parts.length < 3) return false
+  return JSON.parse(atob(parts[1]))
+}
+
+
+//*Gets user id
+export function  getUserId (){
+  return getPayload().sub
+}
