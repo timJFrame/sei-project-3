@@ -31,6 +31,13 @@
     max-height: 10rem;
     border-radius: $gm-border-radius;
     box-shadow: $gm-shadow-sm;
+    z-index: -1;
+  }
+  .rounded-button{
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    
   }
   .card-body{
     background: $gm-background-2;
@@ -58,7 +65,10 @@
     }
     .card-user-name{
       font-size: 0.7rem;
-      margin-top: 0.7rem;
+      margin-top: 1.1rem;
+      width: 70%;
+      display: flex;
+      justify-content: space-between;
     }
     .card-body-text{
       display: flex;

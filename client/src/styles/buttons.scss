@@ -12,7 +12,7 @@ $xl: 1.3rem;
 $transition: all 0.03s ease-in-out;
 
 // mixin
-@mixin mybutton($color_1, $color_2, $size: 0.7rem) {
+@mixin normalButton($color_1, $color_2, $size: 0.7rem) {
   margin: 0 2px 5px;
   border-radius: 15px;
   padding: 8px 30px;
@@ -35,69 +35,70 @@ $transition: all 0.03s ease-in-out;
   }
 }
 
+
 // Normal Buttons
 .btn {
-  @include mybutton($white-shaded, $standard);
+  @include normalButton($white-shaded, $standard);
 }
 .btn-xs {
-  @include mybutton($white-shaded, $standard, $xs);
+  @include normalButton($white-shaded, $standard, $xs);
 }
 .btn-sm {
-  @include mybutton($white-shaded, $standard, $sm);
+  @include normalButton($white-shaded, $standard, $sm);
 }
 .btn-lg {
-  @include mybutton($white-shaded, $standard, $lg);
+  @include normalButton($white-shaded, $standard, $lg);
 }
 .btn-xl {
-  @include mybutton($white-shaded, $standard, $xl);
+  @include normalButton($white-shaded, $standard, $xl);
 }
 // Secondary Buttons
 .btn-secondary {
-  @include mybutton($secondary, $white);
+  @include normalButton($secondary, $white);
 }
 .btn-secondary-xs {
-  @include mybutton($secondary, $white, $xs);
+  @include normalButton($secondary, $white, $xs);
 }
 .btn-secondary-sm {
-  @include mybutton($secondary, $white, $sm);
+  @include normalButton($secondary, $white, $sm);
 }
 .btn-secondary-lg {
-  @include mybutton($secondary, $white, $lg);
+  @include normalButton($secondary, $white, $lg);
 }
 .btn-secondary-xl {
-  @include mybutton($secondary, $white, $xl);
+  @include normalButton($secondary, $white, $xl);
 }
 // Green Buttons
 .btn-submit {
-  @include mybutton($submit, $white);
+  @include normalButton($submit, $white);
 } 
 .btn-submit-xs {
-  @include mybutton($submit, $white, $xs);
+  @include normalButton($submit, $white, $xs);
 } 
 .btn-submit-sm {
-  @include mybutton($submit, $white, $sm);
+  @include normalButton($submit, $white, $sm);
 } 
 .btn-submit-lg {
-  @include mybutton($submit, $white, $lg);
+  @include normalButton($submit, $white, $lg);
 } 
 .btn-submit-xl {
-  @include mybutton($submit, $white, $xl);
+  @include normalButton($submit, $white, $xl);
 } 
 // Red Buttons
 .btn-cancel {
-  @include mybutton($cancel, $white);
+  @include normalButton($cancel, $white);
 }
 .btn-cancel-xs {
-  @include mybutton($cancel, $white, $xs);
+  @include normalButton($cancel, $white, $xs);
 }
 .btn-cancel-sm {
-  @include mybutton($cancel, $white, $sm);
+  @include normalButton($cancel, $white, $sm);
 }
 .btn-cancel-lg {
-  @include mybutton($cancel, $white, $lg);
+  @include normalButton($cancel, $white, $lg);
 }
 .btn-cancel-xl {
-  @include mybutton($cancel, $white, $xl);
+  @include normalButton($cancel, $white, $xl);
 }
 
 
