@@ -38,7 +38,7 @@ router.route('/jobs/:id/comments/:commentId')
 router.route('/users')
   .get(users.index) // Show all users
 
-router.route('/users/:id') 
+router.route('/users/:id')
   .get(secureRoute, users.show) // See a single user profile - only signed in users
   .put(secureRoute, users.update) // * Update a profile - Only user who created it
   .delete(secureRoute, users.delete) // * Delete a profile - Only user who created it
@@ -54,6 +54,6 @@ router.route('/register')
 
 router.route('/login')
   .post(auth.loginUser) // Login user
-  
+
 
 export default router
