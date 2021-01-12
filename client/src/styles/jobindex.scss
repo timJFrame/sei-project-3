@@ -13,7 +13,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	width:280px;
+	width:300px;
 	height: 350px;
 	text-align: center;
   margin: 10px;
@@ -40,7 +40,7 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 0 0 15px 15px;
-
+    padding: 2px;
     .card-body-user{
       display: flex;
       height: 20%;
@@ -67,9 +67,9 @@
       margin-top: 1.4rem;
       p{
         
-        line-height: 1.3rem;
+        line-height: 1.2rem;
         padding: 0 10px;
-        font-size: 0.9rem
+        font-size: 0.85rem
       }
     }
     .card-body-footer-container{
@@ -80,6 +80,13 @@
       .card-footer-body{
         display:flex;
         justify-content: space-between;
+        align-items: center;
+        .card-footer-element{
+          padding: 0 10px;
+          p{
+            font-size: 0.7rem;
+          }
+        }
       }
 
     }
