@@ -14,9 +14,9 @@ async function userIndex (req, res, next) {
 
 //* GET SINGLE USER
 async function userProfile (req, res, next) {
-  // const { id } = req.params
+  const { id } = req.params
   try {
-    const user = await User.findById(req.currentUser._id).populate('createdJobs').populate('favouritedBy')
+    const user = await User.findById(id).populate('createdJobs').populate('favouritedBy')
     if (!user) throw new Error(notFound)
 
     return res.status(200).json(user)
@@ -25,12 +25,14 @@ async function userProfile (req, res, next) {
   }
 }
 
-//! DELETE USER
+//* DELETE USER
 async function userDelete (req, res, next) {
+  // id from the URL
   const { id } = req.params
   try {
     const userToDelete = await User.findById(id)
     if (!userToDelete) throw new Error(notFound)
+
     await userToDelete.remove()
     return res.sendStatus(204)
   } catch (err){
@@ -38,7 +40,7 @@ async function userDelete (req, res, next) {
   }
 }
 
-//! EDIT USER
+//* EDIT USER
 async function userUpdate (req, res, next){
   const { id } = req.params
   try {
