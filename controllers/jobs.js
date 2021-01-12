@@ -1,5 +1,5 @@
 import Job from '../models/job.js'
-import { notFound, forbidden, notBidder, notOwner } from '../lib/errorHandler.js'
+import { notFound, forbidden, notBidder, notOwner, notAuctioneer } from '../lib/errorHandler.js'
 
 //*GET ALL JOBS
 async function jobIndex (req, res, next) {
@@ -14,6 +14,10 @@ async function jobIndex (req, res, next) {
 //*POST JOB
 async function jobCreate (req, res, next) {
   try {
+    // if owner is not an auctioneer throw new error: you must be a bidder to place a bid
+    if (!req.currentUser.isAuctioneer === true) throw new Error(notAuctioneer)
+
+    // else create the new job
     const newJobData = { ...req.body, jobOwner: req.currentUser._id }
     const newJob = await Job.create(newJobData)
     return res.status(201).json(newJob)
@@ -34,18 +38,15 @@ async function jobShow (req, res, next) {
   }
 }
 
-// ! DELETE JOB - CHECK AGAIN
+//*DELETE JOB - CHECK AGAIN
 async function jobDelete (req, res, next) {
-  // getting info of person making the request
+  // getting info of person making the request from URL
   const { id } = req.params
 
   try {
     // find job
     const jobToDelete = await Job.findById(id)
     if (!jobToDelete) throw new Error(notFound)
-
-    console.log('current user ', id)
-    // ! if job owner is not person making request
     if (!jobToDelete.jobOwner.equals(req.currentUser._id)) throw new Error(forbidden)
 
     await jobToDelete.remove()
@@ -61,6 +62,8 @@ async function jobUpdate (req, res, next){
   try {
     const jobToEdit = await Job.findById(id)
     if (!jobToEdit) throw new Error(notFound)
+
+    // if user is not job owner, throw error
     if (!jobToEdit.jobOwner.equals(req.currentUser._id)) throw new Error(forbidden)
     Object.assign(jobToEdit, req.body)
     await jobToEdit.save()
@@ -135,9 +138,7 @@ async function jobBidCreate(req, res, next) {
     // Place bid
     const newBid = { ...req.body, owner: req.currentUser._id }
     job.jobBids.push(newBid)
-    console.log('job bids before save: ', job.jobBids)
     await job.save()
-    console.log('job bids after save: ', job.jobBids)
     return res.status(201).json(job)
 
   } catch (err) {

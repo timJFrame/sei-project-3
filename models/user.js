@@ -4,6 +4,7 @@ import uniqueValidator from 'mongoose-unique-validator'
 
 const favouritedBySchema = new mongoose.Schema({
   favourited: { type: Boolean },
+  favUser: [{ type: mongoose.Schema.ObjectId, ref: 'User', required: true  }],
   owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true  },
 }, {
   timestamps: true,
@@ -19,14 +20,20 @@ const userSchema = new mongoose.Schema({
   isAuctioneer: { type: Boolean, default: false }, // * default to false
   bidderCategories: [{ type: String }], 
   bidderIsAvailable: { type: Boolean, default: false }, // * default to false
-  favouritedBy: [favouritedBySchema], //! Implement like a comment
+  favouritedBy: [favouritedBySchema], // Embedded relationship
 })
 
-// Go through all the jobs and find the ones where owner matches my local _id field
+// Go through all the jobs and find the ones where owner matches local _id field
 userSchema.virtual('createdJobs', {
   ref: 'Job',
   localField: '_id',
   foreignField: 'jobOwner',
+})
+
+userSchema.virtual('favouriteUsers', {
+  ref: 'User',
+  localField: '_id',
+  foreignField: 'favouritedBy.owner',
 })
 
 userSchema.set('toJSON', {
@@ -49,8 +56,11 @@ userSchema.pre('validate', function(next) {
   if (this.isModified('password') && this.password !== this._passwordConfirmation) {
     this.invalidate('passwordConfirmation', 'does not match')
   }
-  if (!this.isAuctioneer && !this.bidderCategories.length) { // * if the bidder is not an auctioneer and the categories length is 0 (falsey, nothing has been added to it)
-    this.invalidate('bidderCategories', 'must contain at least 1 category') // * then invaldiate with this error message
+
+  // If bidder is not an auctioneer and nothing has been added to the categories
+  if (!this.isAuctioneer && !this.bidderCategories.length) { 
+    // then invalidate with this error message
+    this.invalidate('bidderCategories', 'must contain at least 1 category') 
   }
   next()
 })
@@ -67,6 +77,7 @@ userSchema.pre('save', function(next) {
 userSchema.methods.validatePassword = function(password) {
   return bcrypt.compareSync(password, this.password)
 }
+
 userSchema.plugin(uniqueValidator)
 
 export default mongoose.model('User', userSchema)
