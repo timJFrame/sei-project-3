@@ -1,16 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Base = styled.div`
+import { RiCheckLine, RiCloseLine } from 'react-icons/ri'
+
+const Button = styled.div`
   width: 25px;
   height: 25px;
-  background-color: red;
   border-radius: 30px;
+  background: ${props => props.color || 'rgb(8, 99, 8)'};
+  
 `
 
-function RoundedButtons() {
+
+function RoundedButtons({ type = 'green' }) {
   return (
-    <Base />
+
+    <Button color={type}>
+      {type === 'green' ? <RiCheckLine /> : <RiCloseLine />}
+
+    </Button>
 
   )
 }

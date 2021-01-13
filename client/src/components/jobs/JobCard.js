@@ -2,14 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import RoundedButtons from '../../styles/components/RoundedButtons'
 
-function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee }) {
+function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee, jobIsLive }) {
   return (
 
     <div className="job-card glass-morphism">
       <div className="card-image-container">
         <div className="rounded-button">
 
-          <RoundedButtons />
+          <RoundedButtons type={jobIsLive ? 'green' : 'red'} />
         </div>
         <Link to={`/jobs/${_id}`}>
           <img src={jobPhoto} alt={jobTitle} className="card-image" />

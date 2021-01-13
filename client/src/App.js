@@ -1,5 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+//*Icons
+import { IconContext } from 'react-icons'
 
 //*Shared Folder
 import Home from './components/shared/Home'
@@ -22,20 +24,26 @@ import UserShow from './components/users/UserShow'
 
 function App() {
   return (
-    <BrowserRouter>
-      <Nav />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/jobs/:id/edit" component={JobEdit} />
-        <Route path="/jobs/new" component={JobNew} />
-        <Route path="/jobs/:id" component={JobShow} />
-        <Route path="/jobs/" component={JobIndex} />
-        <Route path="/users/edit" component={UserEdit}/>
-        <Route path="/users" component={UserShow}/>
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} />
-      </Switch>
-    </BrowserRouter>
+    <>
+      <IconContext.Provider value={{ color: 'white', style: { verticalAlign: 'middle' } }}>
+
+        <BrowserRouter>
+          <Nav />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/jobs/:id/edit" component={JobEdit} />
+            <Route path="/jobs/new" component={JobNew} />
+            <Route path="/jobs/:id" component={JobShow} />
+            <Route path="/jobs/" component={JobIndex} />
+            <Route path="/users/edit" component={UserEdit} />
+            <Route path="/users" component={UserShow} />
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
+          </Switch>
+        </BrowserRouter>
+
+      </IconContext.Provider>
+    </>
   )
 }
 
