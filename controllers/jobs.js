@@ -151,7 +151,7 @@ async function jobBidIndex(req, res, next) {
   const { id } = req.params
 
   try {
-    const job = await Job.findById(id)
+    const job = await Job.findById(id).populate('jobBids.owner')
     if (!job) throw new Error(notFound)
 
     console.log('length of job Bids: ', job.jobBids.length)
