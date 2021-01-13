@@ -5,7 +5,7 @@ import RoundedButtons from '../../styles/components/RoundedButtons'
 function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee, jobIsLive }) {
   return (
 
-    <div className="job-card glass-morphism">
+    <div className="card glass-morphism">
       <div className="card-image-container">
         <div className="rounded-button">
 

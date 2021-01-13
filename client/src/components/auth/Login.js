@@ -35,37 +35,43 @@ function Login() {
 
   return (
     <div className="container-general">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <div className="field">
-          <label className="label">Email</label>
-          <div className="control">
+      <div className="glass-morphism card">
 
-            <input
-              placeholder="Email"
-              name="email"
-              value={formdata.email}
-              onChange={handleChange}
-              onFocus={handleFocus}
-            />
+        <form className="login-form s-b" onSubmit={handleSubmit}>
+          <div className="fields center">
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control">
+                <input
+                  placeholder="Email"
+                  name="email"
+                  type="email"
+                  value={formdata.email}
+                  onChange={handleChange}
+                  onFocus={handleFocus}
+                />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Password </label>
+              <div className="control">
+                <input
+                  placeholder="Password"
+                  name="password"
+                  type="password"
+                  value={formdata.password}
+                  onChange={handleChange}
+                  onFocus={handleFocus}
+                />
+              </div>
+              {error && <p className="error">Sorry your username or passowrd is incorrect</p>}
+            </div>
           </div>
-        </div>
-        <div className="field">
-          <label className="label">Password </label>
-          <div className="control">
-            <input
-              placeholder="Password"
-              name="password"
-              value={formdata.password}
-              onChange={handleChange}
-              onFocus={handleFocus}
-            />
+          <div className="field card-body center half-height">
+            <button type="submit" className="btn-submit-lg half-width " style={{ margin: '0 0 0 4.5rem' }}>Login</button>
           </div>
-          {error && <p className="error">Sorry your username or passowrd is incorrect</p>}
-        </div>
-        <div className="field">
-          <button type="submit" >Submit</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
 
   )
