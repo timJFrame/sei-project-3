@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import hero from './pexels-photo-877011.jpeg'
+import hero from './pexels-photo-205316.jpeg'
 
 function Home() {
 
@@ -55,7 +55,7 @@ function Home() {
       <div className="hero-image-container">
         <div className="hero-image glass-morphism">
           <p>
-            <img src={hero} alt="hero-image" height="700px" />
+            <img src={hero} alt="hero-image" height="700px"/>
           </p>
         </div>
       </div>
