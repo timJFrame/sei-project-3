@@ -71,3 +71,11 @@ body{
   font-size: 2.3rem;
   font-weight: bold;  
 }
+
+.container-general {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 4rem;
+}

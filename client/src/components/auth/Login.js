@@ -3,7 +3,7 @@ import { loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
 import { useHistory } from 'react-router-dom'
 
-function Login(){
+function Login() {
   const history = useHistory()
   const [error, setError] = React.useState(false)
   const [formdata, setFormdata] = React.useState({
@@ -22,9 +22,9 @@ function Login(){
       const { data } = await loginUser(formdata)
       console.log(data)
       setToken(data.token)
-   
+
       history.push('/users/')
-    } catch (err){
+    } catch (err) {
       setError(true)
     }
   }
@@ -34,12 +34,12 @@ function Login(){
   }
 
   return (
-    <div className="login-form-container">
+    <div className="container-general">
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="field">
           <label className="label">Email</label>
           <div className="control">
-             
+
             <input
               placeholder="Email"
               name="email"
@@ -67,7 +67,7 @@ function Login(){
         </div>
       </form>
     </div>
-  
+
   )
 }
 

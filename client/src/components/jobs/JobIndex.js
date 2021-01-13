@@ -5,14 +5,14 @@ import JobCard from './JobCard'
 function JobIndex() {
   let selectedCategory
   const [jobs, setJobs] = React.useState(null)
- 
+
 
   const getCategory = () => {
     selectedCategory = window.localStorage.getItem('catergory')
   }
 
   getCategory()
-  
+
   console.log(selectedCategory)
 
 
@@ -32,7 +32,7 @@ function JobIndex() {
   }, [])
 
   return (
-    <div className="job-index-container">
+    <div className="container-general">
       {jobs ?
         jobs.map(job => (
           <JobCard key={job._id}  {...job} />

@@ -1,10 +1,10 @@
 import React from 'react'
 import useForm from '../../utils/useform'
 import { registerUser } from '../../lib/api'
-import { useHistory } from 'react-router-dom' 
+import { useHistory } from 'react-router-dom'
 import UserForm from '../users/UserForm'
 
-function Register(){
+function Register() {
   const history = useHistory()
   const [userType, setUserType] = React.useState(null)
 
@@ -22,7 +22,7 @@ function Register(){
     setUserType(e.target.innerHTML.toLowerCase())
   }
 
- 
+
   const { formdata, handleChange, errors, setErrors } = useForm({
     name: '',
     email: '',
@@ -47,24 +47,26 @@ function Register(){
       await registerUser(formdata)
       console.log(formdata)
       history.push('/login')
-    } catch (err){
+    } catch (err) {
       setErrors(err.response.data.errors)
     }
   }
 
   return (
     <>
-      <UserForm
-        handleUserChoice={handleUserChoice}
-        userType={userType}
-        selectOptions={selectOptions}
-        handleMultiItems={handleMultiItems}
-        handleSubmit={handleSubmit}
-        formdata={formdata}
-        handleChange={handleChange}
-        errors={errors}
-      />
-      
+      <div className="container-general">
+        <UserForm
+          handleUserChoice={handleUserChoice}
+          userType={userType}
+          selectOptions={selectOptions}
+          handleMultiItems={handleMultiItems}
+          handleSubmit={handleSubmit}
+          formdata={formdata}
+          handleChange={handleChange}
+          errors={errors}
+        />
+      </div>
+
     </>
   )
 }
