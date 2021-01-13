@@ -31,6 +31,8 @@ const jobSchema = new mongoose.Schema({
   jobOwner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   jobBids: [jobBidsSchema],
   jobComments: [jobCommentsSchema],
+}, {
+  timestamps: true,
 })
 
 // Implement virtual field returning average bid value for a job

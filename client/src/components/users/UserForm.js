@@ -6,11 +6,13 @@ import Select from 'react-select'
 function UserForm( { handleUserChoice, userType, selectOptions, handleMultiItems, handleSubmit, formdata, handleChange, errors } ){
   return (
     <>
+      {!userType &&
       <div className="register-question-buttons"> 
         <p>Please Select Account Type</p>
         <button onClick={handleUserChoice}>Auctioneer</button>
         <button onClick={handleUserChoice}>Bidder</button>
       </div>
+      }
       {userType &&
       <div className="register-form-container">
         <form className="create-user-form" onSubmit={handleSubmit}>

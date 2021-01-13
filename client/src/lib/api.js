@@ -55,3 +55,13 @@ export function getSingleUser(){
 export function editUser(formdata){
   return axios.put(`${baseUrl}/users/${getUserId()}`, formdata, headers())
 }
+
+//*Create a bid
+export function createBid(id, formdata){
+  return axios.post(`${baseUrl}/jobs/${id}/bids`, formdata, headers())
+}
+
+//*Get all bids
+export function getBids(id){
+  return axios.get(`${baseUrl}/jobs/${id}/bids`, headers())
+}
