@@ -1,0 +1,21 @@
+@import '_variables';
+
+
+
+.half-height{
+  height: 50% !important
+
+}
+
+.half-width{
+  width: 50% !important
+}
+
+.field{
+  margin: 20px 0 0 0;
+}
+
+.field-error{
+  margin-top: 10px;
+  color: rgb(201, 4, 4);
+}
