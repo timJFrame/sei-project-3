@@ -1,18 +1,16 @@
 import React from 'react'
 import { useParams, Link, useHistory }  from 'react-router-dom'
-import { getSingleJob, deleteJob, createBid } from '../../lib/api'
+import { getSingleJob, deleteJob, createBid, getBids } from '../../lib/api'
 import useform from '../../utils/useform'
 
 
 function JobShow(){
   const [job, setJob] = React.useState(null)
+  const [bids, setBids] = React.useState(null)
   const [bidmessage, setBidmessage] = React.useState(null)
   const { id } = useParams()
   const history = useHistory()
 
-
- 
-  
   //*Getting a single job
   React.useEffect(() => {
     const getData = async () => {
@@ -37,7 +35,7 @@ function JobShow(){
   }
 
   //*Getting form data for placnig bid
-  const { formdata, handleChange } = useform({
+  const { formdata, handleChange, setFormdata } = useform({
     text: '',
     fee: ''
   })
@@ -50,16 +48,27 @@ function JobShow(){
       const { data } = await createBid(id, formdata)
       console.log(data.job)
       setBidmessage(`Your bid of £${formdata.fee} has been placed`)
+      setFormdata({ text: '', fee: '' })
     } catch (err){
       console.log(err)
     }
   }
 
-  //*Get bids
+  //*Get bids request
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await getBids(id)
+        setBids(data)
+      } catch (err){
+        console.log(err)
+      }
+    }
+    getData()
+  }, [])
 
 
- 
-
+  console.log(bids)
 
   return (
     <div className="job-show-container glass-morphism"> 
@@ -113,6 +122,20 @@ function JobShow(){
           <p>{bidmessage}</p>
           <div className="bid-submit-button-container">
             <button>Place Bid</button>
+          </div>
+          <div className="show-bids-container">
+            {bids ?
+              bids.map(bid => (
+                <div key={bid._id}>
+                  <p>Bidder Name: {bid.owner.name}</p>
+                  <p>Amount Bidded: {bid.fee}</p>
+                  <p>Bidder Message: {bid.text}</p>
+                </div>
+              ))
+            
+              :
+              <p>Loading</p>
+            }
           </div>
         </form>
       </div>

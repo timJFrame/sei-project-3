@@ -61,6 +61,7 @@ export function createBid(id, formdata){
   return axios.post(`${baseUrl}/jobs/${id}/bids`, formdata, headers())
 }
 
-// export function getBids(formdata){
-//   return axios.post(`${baseUrl}/jobs/${getUserId()}/bids`, formdata, headers())
-// }
+//*Get all bids
+export function getBids(id){
+  return axios.get(`${baseUrl}/jobs/${id}/bids`, headers())
+}
