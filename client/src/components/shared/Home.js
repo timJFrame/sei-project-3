@@ -1,9 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import hero from './pexels-photo-205316.jpeg'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import hero from './pexels-photo-205316.jpeg'
+import { Link } from 'react-router-dom'
+import Footer from './Footer'
+
 
 function Home() {
 
@@ -60,7 +62,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="categories-container" style={{ marginTop: '10%', marginLeft: '15%' , marginRight: '15%' }}>
+      <div className="categories-container" style={{ marginTop: '10%', marginBottom: '10%', marginLeft: '15%' , marginRight: '15%' }}>
 
         <div className="carousel-wrapper">
           <Slider { ...carouselSettings} >
@@ -108,8 +110,9 @@ function Home() {
 
         </div>
       </div>
+      
+      <Footer />
     </div>
-
   )
 }
 

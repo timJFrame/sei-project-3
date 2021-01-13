@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { AiFillCaretDown } from 'react-icons/ai'
 
 function Nav() {
   return (
@@ -7,7 +8,7 @@ function Nav() {
     <header>
       <nav className="glass-morphism">
         <div>
-          <Link to="/" className="deverr-title">DEVERR</Link>
+          <Link to="/" className="deverr-title">DE<AiFillCaretDown style={{ color: 'AA57B1' }} />ERR</Link>
         </div>
         <div className="navButtonsGroup">
           <Link to="/jobs" className="btn">Jobs</Link>
