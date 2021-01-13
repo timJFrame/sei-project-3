@@ -9,17 +9,21 @@ function Footer() {
 
   return (
     <div>
-      <div style={{ backgroundColor: 'black', padding: '10px' }}>
-
-        <Link to="/" style={{ padding: '10px', paddingRight: '20px' }}>DE<AiFillCaretDown />ERR</Link>
+      <div style={{ backgroundColor: 'black', padding: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex' }}>
+          <Link to="/" style={{ paddingRight: '20px' }}><strong>DE<AiFillCaretDown />ERR</strong></Link>
+                  
+          <CgCopyright style={{ color: 'grey' }} /><span style={{ color: 'grey', fontWeight: 'normal' }}>SpicyKiwiPizza 2021</span>
+        </div>
         
-        <CgCopyright />SpicyKiwiPizza 2021
+        <div style={{ display: 'flex' }}>
+          <Link to="/login" style={{ paddingRight: '40px' }}>Login</Link>
+
+          <a href="https://github.com/timJFrame/sei-project-3" style={{ paddingRight: '20px' }} ><AiOutlineGithub /></a>          
         
-        <Link to="/login" style={{ padding: '10px', paddingLeft: '100px', paddingRight: '200px' }}>Login</Link>
+          <a href="https://docs.google.com/document/d/1XGp4wVEdUBzMLSSu7ltRPjLcE1I3-e3xVfCZbchfyhY/edit?usp=sharing" style={{ paddingRight: '20px' }} ><IoDocumentsSharp /></a>
+        </div>
 
-        <a href="https://github.com/timJFrame/sei-project-3" style={{ padding: '10px' }}><AiOutlineGithub /></a>
-
-        <a href="https://docs.google.com/document/d/1XGp4wVEdUBzMLSSu7ltRPjLcE1I3-e3xVfCZbchfyhY/edit?usp=sharing" style={{ padding: '10px' }}><IoDocumentsSharp /></a>
       </div>
     </div>
   )

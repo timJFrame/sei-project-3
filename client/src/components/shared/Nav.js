@@ -13,8 +13,8 @@ function Nav() {
         <div className="navButtonsGroup">
           <Link to="/jobs" className="btn">Jobs</Link>
           <Link to="/login" className="btn-secondary-xs">Login</Link>
-          <Link to="/register" className="btn-submit-lg">Register</Link>
-          <Link to="#" className="btn-cancel-xl">Delete</Link>
+          <Link to="/register" className="btn-secondary-xs">Register</Link>
+
         </div>
 
       </nav>

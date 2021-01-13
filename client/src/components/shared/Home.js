@@ -23,9 +23,10 @@ function Home() {
   }
 
   const carouselSettings = {
+    dots: true,
     arrows: true,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 5000,
     draggable: true,
     infinite: true,
     pauseOnHover: true,
@@ -36,17 +37,26 @@ function Home() {
 
     responsive: [
       {
-        breakpoint: 960,
+        breakpoint: 1024,
         settings: {
           slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
           slidesToScroll: 2
         }
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2
+          slidesToShow: 1,
+          slidesToScroll: 1
         }
       }
     ]
@@ -55,7 +65,7 @@ function Home() {
   return (
     <div className="home-page-container">
       <div className="hero-image-container">
-        <div className="hero-image glass-morphism">
+        <div className="hero-image">
           <p>
             <img src={hero} alt="hero-image" height="700px"/>
           </p>
@@ -67,43 +77,54 @@ function Home() {
         <div className="carousel-wrapper">
           <Slider { ...carouselSettings} >
             <div onClick={handleClick}>
-              <div className="catergory-cards glass-morphism "  id="Android-Dev" style={{ height: '200px', backgroundColor: 'red' }}>
-                <Link to="/jobs" id="Android-Dev">Android Developer</Link>
-              </div>
+              <Link to="/jobs" id="Android-Dev">
+                <div className="catergory-cards glass-morphism "  id="Android-Dev" style={{ height: '200px', width: '300px' }}>
+                Android Developer</div>
+              </Link>
             </div>
 
             <div onClick={handleClick}>
-              <div className="catergory-cards glass-morphism "  id="Apple-Dev" style={{ height: '200px', backgroundColor: 'red' }}>
-                <Link to="/jobs" id="Apple-Dev">Apple Developer</Link>
-              </div>
-            </div>
-
-
-            <div onClick={handleClick}>
-              <div className="catergory-cards glass-morphism "  id="Back-End" style={{ height: '200px', backgroundColor: 'red' }}>
-                <Link to="/jobs" id="Back-End">Back-End Developer</Link>
-              </div>
+              <Link to="/jobs" id="Apple-Dev">
+                <div className="catergory-cards glass-morphism "  id="Apple-Dev" style={{ height: '200px', width: '300px' }}>
+                Apple Developer
+                </div>
+              </Link>
             </div>
 
 
             <div onClick={handleClick}>
-              <div className="catergory-cards glass-morphism "  id="Front-End" style={{ height: '200px', backgroundColor: 'red' }}>
-                <Link to="/jobs" id="Front-End">Front-End Developer</Link>
-              </div>
+              <Link to="/jobs" id="Back-End">
+                <div className="catergory-cards glass-morphism "  id="Back-End" style={{ height: '200px', width: '300px' }}>
+                Back-End Developer
+                </div>
+              </Link>
             </div>
 
 
             <div onClick={handleClick}>
-              <div className="catergory-cards glass-morphism "  id="Game-Dev" style={{ height: '200px', backgroundColor: 'red' }}>
-                <Link to="/jobs" id="Game-Dev">Game-Developer</Link>
-              </div>
+              <Link to="/jobs" id="Front-End">
+                <div className="catergory-cards glass-morphism "  id="Front-End" style={{ height: '200px', width: '300px' }}>
+                Front-End Developer
+                </div>
+              </Link>
             </div>
 
 
             <div onClick={handleClick}>
-              <div className="catergory-cards glass-morphism "  id="UI-Dev" style={{ height: '200px', backgroundColor: 'red' }}>
-                <Link to="/jobs" id="UI-Dev" >UI Developer</Link>
-              </div>
+              <Link to="/jobs" id="Game-Dev">
+                <div className="catergory-cards glass-morphism "  id="Game-Dev" style={{ height: '200px', width: '300px' }}>
+                Game-Developer
+                </div>
+              </Link>
+            </div>
+
+
+            <div onClick={handleClick}>
+              <Link to="/jobs" id="UI-Dev" >
+                <div className="catergory-cards glass-morphism "  id="UI-Dev" style={{ height: '200px', width: '300px' }}>
+                UI Developer
+                </div>
+              </Link>
             </div>
 
           </Slider>
