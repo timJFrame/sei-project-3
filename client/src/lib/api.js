@@ -1,6 +1,7 @@
 import axios from 'axios'
-import { getToken } from './auth'
+import { getToken, getUserId } from './auth'
 
+//*Base URL for all
 const baseUrl = '/api'
 
 //*Sets a users tokem into the request header  
@@ -9,8 +10,6 @@ function headers(){
     headers: { Authorization: `Bearer ${getToken()}` }
   }
 }
-
-
 
 //*Get All Jobs
 export function getAllJobs(){
@@ -45,4 +44,14 @@ export function registerUser(formdata){
 //*Login a user
 export function loginUser(formdata){
   return axios.post(`${baseUrl}/login`, formdata)
+}
+
+//*Get a single User
+export function getSingleUser(){
+  return axios.get(`${baseUrl}/users/${getUserId()}`, headers())
+}
+
+//* Edit a user
+export function editUser(formdata){
+  return axios.put(`${baseUrl}/users/${getUserId()}`, formdata, headers())
 }

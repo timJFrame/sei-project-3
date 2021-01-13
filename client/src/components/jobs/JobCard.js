@@ -42,7 +42,6 @@ function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee }) {
         </div>
       </div>
     </div>
-
   )
 }
 

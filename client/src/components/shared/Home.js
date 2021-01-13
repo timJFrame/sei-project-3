@@ -5,17 +5,16 @@ function Home() {
 
   let category = ''
 
-
+  //*Sets category in local storage
   const setCategory = (category) => {
     window.localStorage.setItem('catergory', category)
   }
 
+  //*Handles click event on category card
   const handleClick = (e) => {
     category = e.target.id
     setCategory(category)
   }
-
-  
 
   return (
     <div className="home-page-container">

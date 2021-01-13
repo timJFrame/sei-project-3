@@ -6,7 +6,9 @@ function useform(intialState) {
 
 
   const handleChange = (e) => {
-    const nextState = { ...formdata, [e.target.name]: e.target.value }
+    const value = e.target.type === 'checkbox' ? e.target.checked :
+      e.target.value
+    const nextState = { ...formdata, [e.target.name]: value }
     const nextErrorState = { ... errors, [e.target.name]: '' }
     setFormdata(nextState)
     setErrors(nextErrorState)

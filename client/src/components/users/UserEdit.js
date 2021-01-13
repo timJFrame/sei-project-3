@@ -1,12 +1,18 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
+import { getSingleUser, editUser } from '../../lib/api'
 import useForm from '../../utils/useform'
-import { registerUser } from '../../lib/api'
-import { useHistory } from 'react-router-dom' 
 import UserForm from '../users/UserForm'
 
-function Register(){
+
+function UserEdit(){
   const history = useHistory()
+
   const [userType, setUserType] = React.useState(null)
+
+  const handleUserChoice = (e) => {
+    setUserType(e.target.innerHTML.toLowerCase())
+  }
 
   const selectOptions = [
     { value: 'Appe Developer', label: 'Apple Developer' },
@@ -17,13 +23,7 @@ function Register(){
     { value: 'UI Designer', label: 'UI Developer Developer' }
   ]
 
-
-  const handleUserChoice = (e) => {
-    setUserType(e.target.innerHTML.toLowerCase())
-  }
-
- 
-  const { formdata, handleChange, errors, setErrors } = useForm({
+  const { formdata, handleChange, errors, setErrors, setFormdata } = useForm({
     name: '',
     email: '',
     password: '',
@@ -41,16 +41,26 @@ function Register(){
     handleChange({ target: { name, value: selectedItems } })
   }
 
-  const handleSubmit = async (e) => {
+  React.useEffect(() => {
+    const getData = async () => {
+      const { data } = await getSingleUser()
+      setFormdata(data)
+    }
+    getData()
+  },[])
+
+  const handleSubmit = async e => {
     e.preventDefault()
     try {
-      await registerUser(formdata)
-      console.log(formdata)
-      history.push('/login')
+      await editUser(formdata)
+      history.push('/users')
+      
     } catch (err){
+      console.log(err)
       setErrors(err.response.data.errors)
     }
   }
+ 
 
   return (
     <>
@@ -64,9 +74,10 @@ function Register(){
         handleChange={handleChange}
         errors={errors}
       />
-      
+
+
     </>
   )
 }
 
-export default Register
+export default UserEdit

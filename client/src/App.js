@@ -15,6 +15,11 @@ import JobShow from './components/jobs/JobShow'
 import JobNew from './components/jobs/JobNew'
 import JobEdit from './components/jobs/JobEdit'
 
+//*User
+import UserEdit from './components/users/UserEdit'
+import UserShow from './components/users/UserShow'
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +30,8 @@ function App() {
         <Route path="/jobs/new" component={JobNew} />
         <Route path="/jobs/:id" component={JobShow} />
         <Route path="/jobs/" component={JobIndex} />
+        <Route path="/users/edit" component={UserEdit}/>
+        <Route path="/users" component={UserShow}/>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
       </Switch>
