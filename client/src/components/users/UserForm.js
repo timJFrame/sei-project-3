@@ -31,7 +31,7 @@ function UserForm( { handleUserChoice, userType, selectOptions, handleMultiItems
           <div className="field">
             <label className="label">Email</label>
             <div className="control">
-             
+            
               <input
                 placeholder="Email"
                 name="email"
