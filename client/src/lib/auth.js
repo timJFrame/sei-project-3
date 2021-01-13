@@ -23,3 +23,10 @@ function getPayload(){
 export function  getUserId (){
   return getPayload().sub
 }
+
+
+export function isOwner(userId) {
+  const payload = getPayload()
+  if (!payload) return false
+  return userId === payload.sub
+}
