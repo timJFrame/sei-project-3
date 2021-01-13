@@ -2,6 +2,9 @@ import React from 'react'
 import { loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
 import { useHistory } from 'react-router-dom'
+import { BiLogInCircle } from 'react-icons/bi'
+import { RiAlertFill } from 'react-icons/ri'
+
 
 function Login() {
   const history = useHistory()
@@ -64,11 +67,11 @@ function Login() {
                   onFocus={handleFocus}
                 />
               </div>
-              {error && <p className="error">Sorry your username or passowrd is incorrect</p>}
+              {error && <p className="field-error"><RiAlertFill color="rgb(201, 4, 4)" /><br />Incorrect Email or Password</p>}
             </div>
           </div>
           <div className="field card-body center half-height">
-            <button type="submit" className="btn-submit-lg half-width " style={{ margin: '0 0 0 4.5rem' }}>Login</button>
+            <button type="submit" className="btn-submit-lg half-width " style={{ margin: '0 0 0 4.5rem' }}>Login < BiLogInCircle /></button>
           </div>
         </form>
       </div>

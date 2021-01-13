@@ -28,14 +28,14 @@ input{
   font-size: 13px;
   border-radius: $gm-border-radius;
   border: $gm-border;
-  transition: border .3s ease;
+  transition: all .3s ease;
   -webkit-appearance: none;
   color: $font-blue;
   &::placeholder{
     color: #abafb8;
   }
   &:hover{
-    box-shadow: $gm-shadow-sm ;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.38);
   }
   &:focus{
     outline:none;
