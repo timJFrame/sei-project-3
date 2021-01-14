@@ -11,6 +11,8 @@ function JobIndex() {
     selectedCategory = window.localStorage.getItem('catergory')
   }
 
+ 
+
   getCategory()
 
   console.log(selectedCategory)
@@ -20,16 +22,26 @@ function JobIndex() {
     const getData = async () => {
       try {
         const { data } = await getAllJobs()
-        const filterCategory = () => data.filter(category => {
-          return category.jobCategory === selectedCategory
-        })
+        let filterCategory
+        if (!selectedCategory){
+          filterCategory = data
+        } else {
+          filterCategory = () => data.filter(category => {
+            return category.jobCategory === selectedCategory
+          })
+        }
+       
         setJobs(filterCategory)
+      
       } catch (err) {
         console.log(err)
       }
     }
     getData()
+   
   }, [])
+
+ 
 
   return (
     <div className="container-general">
@@ -40,12 +52,7 @@ function JobIndex() {
         :
         <h2>Loading</h2>
       }
-
-
-
     </div>
   )
-
 }
-
 export default JobIndex

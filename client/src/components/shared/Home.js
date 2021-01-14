@@ -22,6 +22,12 @@ function Home() {
     setCategory(category)
   }
 
+  const removeCategory = () => {
+    window.localStorage.removeItem('catergory')
+  }
+  
+  removeCategory()
+
   const carouselSettings = {
     dots: true,
     arrows: true,
