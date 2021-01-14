@@ -7,7 +7,8 @@ import { useLocation }  from 'react-router-dom'
 function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, formdata, handleChange, errors }) {
 
   const { pathname } = useLocation()
-
+  
+  console.log(userType)
   return (
     <>
       <div className="">
@@ -109,6 +110,7 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
                   </div>
                   {errors.city && <p className="error-message">{errors.city}</p>}
                 </div>
+                {userType === 'auctioneer' &&
                 <div className="field" >
                   <label className="label">Confirm if you are an Auctioneer</label>
                   <div className="control">
@@ -118,10 +120,11 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
                       type="checkbox"
                       name="isAuctioneer"
                       onChange={handleChange}
-                      checked={formdata.isAuctioneer}
+                      checked={formdata.isAuctioner}
                     />
                   </div>
                 </div>
+                }
                 {userType === 'bidder' &&
                   <div>
                     <div className="field">
@@ -166,9 +169,18 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
               </div>
             </div>
 
+            {pathname === '/register' ?
+              <>  
+                {formdata.name && formdata.email && formdata.password && formdata.passwordConfirmation && formdata.bio && formdata.city && formdata.photo &&
 
-            {formdata.name && formdata.email && formdata.password && formdata.passwordConfirmation && formdata.bio && formdata.city && formdata.photo &&
-
+              <div className="field card-body card-body-foot">
+                <button type="submit" className="btn-submit-lg">Register</button>
+              </div>
+                }
+            
+           
+              </>
+              :
               <div className="field card-body card-body-foot">
                 <button type="submit" className="btn-submit-lg">Register</button>
               </div>
