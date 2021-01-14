@@ -8,6 +8,7 @@ function UserShow() {
       try {
         const { data } = await getSingleUser()
         setUser(data)
+        console.log(data)
       } catch (err) {
         console.log(err)
       }
