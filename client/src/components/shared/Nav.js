@@ -1,8 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { AiFillCaretDown } from 'react-icons/ai'
+import { logout, isAuthenticated } from '../../lib/auth'
+
 
 function Nav() {
+
+  const isLoggedIn = isAuthenticated()
+  const history = useHistory()
+
+  const  handleLogout = () => {
+    logout()
+    history.push('/')
+  }
+
+
   return (
 
     <header>
@@ -12,9 +24,14 @@ function Nav() {
         </div>
         <div className="navButtonsGroup">
           <Link to="/jobs" className="btn">Jobs</Link>
-          <Link to="/login" className="btn-secondary-xs">Login</Link>
-          <Link to="/register" className="btn-secondary-xs">Register</Link>
-
+          {!isLoggedIn ?
+            <>
+              <Link to="/login" className="btn-secondary-xs">Login</Link>
+              <Link to="/register" className="btn-secondary-xs">Register</Link>
+            </>
+            :
+            <Link to="#" onClick={handleLogout}className="btn-secondary-xs">Log Out</Link>
+          }
         </div>
 
       </nav>
