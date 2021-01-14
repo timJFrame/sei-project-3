@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, Link, useHistory }  from 'react-router-dom'
-import { getSingleJob, deleteJob, createBid, getBids } from '../../lib/api'
+import { getSingleJob, deleteJob, createBid, getBids, createComment, getComments } from '../../lib/api'
 import useform from '../../utils/useform'
 
 
@@ -8,6 +8,8 @@ function JobShow(){
   const [job, setJob] = React.useState(null)
   const [bids, setBids] = React.useState(null)
   const [bidmessage, setBidmessage] = React.useState(null)
+  const [comments, setComments] = React.useState(null)
+  const [commentMessage, setCommentmessage] = React.useState(null)
   const { id } = useParams()
   const history = useHistory()
 
@@ -35,7 +37,7 @@ function JobShow(){
   }
 
   //*Getting form data for placnig bid
-  const { formdata, handleChange, setFormdata } = useform({
+  const { formdata, handleChange, setFormdata, setErrors } = useform({
     text: '',
     fee: ''
   })
@@ -50,16 +52,57 @@ function JobShow(){
       setBidmessage(`Your bid of £${formdata.fee} has been placed`)
       setFormdata({ text: '', fee: '' })
     } catch (err){
-      console.log(err)
+      setErrors(err)
     }
   }
 
+   
   //*Get bids request
   React.useEffect(() => {
     const getData = async () => {
       try {
         const { data } = await getBids(id)
         setBids(data)
+        console.log(data)
+      } catch (err){
+        setErrors(err.response.data)
+      }
+    }
+    getData()
+  }, [])
+  
+  
+
+  //*Post comment form data
+  const [commentdata, setCommentdata] = React.useState({
+    text: ''
+  })
+
+  //*Handle gets user input from comment form field
+  const handleCommentChange = (e) => {
+    setCommentdata({ ...commentdata, [e.target.name]: e.target.value })
+  }
+
+  //* Handles submitting new comments
+  const handleCommentSubmit = async (e) => {
+    try {
+      e.preventDefault()
+      await createComment(id, commentdata)
+      setCommentmessage('Your comment was been made')
+      setCommentdata({ text: '' })
+      
+    } catch (err){
+      console.log(err)
+    }
+
+  }
+
+  //*Get all comments
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await getComments(id)
+        setComments(data)
       } catch (err){
         console.log(err)
       }
@@ -67,8 +110,6 @@ function JobShow(){
     getData()
   }, [])
 
-
-  console.log(bids)
 
   return (
     <div className="job-show-container glass-morphism"> 
@@ -121,10 +162,10 @@ function JobShow(){
           </div>
           <p>{bidmessage}</p>
           <div className="bid-submit-button-container">
-            <button>Place Bid</button>
+            <button type="submit">Place Bid</button>
           </div>
           <div className="show-bids-container">
-            {bids ?
+            {bids &&
               bids.map(bid => (
                 <div key={bid._id}>
                   <p>Bidder Name: {bid.owner.name}</p>
@@ -132,15 +173,36 @@ function JobShow(){
                   <p>Bidder Message: {bid.text}</p>
                 </div>
               ))
-            
-              :
-              <p>Loading</p>
             }
           </div>
         </form>
       </div>
-
-      
+      <div className="comment-form-container" onSubmit={handleCommentSubmit}>
+        <form className="comment-form" >
+          <div className="field">
+            <label>Add a comment</label>
+            <div className="control">
+              <textarea
+                placeholder="Add comment here"
+                name="text"
+                value={commentdata.text}
+                onChange={handleCommentChange}
+              />
+            </div>
+          </div>
+          <p>{commentMessage}</p>
+          <div className="submit-comment-button-div">
+            <button type="submit">Submit Comment</button>
+          </div>
+        </form>
+      </div>
+      {comments &&
+              comments.map(comment => (
+                <div key={comment._id}>
+                  <p>Comment: {comment.text}</p>
+                </div>
+              ))
+      }
 		 </div>
 		
   )

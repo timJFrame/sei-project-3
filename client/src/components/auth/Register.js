@@ -30,6 +30,7 @@ function Register() {
     passwordConfirmation: '',
     photo: '',
     city: '',
+    bio: '',
     isAuctioneer: false,
     bidderCategories: [],
     bidderIsAvailable: false
@@ -48,6 +49,7 @@ function Register() {
       console.log(formdata)
       history.push('/login')
     } catch (err) {
+      console.log
       setErrors(err.response.data.errors)
     }
   }

@@ -9,7 +9,6 @@ function UserForm({ handleUserChoice, userType, selectOptions, handleMultiItems,
       <div className="">
         {!userType &&
           <div className="card center glass-morphism">
-
             <div className="user-choice-box">
               <h3 className="">Select Account Type</h3>
               <div className="buttons ">

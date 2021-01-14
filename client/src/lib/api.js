@@ -65,3 +65,13 @@ export function createBid(id, formdata){
 export function getBids(id){
   return axios.get(`${baseUrl}/jobs/${id}/bids`, headers())
 }
+
+//*Post a comment
+export function createComment(id, formdata){
+  return axios.post(`${baseUrl}/jobs/${id}/comments`, formdata, headers())
+}
+
+//*Get all comments
+export function getComments(id){
+  return axios.get(`${baseUrl}/jobs/${id}/comments`, headers())
+}
