@@ -4,21 +4,8 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { Link } from 'react-router-dom'
 
-function JobCarousel(){
-  let category = ''
-
-  //*Sets category in local storage
-  const setCategory = (category) => {
-    window.localStorage.setItem('catergory', category)
-  }
-
-  //*Handles click event on category card
-  const handleClick = (e) => {
-    category = e.target.id
-    setCategory(category)
-  }
-  console.log(category)
-
+function JobCarousel({ handleCategoryClick }){
+  
   const carouselSettings = {
     dots: true,
     arrows: false,
@@ -72,54 +59,64 @@ function JobCarousel(){
 
       <div className="carousel-wrapper">
         <Slider { ...carouselSettings}>
-          <div onClick={handleClick}>
-            <Link to="/jobs" id="Android-Dev">
+
+          <div onClick={handleCategoryClick}>
+            <Link to="/jobs" id={null}>
               <div className="catergory-cards glass-morphism "  id="Android-Dev" style={{ height: '200px', width: '160px', color: 'blue', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <strong >Android <br /> Developer</strong>
+                <strong id={null}>All <br /> Jobs</strong>
               </div>            
             </Link>
           </div>
 
-          <div onClick={handleClick}>
+
+          <div onClick={handleCategoryClick}>
+            <Link to="/jobs" id="Android-Dev">
+              <div className="catergory-cards glass-morphism "  id="Android-Dev" style={{ height: '200px', width: '160px', color: 'blue', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <strong id="Android-Dev">Android <br /> Developer</strong>
+              </div>            
+            </Link>
+          </div>
+
+          <div onClick={handleCategoryClick}>
             <Link to="/jobs" id="Apple-Dev">
               <div className="catergory-cards glass-morphism "  id="Apple-Dev" style={{ height: '200px', width: '160px', color: 'purple', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <strong>Apple <br /> iOS Developer</strong>
+                <strong id="Apple-Dev">Apple <br /> iOS Developer</strong>
               </div>
             </Link>
           </div>
 
 
-          <div onClick={handleClick}>
+          <div onClick={handleCategoryClick}>
             <Link to="/jobs" id="Back-End">
               <div className="catergory-cards glass-morphism "  id="Back-End" style={{ height: '200px', width: '160px', color: 'teal', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <strong>Back-End <br /> Developer</strong>
+                <strong id="Back-End">Back-End <br /> Developer</strong>
               </div>
             </Link>
           </div>
 
 
-          <div onClick={handleClick}>
+          <div onClick={handleCategoryClick}>
             <Link to="/jobs" id="Front-End">
               <div className="catergory-cards glass-morphism "  id="Front-End" style={{ height: '200px', width: '160px', color: '#F62E65', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <strong>Front End <br /> Developer</strong>
+                <strong id="Front-End">Front End <br /> Developer</strong>
               </div>
             </Link>
           </div>
 
 
-          <div onClick={handleClick}>
+          <div onClick={handleCategoryClick}>
             <Link to="/jobs" id="Game-Dev">
               <div className="catergory-cards glass-morphism "  id="Game-Dev" style={{ height: '200px', width: '160px', color: '#BE5011', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <strong>Game <br /> Developer</strong>
+                <strong id="Game-Dev">Game <br /> Developer</strong>
               </div>
             </Link>
           </div>
 
 
-          <div onClick={handleClick}>
+          <div onClick={handleCategoryClick}>
             <Link to="/jobs" id="UI-Dev" >
               <div className="catergory-cards glass-morphism "  id="UI-Dev" style={{ height: '200px', width: '150px', color: '#689E29', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <strong>UI - User <br /> Experience</strong>
+                <strong id="UI-Dev">UI - User <br /> Experience</strong>
               </div>
             </Link>
           </div>
