@@ -109,7 +109,7 @@ function UserForm({ handleUserChoice, userType, selectOptions, handleMultiItems,
                     {errors.city && <p className="error-message">{errors.city}</p>}
                   </div>
                   <div className="field" >
-                    <label className="label">Confirm you are an Auctioneer</label>
+                    <label className="label">Confirm if you are an Auctioneer</label>
                     <div className="control">
                       <input
                         type="checkbox"
