@@ -19,7 +19,7 @@
 
 p{
   color: $font-basic;
-
+  font-size: 0.8rem;
 }
 
 input, textarea{
@@ -127,4 +127,13 @@ body{
 	flex-wrap: wrap;
   justify-content: space-evenly;
   margin-top: 4.5rem;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: left;
+  margin-left: 10px;
+  
 }
