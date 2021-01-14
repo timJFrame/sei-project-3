@@ -1,9 +1,13 @@
 import React from 'react'
 import ImageUpload from '../shared/ImageUpload'
 import Select from 'react-select'
+import { useLocation }  from 'react-router-dom'
 
 
 function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, formdata, handleChange, errors }) {
+
+  const { pathname } = useLocation()
+
   return (
     <>
       <div className="">
@@ -43,33 +47,40 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
                   </div>
                   {errors.email && <p className="error-message">{errors.email}</p>}
                 </div>
-                <div className="field">
-                  <label className="label">Password</label>
-                  <div className="control">
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      name="password"
-                      value={formdata.password}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  {errors.password && <p className="error-message">{errors.password}</p>}
-                </div>
-                <div className="field">
-                  <label className="label">Password Confirmation</label>
-                  <div className="control">
-                    <input
-                      type="password"
-                      placeholder="Password Confirmation"
-                      name="passwordConfirmation"
-                      value={formdata.passwordConfirmation}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  {errors.passwordConfirmation && <p className="error-message">{errors.passwordConfirmation}</p>}
-                </div>
+                {
+                  pathname !== '/users/edit' &&
+                  <>
+                    <div className="field">
+                      <label className="label">Password</label>
+                      <div className="control">
+                        <input
+                          type="password"
+                          placeholder="Password"
+                          name="password"
+                          value={formdata.password}
+                          onChange={handleChange}
+                        />
+                      </div>
+                      {errors.password && <p className="error-message">{errors.password}</p>}
+                    </div>
+                    <div className="field">
+                      <label className="label">Password Confirmation</label>
+                      <div className="control">
+                        <input
+                          type="password"
+                          placeholder="Password Confirmation"
+                          name="passwordConfirmation"
+                          value={formdata.passwordConfirmation}
+                          onChange={handleChange}
+                        />
+                      </div>
+                      {errors.passwordConfirmation && <p className="error-message">{errors.passwordConfirmation}</p>}
+                    </div>
+                  </>
+                }
               </div>
+              
+                
               <span className="divider" />
               <div className="card-side right">
 
