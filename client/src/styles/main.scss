@@ -105,7 +105,7 @@ a{
 
 body{
 	background: rgb(222,28,210);
-  background-image: url(../images/Triangle-Abstract-Background.jpg);
+  background-image: url(../images/background.jpeg);
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
@@ -136,4 +136,8 @@ body{
   text-align: left;
   margin-left: 10px;
   
+}
+
+.about-text {
+  text-align: 'center'!important
 }
