@@ -7,15 +7,15 @@ import { Link } from 'react-router-dom'
 function JobCarousel(){
   let category = ''
 
-  // //*Sets category in local storage
-  // const setCategory = (category) => {
-  //   window.localStorage.setItem('catergory', category)
-  // }
+  //*Sets category in local storage
+  const setCategory = (category) => {
+    window.localStorage.setItem('catergory', category)
+  }
 
   //*Handles click event on category card
   const handleClick = (e) => {
     category = e.target.id
-    // setCategory(category)
+    setCategory(category)
   }
   console.log(category)
 
