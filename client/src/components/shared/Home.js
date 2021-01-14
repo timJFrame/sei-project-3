@@ -1,7 +1,6 @@
 import React from 'react'
 import Footer from './Footer'
 
-
 function Home() {
 
   return (
@@ -12,11 +11,12 @@ function Home() {
       </section>
       
       <br />
+      <br />
       <div className="job-show-container frosty about-text">
-
+        <br />
         <h1 className="about-title">DEVERR brings together Freelance Developers and Contractors</h1>
         <br />
-        <h2 className="about-text">Focus on delivering your project - the team you need is here</h2>
+        <h2 className="about-text">Focus on leading your project - the team you need is here</h2>
         <br />
         <hr />
         <br />
@@ -29,10 +29,12 @@ function Home() {
         <hr />
         <br />
         <h2>IF YOU ARE LOOKING FOR A JOB</h2>
-        <h4><strong>One</strong> - Register as <strong>Bidder</strong> </h4>
+        <h4><strong>One</strong> - Register as <strong>Bidder</strong></h4>
         <h4><strong>Two</strong> - Browse all jobs or filter by category</h4>
         <h4><strong>Three</strong> - Post a bid</h4>
+        <br />
       </div>
+      <br />
       <br />
 
       <Footer />

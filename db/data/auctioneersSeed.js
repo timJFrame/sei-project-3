@@ -10,7 +10,7 @@ function auctioneersSeed() {
     const lastName = faker.name.lastName()
     const name = `${firstName} ${lastName}`
     const email = `${firstName}${lastName}@email.com`
-    const photo = faker.image.avatar()
+    const photo = faker.image.people()
     const bio = faker.lorem.sentence()
     const city = faker.address.city()
     auctioneerArray.push({
