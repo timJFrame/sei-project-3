@@ -15,7 +15,7 @@ async function jobIndex (req, res, next) {
 async function jobCreate (req, res, next) {
   try {
     // if owner is not an auctioneer throw new error: you must be a bidder to place a bid
-    if (!req.currentUser.isAuctioneer === true) throw new Error(notAuctioneer)
+    if (!req.currentUser.isAuctioneer) throw new Error(notAuctioneer)
 
     // else create the new job
     const newJobData = { ...req.body, jobOwner: req.currentUser._id }

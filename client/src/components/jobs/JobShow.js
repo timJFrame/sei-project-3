@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import { useParams, Link, useHistory }  from 'react-router-dom'
 import { getSingleJob, deleteJob, createBid, getBids, createComment, getComments } from '../../lib/api'
+import { isOwner } from '../../lib/auth'
 import useform from '../../utils/useform'
 
 
@@ -10,6 +12,8 @@ function JobShow(){
   const [bidmessage, setBidmessage] = React.useState(null)
   const [comments, setComments] = React.useState(null)
   const [commentMessage, setCommentmessage] = React.useState(null)
+  const isJobOwner = isOwner(job?.jobOwner._id)
+  console.log(isJobOwner)
   const { id } = useParams()
   const history = useHistory()
 
@@ -18,6 +22,7 @@ function JobShow(){
     const getData = async () => {
       try {
         const { data } = await getSingleJob(id)
+        console.log(data)
         setJob(data)
       } catch (err){
         console.log(err)
@@ -57,19 +62,7 @@ function JobShow(){
   }
 
    
-  //*Get bids request
-  React.useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await getBids(id)
-        setBids(data)
-        console.log(data)
-      } catch (err){
-        setErrors(err.response.data)
-      }
-    }
-    getData()
-  }, [])
+ 
   
   
 
@@ -90,25 +83,16 @@ function JobShow(){
       await createComment(id, commentdata)
       setCommentmessage('Your comment was been made')
       setCommentdata({ text: '' })
-      
+      const { data } = await getSingleJob(id)
+      console.log(data)
+      setJob(data)
     } catch (err){
       console.log(err)
     }
 
   }
 
-  //*Get all comments
-  React.useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await getComments(id)
-        setComments(data)
-      } catch (err){
-        console.log(err)
-      }
-    }
-    getData()
-  }, [])
+
 
 
   return (
@@ -122,6 +106,7 @@ function JobShow(){
             <p>{job.jobDeadline}</p>
             <p>{job.jobCategory}</p>
             <p>{job.jobFee}</p>
+          
           </>
           <div className="job-show-buttons">
             <button className="delete-button" onClick={handleDelete}>
@@ -129,6 +114,22 @@ function JobShow(){
             </button>
             <button><Link to={`/jobs/${id}/edit`}>Edit</Link></button>
           </div>
+          {
+            job.jobComments.map(comment => (
+              <div key={comment._id}>
+                <p>Comment: {comment.text}</p>
+              </div>
+            ))
+          }
+          {
+            job.jobBids.map(bid => (
+              <div key={bid._id}>
+                <p>Bidder Name: {bid.owner.name}</p>
+                <p>Amount Bidded: {bid.fee}</p>
+                <p>Bidder Message: {bid.text}</p>
+              </div>
+            ))
+          }
         </>
         :
         <h2>Loading</h2>
@@ -165,15 +166,7 @@ function JobShow(){
             <button type="submit">Place Bid</button>
           </div>
           <div className="show-bids-container">
-            {bids &&
-              bids.map(bid => (
-                <div key={bid._id}>
-                  <p>Bidder Name: {bid.owner.name}</p>
-                  <p>Amount Bidded: {bid.fee}</p>
-                  <p>Bidder Message: {bid.text}</p>
-                </div>
-              ))
-            }
+          
           </div>
         </form>
       </div>
@@ -196,13 +189,7 @@ function JobShow(){
           </div>
         </form>
       </div>
-      {comments &&
-              comments.map(comment => (
-                <div key={comment._id}>
-                  <p>Comment: {comment.text}</p>
-                </div>
-              ))
-      }
+      
 		 </div>
 		
   )

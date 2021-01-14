@@ -2,12 +2,12 @@ import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { AiFillCaretDown } from 'react-icons/ai'
 import { logout, isAuthenticated } from '../../lib/auth'
-
+import { useLocation } from 'react-router-dom'
 
 function Nav() {
-
   const isLoggedIn = isAuthenticated()
   const history = useHistory()
+  useLocation()
 
   const  handleLogout = () => {
     logout()
@@ -16,7 +16,6 @@ function Nav() {
 
 
   return (
-
     <header>
       <nav className="glass-morphism">
         <div>
