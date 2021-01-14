@@ -23,23 +23,17 @@ function Home() {
         <br />
         <hr />
         <br />
-
         <h1>STEPS</h1>
         <br />    
         <h2>IF YOU ARE LOOKING FOR A DEV</h2>
         <p><strong>One</strong> - Register as <strong>Auctioneer</strong></p>
-
         <p><strong>Two</strong> - Post the job</p>
-
         <p><strong>Three</strong> - Select the winning bid</p>
-
         <br />
         <h2>IF YOU ARE LOOKING FOR A JOB</h2>
         <p><strong>One</strong> - Register as <strong>Bidder</strong> </p>
-        
         <p><strong>Two</strong> - Browse all advertised jobs, or filter them by job category</p>
         <p>Questions about the contract? Comment on the Job page.</p>
-        
         <p><strong>Three</strong> - Post a bid detailing your experience and your prefered fee</p>
         <br />
       </div>
