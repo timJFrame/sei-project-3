@@ -23,6 +23,7 @@ function Nav() {
         </div>
         <div className="navButtonsGroup">
           <Link to="/jobs" className="btn">Jobs</Link>
+          <Link to="/users" className="btn">People</Link>
           {!isLoggedIn ?
             <>
               <Link to="/login" className="btn-secondary-xs">Login</Link>
