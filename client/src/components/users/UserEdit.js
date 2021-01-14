@@ -5,7 +5,7 @@ import useForm from '../../utils/useform'
 import UserForm from '../users/UserForm'
 
 
-function UserEdit(){
+function UserEdit() {
   const history = useHistory()
   const { pathname } = useLocation()
 
@@ -50,19 +50,20 @@ function UserEdit(){
       setFormdata(data)
     }
     getData()
-  },[])
+  }, [])
 
   const handleSubmit = async e => {
     e.preventDefault()
     try {
       await editUser(formdata)
       history.push('/users')
-      
-    } catch (err){
+
+    } catch (err) {
       console.log(err)
       setErrors(err.response.data.errors)
     }
   }
+<<<<<<< HEAD
  
   
   return (
@@ -78,6 +79,25 @@ function UserEdit(){
         errors={errors}
         pathname={pathname}
       />
+=======
+
+
+  return (
+    <>
+      <div className="container-general">
+
+        <UserForm
+          handleUserChoice={handleUserChoice}
+          userType={userType}
+          selectOptions={selectOptions}
+          handleMultiItems={handleMultiItems}
+          handleSubmit={handleSubmit}
+          formdata={formdata}
+          handleChange={handleChange}
+          errors={errors}
+        />
+      </div>
+>>>>>>> development
 
 
     </>

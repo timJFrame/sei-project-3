@@ -55,17 +55,30 @@ function Register() {
 
   return (
     <>
-      <div className="container-general">
-        <UserForm
-          handleUserChoice={handleUserChoice}
-          userType={userType}
-          selectOptions={selectOptions}
-          handleMultiItems={handleMultiItems}
-          handleSubmit={handleSubmit}
-          formdata={formdata}
-          handleChange={handleChange}
-          errors={errors}
-        />
+      <div className="container-general"
+      >
+        {!userType &&
+          <div className="card center glass-morphism">
+            <div className="user-choice-box">
+              <h3>Select Account Type</h3>
+              <div className="buttons ">
+                <button className="btn" onClick={handleUserChoice}>Bidder</button>
+                <button className="btn" onClick={handleUserChoice}>Auctioneer</button>
+              </div>
+            </div>
+          </div>
+        }{userType &&
+          <UserForm
+            handleUserChoice={handleUserChoice}
+            userType={userType}
+            selectOptions={selectOptions}
+            handleMultiItems={handleMultiItems}
+            handleSubmit={handleSubmit}
+            formdata={formdata}
+            handleChange={handleChange}
+            errors={errors}
+          />
+        }
       </div>
 
     </>

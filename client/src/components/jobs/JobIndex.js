@@ -12,8 +12,6 @@ function JobIndex() {
     selectedCategory = window.localStorage.getItem('catergory')
   }
 
- 
-
   getCategory()
 
   console.log(selectedCategory)
@@ -31,7 +29,7 @@ function JobIndex() {
             return category.jobCategory === selectedCategory
           })
         }
-       
+      
         setJobs(filterCategory)
       
       } catch (err) {
@@ -39,10 +37,10 @@ function JobIndex() {
       }
     }
     getData()
-   
+  
   }, [])
 
- 
+
 
   return (
     <>
@@ -56,8 +54,6 @@ function JobIndex() {
           :
           <h2>Loading</h2>
         }
-
-
 
       </div>
     </>
