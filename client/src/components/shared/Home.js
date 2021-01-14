@@ -1,14 +1,12 @@
 import React from 'react'
 import hero from './pexels-photo-205316.jpeg'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import { Link } from 'react-router-dom'
 import Footer from './Footer'
 
 
 function Home() {
 
+<<<<<<< HEAD
+=======
   let category = ''
 
   //*Sets category in local storage
@@ -21,6 +19,12 @@ function Home() {
     category = e.target.id
     setCategory(category)
   }
+
+  const removeCategory = () => {
+    window.localStorage.removeItem('catergory')
+  }
+  
+  removeCategory()
 
   const carouselSettings = {
     dots: true,
@@ -62,6 +66,7 @@ function Home() {
     ]
   }
 
+>>>>>>> development
   return (
     <div className="home-page-container">
       <div className="hero-image-container">
@@ -72,65 +77,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="categories-container" style={{ marginTop: '10%', marginBottom: '10%', marginLeft: '15%' , marginRight: '15%' }}>
 
-        <div className="carousel-wrapper">
-          <Slider { ...carouselSettings} >
-            <div onClick={handleClick}>
-              <Link to="/jobs" id="Android-Dev">
-                <div className="catergory-cards glass-morphism "  id="Android-Dev" style={{ height: '200px', width: '300px' }}>
-                Android Developer</div>
-              </Link>
-            </div>
-
-            <div onClick={handleClick}>
-              <Link to="/jobs" id="Apple-Dev">
-                <div className="catergory-cards glass-morphism "  id="Apple-Dev" style={{ height: '200px', width: '300px' }}>
-                Apple Developer
-                </div>
-              </Link>
-            </div>
-
-
-            <div onClick={handleClick}>
-              <Link to="/jobs" id="Back-End">
-                <div className="catergory-cards glass-morphism "  id="Back-End" style={{ height: '200px', width: '300px' }}>
-                Back-End Developer
-                </div>
-              </Link>
-            </div>
-
-
-            <div onClick={handleClick}>
-              <Link to="/jobs" id="Front-End">
-                <div className="catergory-cards glass-morphism "  id="Front-End" style={{ height: '200px', width: '300px' }}>
-                Front-End Developer
-                </div>
-              </Link>
-            </div>
-
-
-            <div onClick={handleClick}>
-              <Link to="/jobs" id="Game-Dev">
-                <div className="catergory-cards glass-morphism "  id="Game-Dev" style={{ height: '200px', width: '300px' }}>
-                Game-Developer
-                </div>
-              </Link>
-            </div>
-
-
-            <div onClick={handleClick}>
-              <Link to="/jobs" id="UI-Dev" >
-                <div className="catergory-cards glass-morphism "  id="UI-Dev" style={{ height: '200px', width: '300px' }}>
-                UI Developer
-                </div>
-              </Link>
-            </div>
-
-          </Slider>
-
-        </div>
-      </div>
       
       <Footer />
     </div>
