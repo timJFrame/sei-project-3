@@ -1,6 +1,7 @@
 import React from 'react'
 import { getAllJobs } from '../../lib/api'
 import JobCard from './JobCard'
+import JobCarousel from './JobCarousel'
 
 function JobIndex() {
   let selectedCategory
@@ -44,6 +45,24 @@ function JobIndex() {
  
 
   return (
+<<<<<<< HEAD
+    <>
+      <JobCarousel />
+      
+      <div className="container-general">
+        {jobs ?
+          jobs.map(job => (
+            <JobCard key={job._id}  {...job} />
+          ))
+          :
+          <h2>Loading</h2>
+        }
+
+
+
+      </div>
+    </>
+=======
     <div className="container-general">
       {jobs ?
         jobs.map(job => (
@@ -53,6 +72,7 @@ function JobIndex() {
         <h2>Loading</h2>
       }
     </div>
+>>>>>>> development
   )
 }
 export default JobIndex
