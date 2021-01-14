@@ -45,7 +45,6 @@ function JobIndex() {
  
 
   return (
-<<<<<<< HEAD
     <>
       <JobCarousel />
       
@@ -62,17 +61,6 @@ function JobIndex() {
 
       </div>
     </>
-=======
-    <div className="container-general">
-      {jobs ?
-        jobs.map(job => (
-          <JobCard key={job._id}  {...job} />
-        ))
-        :
-        <h2>Loading</h2>
-      }
-    </div>
->>>>>>> development
   )
 }
 export default JobIndex
