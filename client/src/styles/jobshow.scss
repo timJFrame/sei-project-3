@@ -1,15 +1,10 @@
-.job-show-container{
-	display: flex;
-	flex-direction: column;
-	max-width: 900px;
-	margin: 0 auto;
-	align-items: center;
-	padding: 20px;
 
-  img{
-	max-width: 400px;
+
+.main-container{
+  display:flex;
+  flex-direction: column;
 }
 
-
+.container-row{
+  display: flex;
 }
-

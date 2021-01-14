@@ -68,7 +68,6 @@ function UserEdit() {
   return (
     <>
       <div className="container-general">
-
         <UserForm
           handleUserChoice={handleUserChoice}
           userType={userType}

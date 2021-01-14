@@ -6,7 +6,7 @@ function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee, jobI
   return (
     <>
       {jobIsLive ?
-        <div className="card glass-morphism " >
+        <div className="card glass-morphism " style={{ width: '300px', height: '350px' }}>
           <div className="card-image-container">
             <div className="rounded-button">
               <RoundedButtons type={jobIsLive ? 'green' : 'red'} />

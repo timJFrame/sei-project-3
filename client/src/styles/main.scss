@@ -32,7 +32,7 @@ input, textarea{
   transition: all .3s ease;
   color: $font-blue;
   &::placeholder{
-    color: #abafb8;
+    color: #727374b4;
   }
   &:hover{
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.38);
@@ -41,6 +41,10 @@ input, textarea{
     outline:none;
     border-color: $font-blue;
   }
+}
+
+textarea{
+  height: 100%;
 }
 label{
   font-weight: 600;
@@ -54,8 +58,13 @@ button{
 span{
   color: $font-blue;
   font-weight: 600;
-  font-size: 110%;
-  
+  font-size: 110%; 
+}
+
+h2{
+  text-shadow: $gm-shadow-sm;
+  font-size: 1.2rem;
+  margin: 5px 5px;
 }
 
 .s-b{
