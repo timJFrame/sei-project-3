@@ -5,68 +5,6 @@ import Footer from './Footer'
 
 function Home() {
 
-<<<<<<< HEAD
-=======
-  let category = ''
-
-  //*Sets category in local storage
-  const setCategory = (category) => {
-    window.localStorage.setItem('catergory', category)
-  }
-
-  //*Handles click event on category card
-  const handleClick = (e) => {
-    category = e.target.id
-    setCategory(category)
-  }
-
-  const removeCategory = () => {
-    window.localStorage.removeItem('catergory')
-  }
-  
-  removeCategory()
-
-  const carouselSettings = {
-    dots: true,
-    arrows: true,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    draggable: true,
-    infinite: true,
-    pauseOnHover: true,
-    speed: 1200, // transition speed
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    swipe: true,
-
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  }
-
->>>>>>> development
   return (
     <div className="home-page-container">
       <div className="hero-image-container">
@@ -77,7 +15,34 @@ function Home() {
         </div>
       </div>
 
+      <div className='job-show-container'>
+        <br />
+        <h1 style={{ textAlign: 'center' }}>DEVERR brings together Freelance Developers and Contractors.</h1>
+        <br />
+        <h2>Focus on delivering your project - the team you need is here</h2>
+        <br />
+        <hr />
+        <br />
 
+        <h1>STEPS</h1>
+        <br />    
+        <h2>IF YOU ARE LOOKING FOR A DEV</h2>
+        <p><strong>One</strong> - Register as <strong>Auctioneer</strong></p>
+
+        <p><strong>Two</strong> - Post the job</p>
+
+        <p><strong>Three</strong> - Select the winning bid</p>
+
+        <br />
+        <h2>IF YOU ARE LOOKING FOR A JOB</h2>
+        <p><strong>One</strong> - Register as <strong>Bidder</strong> </p>
+        
+        <p><strong>Two</strong> - Browse all advertised jobs, or filter them by job category</p>
+        <p>Questions about the contract? Comment on the Job page.</p>
+        
+        <p><strong>Three</strong> - Post a bid detailing your experience and your prefered fee</p>
+        <br />
+      </div>
       
       <Footer />
     </div>
