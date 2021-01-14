@@ -1,4 +1,5 @@
 import React from 'react'
+import JobCarousel from '../jobs/JobCarousel'
 import { useParams, useHistory } from 'react-router-dom'
 import { getSingleJob, editJob } from '../../lib/api'
 import useForm from '../../utils/useform'
@@ -39,12 +40,16 @@ function EditJob(){
   }
 
   return (
-    <JobForm 
-      formdata={formdata}
-      handleChange={handleChange}
-      handleSubmit={handleSubmit}
-      errors={errors}
-    />
+    <>
+      <JobCarousel />
+      
+      <JobForm 
+        formdata={formdata}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        errors={errors}
+      />
+    </>
   )
 }
 
