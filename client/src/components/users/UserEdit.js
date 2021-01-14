@@ -63,7 +63,6 @@ function UserEdit() {
       setErrors(err.response.data.errors)
     }
   }
-<<<<<<< HEAD
  
   
   return (
@@ -79,25 +78,6 @@ function UserEdit() {
         errors={errors}
         pathname={pathname}
       />
-=======
-
-
-  return (
-    <>
-      <div className="container-general">
-
-        <UserForm
-          handleUserChoice={handleUserChoice}
-          userType={userType}
-          selectOptions={selectOptions}
-          handleMultiItems={handleMultiItems}
-          handleSubmit={handleSubmit}
-          formdata={formdata}
-          handleChange={handleChange}
-          errors={errors}
-        />
-      </div>
->>>>>>> development
 
 
     </>
