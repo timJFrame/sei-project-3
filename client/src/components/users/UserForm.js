@@ -111,6 +111,8 @@ function UserForm({ handleUserChoice, userType, selectOptions, handleMultiItems,
                   <div className="field" >
                     <label className="label">Confirm if you are an Auctioneer</label>
                     <div className="control">
+
+
                       <input
                         type="checkbox"
                         name="isAuctioneer"
@@ -120,7 +122,7 @@ function UserForm({ handleUserChoice, userType, selectOptions, handleMultiItems,
                     </div>
                   </div>
                   {userType === 'bidder' &&
-                    <>
+                    <div>
                       <div className="field">
                         <label className="label">Skills</label>
                         <div className="control"
@@ -148,7 +150,7 @@ function UserForm({ handleUserChoice, userType, selectOptions, handleMultiItems,
                         </div>
                       </div>
 
-                    </>
+                    </div>
                   }
                   <div className="field">
                     <ImageUpload
