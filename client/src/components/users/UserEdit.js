@@ -63,21 +63,24 @@ function UserEdit() {
       setErrors(err.response.data.errors)
     }
   }
- 
-  
+
+
   return (
     <>
-      <UserForm
-        handleUserChoice={handleUserChoice}
-        userType={userType}
-        selectOptions={selectOptions}
-        handleMultiItems={handleMultiItems}
-        handleSubmit={handleSubmit}
-        formdata={formdata}
-        handleChange={handleChange}
-        errors={errors}
-        pathname={pathname}
-      />
+      <div className="container-general">
+
+        <UserForm
+          handleUserChoice={handleUserChoice}
+          userType={userType}
+          selectOptions={selectOptions}
+          handleMultiItems={handleMultiItems}
+          handleSubmit={handleSubmit}
+          formdata={formdata}
+          handleChange={handleChange}
+          errors={errors}
+          pathname={pathname}
+        />
+      </div>
 
 
     </>
