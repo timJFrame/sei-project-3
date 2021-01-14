@@ -46,7 +46,6 @@ function Register() {
     e.preventDefault()
     try {
       await registerUser(formdata)
-      console.log(formdata)
       history.push('/login')
     } catch (err) {
       console.log

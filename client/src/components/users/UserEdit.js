@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { getSingleUser, editUser } from '../../lib/api'
 import useForm from '../../utils/useform'
 import UserForm from '../users/UserForm'
@@ -7,6 +7,8 @@ import UserForm from '../users/UserForm'
 
 function UserEdit(){
   const history = useHistory()
+  const { pathname } = useLocation()
+
 
   const [userType, setUserType] = React.useState(null)
 
@@ -28,6 +30,7 @@ function UserEdit(){
     email: '',
     password: '',
     passwordConfirmation: '',
+    bio: '',
     photo: '',
     city: '',
     isAuctioneer: false,
@@ -61,7 +64,7 @@ function UserEdit(){
     }
   }
  
-
+  
   return (
     <>
       <UserForm
@@ -73,6 +76,7 @@ function UserEdit(){
         formdata={formdata}
         handleChange={handleChange}
         errors={errors}
+        pathname={pathname}
       />
 
 
