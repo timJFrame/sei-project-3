@@ -45,8 +45,6 @@ function UserCard({ _id, name, city, bio, image, favouritedBy, numberOfUsersWhoF
             </div>
           }
 
-
-
           {!favouritedBy ?
             <div className="card-header">
               <div className="card-header-title">Favourited by {numberOfUsersWhoFavourited} users: 
