@@ -4,7 +4,7 @@ import axios from 'axios'
 const uploadUrl = process.env.REACT_APP_CLOUDINARY_URL
 const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
 
-function ImageUpload( { onChange, name, value, labelText } ){
+function ImageUpload({ onChange, name, value, labelText }) {
   const handleUpload = async event => {
     const data = new FormData()
     data.append('file', event.target.files[0])
@@ -16,15 +16,14 @@ function ImageUpload( { onChange, name, value, labelText } ){
   return (
     <>
       {value ?
-        
+
         <div style={{ width: '300px' }}>
-          <img src={value} alt="selected" style={{ width: '100%', height: 'auto' }}/>
+          <img src={value} alt="selected" style={{ width: '100%', height: 'auto' }} />
         </div>
         :
         <>
-          <label className="label">{labelText || 'Upload Image' }</label>
+          <label className="label">{labelText || 'Upload Image'}</label>
           <input
-            className="input"
             type="file"
             onChange={handleUpload}
             name={name}
@@ -32,7 +31,7 @@ function ImageUpload( { onChange, name, value, labelText } ){
         </>
       }
     </>
-	
+
   )
 }
 

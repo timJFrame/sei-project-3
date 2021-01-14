@@ -1,0 +1,52 @@
+@import '_variables';
+
+.user-choice-box{
+  margin: 10px;
+  padding: 80px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+}
+
+.card-register{
+  width: 80vw
+}
+
+.card-main{
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 20px;
+
+}
+
+input[type="checkbox" i] {
+  width:max-content;
+}
+
+
+.react-select__option{
+  color: gray;
+}
+
+.card-side{
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.left{
+  margin-left: 15vw ;
+}
+.right{
+  margin-right: 15vw;
+}
+
+.card-body-foot{
+  padding: 0 20vw;
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+  margin-left: 5vw;
+}

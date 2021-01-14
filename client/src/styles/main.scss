@@ -6,6 +6,7 @@
 @import 'login';
 @import '_variables';
 @import 'cards';
+@import 'register';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,600;0,700;1,300&display=swap');
 
 
@@ -21,7 +22,7 @@ p{
 
 }
 
-input{
+input, textarea{
   background: $gm-background-1;
   width: 80%;
   padding: 2px 10px;
@@ -29,7 +30,6 @@ input{
   border-radius: $gm-border-radius;
   border: $gm-border;
   transition: all .3s ease;
-  -webkit-appearance: none;
   color: $font-blue;
   &::placeholder{
     color: #abafb8;
@@ -73,8 +73,6 @@ span{
   flex-direction: column;
   height: 90%;
 }
-
-
 
 svg{
   margin-bottom: 3px;
