@@ -228,22 +228,24 @@ function JobShow() {
                   </div>
                 </div>
               </div>
-
-              <div className="card-body" style={{
-                height: '120px',
-                justifyContent: 'center'
-              }}>
-                <div className="job-show-buttons">
-                  <button className="btn-cancel-lg" onClick={handleDelete}>
-                    Delete Job
-                  </button>
-                  <button className="btn-secondary-lg">
-                    <Link style={{ color: 'white' }} to={`/jobs/${id}/edit`}>
-                      Edit Job
-                    </Link>
-                  </button>
+              {isJobOwner &&
+                <div className="card-body" style={{
+                  height: '120px',
+                  justifyContent: 'center'
+                }}>
+                  <div className="job-show-buttons">
+                    <button className="btn-cancel-lg" onClick={handleDelete}>
+                      Delete Job
+                    </button>
+                    <button className="btn-secondary-lg">
+                      <Link style={{ color: 'white' }} to={`/jobs/${id}/edit`}>
+                        Edit Job
+                      </Link>
+                    </button>
+                  </div>
                 </div>
-              </div>
+              }
+
             </div>
           </>
           :
