@@ -1,9 +1,14 @@
 import React from 'react'
 import ImageUpload from '../shared/ImageUpload'
 import Select from 'react-select'
+import { useLocation }  from 'react-router-dom'
 
 
 function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, formdata, handleChange, errors }) {
+
+  const { pathname } = useLocation()
+  
+  console.log(userType)
   return (
     <>
       <div className="">
@@ -43,33 +48,40 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
                   </div>
                   {errors.email && <p className="error-message">{errors.email}</p>}
                 </div>
-                <div className="field">
-                  <label className="label">Password</label>
-                  <div className="control">
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      name="password"
-                      value={formdata.password}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  {errors.password && <p className="error-message">{errors.password}</p>}
-                </div>
-                <div className="field">
-                  <label className="label">Password Confirmation</label>
-                  <div className="control">
-                    <input
-                      type="password"
-                      placeholder="Password Confirmation"
-                      name="passwordConfirmation"
-                      value={formdata.passwordConfirmation}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  {errors.passwordConfirmation && <p className="error-message">{errors.passwordConfirmation}</p>}
-                </div>
+                {
+                  pathname !== '/users/edit' &&
+                  <>
+                    <div className="field">
+                      <label className="label">Password</label>
+                      <div className="control">
+                        <input
+                          type="password"
+                          placeholder="Password"
+                          name="password"
+                          value={formdata.password}
+                          onChange={handleChange}
+                        />
+                      </div>
+                      {errors.password && <p className="error-message">{errors.password}</p>}
+                    </div>
+                    <div className="field">
+                      <label className="label">Password Confirmation</label>
+                      <div className="control">
+                        <input
+                          type="password"
+                          placeholder="Password Confirmation"
+                          name="passwordConfirmation"
+                          value={formdata.passwordConfirmation}
+                          onChange={handleChange}
+                        />
+                      </div>
+                      {errors.passwordConfirmation && <p className="error-message">{errors.passwordConfirmation}</p>}
+                    </div>
+                  </>
+                }
               </div>
+              
+                
               <span className="divider" />
               <div className="card-side right">
 
@@ -98,6 +110,7 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
                   </div>
                   {errors.city && <p className="error-message">{errors.city}</p>}
                 </div>
+                {userType === 'auctioneer' &&
                 <div className="field" >
                   <label className="label">Confirm if you are an Auctioneer</label>
                   <div className="control">
@@ -107,10 +120,11 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
                       type="checkbox"
                       name="isAuctioneer"
                       onChange={handleChange}
-                      checked={formdata.isAuctioneer}
+                      checked={formdata.isAuctioner}
                     />
                   </div>
                 </div>
+                }
                 {userType === 'bidder' &&
                   <div>
                     <div className="field">
@@ -155,9 +169,18 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
               </div>
             </div>
 
+            {pathname === '/register' ?
+              <>  
+                {formdata.name && formdata.email && formdata.password && formdata.passwordConfirmation && formdata.bio && formdata.city && formdata.photo &&
 
-            {formdata.name && formdata.email && formdata.password && formdata.passwordConfirmation && formdata.bio && formdata.city && formdata.photo &&
-
+              <div className="field card-body card-body-foot">
+                <button type="submit" className="btn-submit-lg">Register</button>
+              </div>
+                }
+            
+           
+              </>
+              :
               <div className="field card-body card-body-foot">
                 <button type="submit" className="btn-submit-lg">Register</button>
               </div>

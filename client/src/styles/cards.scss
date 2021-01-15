@@ -11,3 +11,20 @@
   margin: 10px;
   background: $gm-background-3 !important; 
 }
+
+.user-card-index{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 300px;
+	height: 400px;
+	text-align: center;
+  margin: 10px;
+  padding: 10%;
+  background: $gm-background-1 !important; 
+  
+  img{
+    max-width: 400px;
+  }
+}

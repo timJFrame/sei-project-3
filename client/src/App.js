@@ -18,6 +18,7 @@ import JobNew from './components/jobs/JobNew'
 import JobEdit from './components/jobs/JobEdit'
 
 //*User
+import UserIndex from './components/users/UserIndex'
 import UserEdit from './components/users/UserEdit'
 import UserShow from './components/users/UserShow'
 
@@ -36,7 +37,8 @@ function App() {
             <Route path="/jobs/:id" component={JobShow} />
             <Route path="/jobs/" component={JobIndex} />
             <Route path="/users/edit" component={UserEdit} />
-            <Route path="/users" component={UserShow} />
+            <Route path="/users/" component={UserIndex} />
+            <Route path="/user" component={UserShow} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
           </Switch>

@@ -4,47 +4,44 @@ import JobCard from './JobCard'
 import JobCarousel from './JobCarousel'
 
 function JobIndex() {
-  let selectedCategory
   const [jobs, setJobs] = React.useState(null)
+  const [chosencategory, setChosencategory] = React.useState(null)
 
 
-  const getCategory = () => {
-    selectedCategory = window.localStorage.getItem('catergory')
+  const handleCategoryClick = (e) => {
+    const selectedCategory = e.target.id
+    setChosencategory(selectedCategory)
   }
-
-  getCategory()
-
-  console.log(selectedCategory)
-
 
   React.useEffect(() => {
     const getData = async () => {
       try {
         const { data } = await getAllJobs()
         let filterCategory
-        if (!selectedCategory){
+        if (!chosencategory){
           filterCategory = data
         } else {
-          filterCategory = () => data.filter(category => {
-            return category.jobCategory === selectedCategory
+          filterCategory = data.filter(category => {
+            return category.jobCategory === chosencategory
           })
         }
-      
         setJobs(filterCategory)
-      
       } catch (err) {
         console.log(err)
       }
     }
     getData()
   
-  }, [])
+  }, [chosencategory])
 
 
 
   return (
     <>
-      <JobCarousel />
+      <JobCarousel 
+        handleCategoryClick={handleCategoryClick}
+      
+      />
       
       <div className="container-general">
         {jobs ?

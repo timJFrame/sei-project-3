@@ -36,6 +36,11 @@ export function deleteJob(id){
   return axios.delete(`${baseUrl}/jobs/${id}`, headers())
 }
 
+//* Get All Users
+export function getAllUsers(){
+  return axios.get(`${baseUrl}/users`)
+}
+
 //*Register a user
 export function registerUser(formdata){
   return axios.post(`${baseUrl}/register`, formdata)

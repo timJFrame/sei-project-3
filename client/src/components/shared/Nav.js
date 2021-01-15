@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { AiFillCaretDown } from 'react-icons/ai'
+import logo from '../../images/logoplain.svg'
 import { logout, isAuthenticated } from '../../lib/auth'
 import { useLocation } from 'react-router-dom'
 
@@ -19,10 +19,13 @@ function Nav() {
     <header>
       <nav className="glass-morphism">
         <div>
-          <Link to="/" className="deverr-title">DE<AiFillCaretDown style={{ color: 'AA57B1' }} />ERR</Link>
+          <Link to="/" className="deverr-title">
+            <img src={logo}></img>
+          </Link>
         </div>
         <div className="navButtonsGroup">
           <Link to="/jobs" className="btn">Jobs</Link>
+          <Link to="/users" className="btn">People</Link>
           {!isLoggedIn ?
             <>
               <Link to="/login" className="btn-secondary-xs">Login</Link>
