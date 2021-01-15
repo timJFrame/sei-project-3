@@ -113,13 +113,11 @@ a{
 
 
 body{
-	background: rgb(222,28,210);
   background-image: url(../images/background.jpeg);
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
 	color:white;
-	
 }
 
 .deverr-title{
@@ -128,6 +126,10 @@ body{
   -webkit-text-fill-color: transparent;
   font-size: 2.3rem;
   font-weight: bold;  
+}
+
+.shadow{
+  text-shadow: $gm-shadow-sm;
 }
 
 .container-general {

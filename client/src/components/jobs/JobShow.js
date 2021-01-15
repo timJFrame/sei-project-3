@@ -2,7 +2,7 @@
 import React from 'react'
 import { useParams, Link, useHistory } from 'react-router-dom'
 import { getSingleJob, deleteJob, createBid, getBids, createComment, getComments } from '../../lib/api'
-import { isOwner, getUserId, getAllUsers } from '../../lib/auth'
+import { isOwner } from '../../lib/auth'
 import useform from '../../utils/useform'
 
 
@@ -23,9 +23,7 @@ function JobShow() {
       try {
         const { data } = await getSingleJob(id)
         console.log(data)
-        const { users } = await getAllUsers()
         setJob(data)
-        setUsers(users)
       } catch (err) {
         console.log(err)
       }
@@ -62,9 +60,6 @@ function JobShow() {
       setErrors(err)
     }
   }
-
-
-
 
 
 
@@ -173,7 +168,9 @@ function JobShow() {
                     <div className="job-bid-container" onSubmit={handleBidSubmit}>
                       <form className="job-bid-form">
                         <div className="field">
-                          <label className="bid-label">Place a Bid</label>
+                          <label className="bid-label shadow" style={{
+                            color: 'dar'
+                          }}>Place a Bid</label>
                           <div className="control">
                             <textarea
                               placeholder="Any info about your bid"
@@ -193,7 +190,9 @@ function JobShow() {
 
                         <div className="field">
                           <div className="bid-inputs">
-                            <label className="bid-label">Select a Value</label>
+                            <label className="bid-label" style={{
+                              color: 'grey'
+                            }}>Select a Value</label>
                             <div className="control">
                               <input
                                 placeholder="Bid Amount"
@@ -223,7 +222,7 @@ function JobShow() {
                   </div>
                 </div>
               </div>
-              {!isJobOwner &&
+              {isJobOwner &&
 
                 <div className="card-body" style={{
                   height: 'auto',
