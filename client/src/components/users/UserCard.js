@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import RoundedButtons from '../../styles/components/RoundedButtons'
 
-function UserCard({ _id, name, city, bio, image, favouritedBy, numberOfUsersWhoFavourited, isAuctioneer, createdJobs, bidderCategories, bidderIsAvailable }) {
+function UserCard({ _id, name, city, bio, photo, favouritedBy, numberOfUsersWhoFavourited, isAuctioneer, createdJobs, bidderCategories, bidderIsAvailable }) {
   return (
     <div >
       <Link to={`/users/${_id}`}>
@@ -19,9 +19,9 @@ function UserCard({ _id, name, city, bio, image, favouritedBy, numberOfUsersWhoF
           }
 
           <div className="card-image">
-            <figure className="image">
-              <Link to={image} alt={name}/>
-            </figure>
+            <div className="card-image-container" style={{ height: '210px', justifyContent: 'center' }}>
+              <img src={photo} alt={name} className="card-image" />
+            </div>
           </div>
 
           <div className="card-header">

@@ -1,12 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { getSingleUser } from '../../lib/api'
+import { useParams, Link, useHistory } from 'react-router-dom'
+import { deleteUser, getSingleUser } from '../../lib/api'
+import { isOwner } from '../../lib/auth'
+
 function UserShow() {
   const [user, setUser] = React.useState(null)
+  const { id } = useParams()
+  const history = useHistory()
+
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await getSingleUser()
+        const { data } = await getSingleUser(id)
         setUser(data)
         console.log(data)
       } catch (err) {
@@ -14,7 +19,16 @@ function UserShow() {
       }
     }
     getData()
-  }, [])
+  }, [id])
+
+  const handleDelete = async() =>{
+    try {
+      await deleteUser(id)
+      history.push('/users')
+    } catch (err) {
+      console.log(err)
+    }
+  }
   return (
     <>{user ?
       <div className="container-general">
@@ -44,6 +58,11 @@ function UserShow() {
                 <button className="btn-secondary" style={{ maxWidth: '150px' }}>
                   <Link to="/users/edit" style={{ color: 'white' }}>Edit Profile</Link>
                 </button>
+
+                {isOwner(user._id) && 
+                <button className="btn-secondary" style={{ maxWidth: '150px' }} onClick={handleDelete}>Delete User
+                </button>
+                }
               </div>
             </div>
           </div>
