@@ -94,7 +94,7 @@ function JobShow() {
       await editJob(id, { jobIsLive: false })
       await editBid(id, bidId, { status: 'accepted' })
       const { data } = await getSingleJob(id)
-    } catch (err){
+    } catch (err) {
       console.log(err)
     }
   }

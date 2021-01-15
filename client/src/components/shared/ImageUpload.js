@@ -23,7 +23,7 @@ function ImageUpload({ onChange, name, value, labelText }) {
 
 
       <div style={{ width: '300px' }}>
-        <img src={value} className="card-image" alt="selected" style={{ width: '100%', height: 'auto' }} />
+        <img src={value} className="card-image" alt="selected" style={{ width: '60%', height: 'auto' }} />
       </div>
 
       <di>

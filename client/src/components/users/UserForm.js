@@ -2,6 +2,7 @@ import React from 'react'
 import ImageUpload from '../shared/ImageUpload'
 import Select from 'react-select'
 import { useLocation } from 'react-router-dom'
+import { BiLogInCircle } from 'react-icons/bi'
 
 
 function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, formdata, handleChange, errors }) {
@@ -174,13 +175,13 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
                 {formdata.name && formdata.email && formdata.password && formdata.passwordConfirmation && formdata.bio && formdata.city && formdata.photo &&
 
                   <div className="field card-body card-body-foot">
-                    <button type="submit" className="btn-submit-lg">Register</button>
+                    <button type="submit" className="btn-submit-lg">Submit<BiLogInCircle /></button>
                   </div>
                 }
               </>
               :
               <div className="field card-body card-body-foot">
-                <button type="submit" className="btn-submit-lg">Register</button>
+                <button type="submit" className="btn-submit-lg">Submit<BiLogInCircle /></button>
               </div>
             }
           </form>
