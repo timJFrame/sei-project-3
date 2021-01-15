@@ -2,6 +2,9 @@ import React from 'react'
 import { useParams, Link, useHistory } from 'react-router-dom'
 import { deleteUser, getSingleUser } from '../../lib/api'
 import { isOwner } from '../../lib/auth'
+import { AiTwotoneDelete, AiOutlineEdit } from 'react-icons/ai'
+
+
 
 function UserShow() {
   const [user, setUser] = React.useState(null)
@@ -21,7 +24,7 @@ function UserShow() {
     getData()
   }, [id])
 
-  const handleDelete = async() =>{
+  const handleDelete = async () => {
     try {
       await deleteUser(id)
       history.push('/users')
@@ -54,16 +57,16 @@ function UserShow() {
                 </div>
               </div>
               <hr />
-              
-              <div className="card-body-footer-container" style={{ height: '50px', justifyContent: 'center', alignItems: 'center' , flexDirection: 'row' }}>
+
+              <div className="card-body-footer-container" style={{ height: '50px', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
 
                 <button className="btn-secondary" style={{ maxWidth: '150px' }}>
-                  <Link to="/users/edit" style={{ color: 'white' }}>Edit Profile</Link>
+                  <Link to="/users/edit" style={{ color: 'white' }}>Edit Profile<AiOutlineEdit /></Link>
                 </button>
 
-                {isOwner(user._id) && 
-                <button className="btn-secondary" style={{ maxWidth: '150px' }} onClick={handleDelete}>Delete User
-                </button>
+                {isOwner(user._id) &&
+                  <button className="btn-cancel" style={{ maxWidth: '150px' }} onClick={handleDelete}>Delete User <AiTwotoneDelete />
+                  </button>
                 }
               </div>
             </div>

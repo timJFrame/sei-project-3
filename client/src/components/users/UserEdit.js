@@ -78,6 +78,7 @@ function UserEdit() {
           handleChange={handleChange}
           errors={errors}
           pathname={pathname}
+
         />
       </div>
 
