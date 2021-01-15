@@ -61,6 +61,9 @@ export function editUser(formdata){
   return axios.put(`${baseUrl}/users/${getUserId()}`, formdata, headers())
 }
 
+
+
+
 //*Create a bid
 export function createBid(id, formdata){
   return axios.post(`${baseUrl}/jobs/${id}/bids`, formdata, headers())
@@ -69,6 +72,11 @@ export function createBid(id, formdata){
 //*Get all bids
 export function getBids(id){
   return axios.get(`${baseUrl}/jobs/${id}/bids`, headers())
+}
+
+//*Edit a bid
+export function editBid(id, bidId, formData){
+  return axios.put(`${baseUrl}/jobs/${id}/bids/${bidId}`, formData, headers())
 }
 
 //*Post a comment
@@ -80,3 +88,4 @@ export function createComment(id, formdata){
 export function getComments(id){
   return axios.get(`${baseUrl}/jobs/${id}/comments`, headers())
 }
+

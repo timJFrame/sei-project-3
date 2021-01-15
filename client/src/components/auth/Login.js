@@ -26,7 +26,7 @@ function Login() {
       console.log(data)
       setToken(data.token)
 
-      history.push('/users/')
+      history.push('/user/')
     } catch (err) {
       setError(true)
     }
