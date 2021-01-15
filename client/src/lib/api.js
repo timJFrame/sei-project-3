@@ -61,6 +61,11 @@ export function editUser(formdata){
   return axios.put(`${baseUrl}/users/${getUserId()}`, formdata, headers())
 }
 
+//* Delete a user
+export function deleteUser(){
+  return axios.delete(`${baseUrl}/users/${getUserId()}`, headers())
+}
+
 //*Create a bid
 export function createBid(id, formdata){
   return axios.post(`${baseUrl}/jobs/${id}/bids`, formdata, headers())
