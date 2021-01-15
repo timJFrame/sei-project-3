@@ -267,7 +267,7 @@ function JobShow() {
                             width: '100%',
                             padding: ' 0 10px'
                           }}>
-                            <div >
+                            <div>
                               <p>Bidder Name: <span>{bid.owner.name}</span></p>
                               <p>Amount Bidded: <span>{bid.fee}£</span></p>
                               <p>Bidder Message: <span>{bid.text}</span></p>
