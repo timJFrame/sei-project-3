@@ -89,6 +89,7 @@ function JobShow() {
 
   }
 
+  //*Handles accepting bids
   const handleAcceptingBid = async (bidId) => {
     try {
       await editJob(id, { jobIsLive: false })
