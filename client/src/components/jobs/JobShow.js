@@ -168,8 +168,8 @@ function JobShow() {
                         </div>
                       </div>
                       <p>{bidmessage}</p>
-                      <div className="bid-submit-button-container">
-                        <button type="submit">Place Bid</button>
+                      <div className="">
+                        <button type="submit" className="btn-submit">Place Bid</button>
                       </div>
                       <div className="show-bids-container">
                       </div>
@@ -189,8 +189,8 @@ function JobShow() {
                         </div>
                       </div>
                       <p>{commentMessage}</p>
-                      <div className="submit-comment-button-div">
-                        <button type="submit">Submit Comment</button>
+                      <div>
+                        <button type="submit" className="btn-submit">Submit Comment</button>
                       </div>
                     </form>
                   </div>
