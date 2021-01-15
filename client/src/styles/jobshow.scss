@@ -9,16 +9,14 @@
 .container-row{
   display: flex;
   justify-content: space-around;
-  margin-top: 7%;
+  margin-top: 1%;
   width: -webkit-fill-available;
-
-
 }
 .right-container{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  max-width: 35%;
+  max-width: 70%;
   height: 260px;
   background: $gm-background-2;
   padding: 10px;

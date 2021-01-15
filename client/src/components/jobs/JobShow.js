@@ -103,30 +103,30 @@ function JobShow() {
               <h2 style={{ margin: '20px 0' }}>{job.jobTitle}</h2>
               <hr style={{ width: '80%', marginLeft: '10%' }} />
               <div className="main-container">
-                <div className="container-row">
 
-                  <div className="card-image-container">
-                    <img src={job.jobPhoto} alt={job.jobTitle} className="card-image"
-                      style={{
-                        height: '400px'
-                      }}
-                    />
+
+                <div className="card-image-container">
+                  <img src={job.jobPhoto} alt={job.jobTitle} className="card-image"
+                    style={{
+                      height: '400px'
+                    }}
+                  />
+                </div>
+                <div className="right-container">
+                  <div className="small-container" >
+                    <p>Description: <br /><span>{job.jobDescription}</span></p>
+                    <p style={{ marginTop: '5px' }}>Category: <span>{job.jobCategory}</span></p>
                   </div>
-                  <div className="right-container">
-                    <div className="small-container" >
-                      <p>Description: <br /><span>{job.jobDescription}</span></p>
-                      <p style={{ marginTop: '5px' }}>Category: <span>{job.jobCategory}</span></p>
+                  <div style={{ flexDirection: 'row', display: 'flex', justifyContent: 'space-between' }}>
+                    <div className="card-footer-element">
+                      <p>Deadline: <span>{job.jobDeadline}</span></p>
                     </div>
-                    <div style={{ flexDirection: 'row', display: 'flex', justifyContent: 'space-between' }}>
-                      <div className="card-footer-element">
-                        <p>Deadline: <span>{job.jobDeadline}</span></p>
-                      </div>
-                      <div className="card-footer-element">
-                        <p>Fee: <span>{job.jobFee}£</span></p>
-                      </div>
+                    <div className="card-footer-element">
+                      <p>Fee: <span>{job.jobFee}£</span></p>
                     </div>
                   </div>
                 </div>
+
 
                 <div className="container-row">
                   <div className="container-jobs-sm">
@@ -168,8 +168,8 @@ function JobShow() {
                     <div className="job-bid-container" onSubmit={handleBidSubmit}>
                       <form className="job-bid-form">
                         <div className="field">
-                          <label className="bid-label shadow" style={{
-                            color: 'dar'
+                          <label className="bid-label" style={{
+                            color: 'gray'
                           }}>Place a Bid</label>
                           <div className="control">
                             <textarea
@@ -222,7 +222,7 @@ function JobShow() {
                   </div>
                 </div>
               </div>
-              {isJobOwner &&
+              {!isJobOwner &&
 
                 <div className="card-body" style={{
                   height: 'auto',
