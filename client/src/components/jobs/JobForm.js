@@ -1,9 +1,9 @@
 import React from 'react'
 import ImageUpload from '../shared/ImageUpload'
 
-function  JobForm({ handleChange, handleSubmit, formdata, errors }){
+function JobForm({ handleChange, handleSubmit, formdata, errors }) {
   return (
-    <div className="create-job-form-container">
+    <div className="create-job-form-container card glass-morphism">
       <form className="create-job-form" onSubmit={handleSubmit}>
         <div className="field">
           <label className="label">Job Title</label>
@@ -17,7 +17,7 @@ function  JobForm({ handleChange, handleSubmit, formdata, errors }){
             />
           </div>
           {errors.jobTitle && <p className="error-message">{errors.jobTitle}</p>}
-        </div> 
+        </div>
         <div className="field">
           <label className="label">Job Description</label>
           <div className="control">
@@ -60,7 +60,7 @@ function  JobForm({ handleChange, handleSubmit, formdata, errors }){
           {errors.jobCategory && <p className="error-message">{errors.jobCategory}</p>}
         </div>
         <div className="field">
-          <label className="label">Job Fee</label>
+          <label className="label">Max Job Fee</label>
           <div className="control">
             <input
               placeholder="Job Fee"
@@ -73,7 +73,7 @@ function  JobForm({ handleChange, handleSubmit, formdata, errors }){
           {errors.jobFee && <p className="error-message">{errors.jobFee}</p>}
         </div>
         <div className="field">
-          <ImageUpload 
+          <ImageUpload
             value={formdata.jobPhoto}
             name="jobPhoto"
             onChange={handleChange}
@@ -81,10 +81,17 @@ function  JobForm({ handleChange, handleSubmit, formdata, errors }){
           />
         </div>
         {errors.jobPhoto && <p className="error-message">{errors.jobPhoto}</p>}
-        <div className="field">
-          <button type="submit">Submit</button>
+        <div className="field card-body" style={{
+          maxHeight: '90px',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          <button type="submit" className="btn-submit-lg" style={{
+            width: '150px'
+          }}>
+            Submit</button>
         </div>
-      
+
       </form>
     </div>
   )
