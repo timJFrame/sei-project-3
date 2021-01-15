@@ -7,17 +7,18 @@ by [Alberto Cerrone](www.linkedin.com/in/alberto-cerrone), [Sandra Spighel](http
 
 ## Small description
 Deverr allows Developers to connect with Auctioneers that advertise contract jobs.
-
-The platform is based on a Bidding system where Auctioneers post Jobs and all the interested Developers are allowed to 'bid' on the job trying to win the gig.
-
-Why you are building this project? Motivation? What does it aim to solve? How is it for?
+Inspired by Fiverr website, the platform is based on a Bidding system where Auctioneers post Jobs and all the interested Developers are allowed to 'bid' on the job trying to win the gig.
 
 ---
 ## How to Use Deveer
+
+Auctioneers can view and publish jobs, comment on them and choose the winning bid from all bids received.  They can also favourite other users.
+
+Bidders can browse all the jobs and filter them by category, place comments, bid for jobs and favourite other users.
 ### Prerequisites
-is this mobile friendly? Does the user need to install anything?
+The website is mobile friendly and the user can access it through the browser. 
 ### How to navigate the website
-More in depth description of how use the project, with examples, screenshots and show that worked once
+More in depth description is available via the extended ReadMe documentation: https://docs.google.com/document/d/1XGp4wVEdUBzMLSSu7ltRPjLcE1I3-e3xVfCZbchfyhY/edit?usp=sharing
 
 ---
 ## Technology Used
@@ -28,18 +29,26 @@ More in depth description of how use the project, with examples, screenshots and
 * Javascript
 ### Frameworks & Libraries
 * [React](https://reactjs.org/)
+* [React-Router-Dom] (https://reactrouter.com/ )
+* [React-Icons] (https://react-icons.github.io/react-icons/)
+* [React-Slick] (https://react-slick.neostack.com/)
+* [Styled-components] (https://styled-components.com)
 * [Node](https://nodejs.org/en/)
 
 ### Dependencies & Components 
 * [Axios](https://github.com/axios/axios)
+* [Bcrypt] (https://pypi.org/project/bcrypt/) 
 * [React Router Dom](https://reactrouter.com/)
 * [React Slick ](http://kenwheeler.github.io/slick/ )
 * [Styled components ](https://styled-components.com) 
-* [Cloudify ](https://cloudify.co/ )
+* [Cloudinary](https://cloudinary.com/documentation)
 * [Express ](https://www.react.express/ )
+* [Faker.js] (https://www.npmjs.com/package/faker ) 
+* [JsonWebToken] (https://www.npmjs.com/package/jsonwebtoken )
 * [Nodemon ](https://nodemon.io/ )
 * [Mongoose ](https://mongoosejs.com/) 
-* [Mongo ](https://www.mongodb.com/)
+* [Mongoose-unique-validator] (https://mongoosejs.com/docs/validation.html) 
+* [MongoDB](https://www.mongodb.com/)
 ---
 ## Contributors
 * Alberto Cerrone [📧](mailto:cerrone.alberto93@gmail.com)
@@ -47,9 +56,12 @@ More in depth description of how use the project, with examples, screenshots and
 * Tim Frame [📧](mailto:t.f.retouching@gmail.com)
 ---
 ## Contributing to this project
-If you have suggestions for improving this project, please [open an issue on GitHub](https://github.com/ link of the project).
+If you have suggestions for improving this project, please [open an issue on GitHub](https://github.com/timJFrame/sei-project-3 link of the project).
 ---
 ## License & copyright
-What are the terms of use? Who can use this project and how?
+This project was build for educational purposes. All the informatiom on the website including the profiles and job adds is fictitional. 
+
 ©️ [Alberto Cerrone](www.linkedin.com/in/alberto-cerrone)
+©️ [Sandra Spighel](https://www.linkedin.com/in/sandraspighel)
+©️ [Tim Frame](https://www.linkedin.com/in/tim-frame-187241100/)
 
