@@ -5,7 +5,7 @@ import { notFound } from '../lib/errorHandler.js'
 //*GET ALL USERS
 async function userIndex (req, res, next) {
   try {
-    const user = await User.find()
+    const user = await User.find().populate('createdJobs')
     return res.status(200).json(user)
   } catch (err){
     next(err)

@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import RoundedButtons from '../../styles/components/RoundedButtons'
 
 function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee, jobIsLive }) {
+
+  console.log('jobOwner', jobOwner)
+
   return (
     <>
       {jobIsLive ?
@@ -20,9 +23,14 @@ function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee, jobI
               <div className="">
                 <img src={jobPhoto} alt={jobTitle} className="card-user-avatar" />
               </div>
-              <div className="card-user-name">
-                <p className="">{jobOwner.name}</p>
-              </div>
+
+              {jobOwner ?
+                <div className="card-user-name">
+                  <p className="">{jobOwner.name}</p>
+                </div>
+                :
+                <div>This user has removed their account</div>}
+                
             </div>
             <div className="card-body-text">
               <Link to={`/jobs/${_id}`}>
