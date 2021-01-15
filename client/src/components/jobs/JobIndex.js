@@ -49,7 +49,10 @@ function JobIndex() {
             <JobCard key={job._id}  {...job} />
           ))
           :
-          <h2>Loading</h2>
+          <>
+            <h2>Loading</h2>
+            <h3>Sign in to see the job</h3>
+          </>
         }
 
       </div>

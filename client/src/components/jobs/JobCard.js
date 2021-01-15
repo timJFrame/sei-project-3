@@ -4,8 +4,6 @@ import RoundedButtons from '../../styles/components/RoundedButtons'
 
 function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee, jobIsLive }) {
 
-  console.log('jobOwner', jobOwner)
-
   return (
     <>
       {jobIsLive ?

@@ -3,8 +3,7 @@ import bcrypt from 'bcrypt'
 import uniqueValidator from 'mongoose-unique-validator'
 
 const favouritedBySchema = new mongoose.Schema({
-  favourited: { type: Boolean },
-  favUser: [{ type: mongoose.Schema.ObjectId, ref: 'User', required: true  }],
+  favourited: { type: Boolean, default: true },
   owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true  },
 }, {
   timestamps: true,

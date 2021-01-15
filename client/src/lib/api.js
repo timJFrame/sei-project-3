@@ -66,6 +66,11 @@ export function deleteUser(){
   return axios.delete(`${baseUrl}/users/${getUserId()}`, headers())
 }
 
+//* Favourite user
+export function favouriteUser(id){
+  return axios.post(`${baseUrl}/users/${id}/favourite`, null, headers())
+}
+
 //*Create a bid
 export function createBid(id, formdata){
   return axios.post(`${baseUrl}/jobs/${id}/bids`, formdata, headers())
