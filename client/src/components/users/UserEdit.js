@@ -56,7 +56,7 @@ function UserEdit() {
     e.preventDefault()
     try {
       await editUser(formdata)
-      history.push('/users')
+      history.push('/user')
 
     } catch (err) {
       console.log(err)

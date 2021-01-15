@@ -25,6 +25,9 @@ router.route('/jobs/:id/bids')
 router.route('/jobs/:id/bids/:bidId')
   .delete(secureRoute, jobs.deleteBid) // Only bidders can delete bid
 
+router.route('/jobs/:id/bids/:bidId')
+  .put(jobs.editBid) // Only bidders can delete bid
+
 // todo * COMMENTS
 router.route('/jobs/:id/comments') // Comment and see comments - Logged in users only
   .post(secureRoute, jobs.createComment)

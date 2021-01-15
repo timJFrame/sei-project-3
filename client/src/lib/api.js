@@ -76,6 +76,11 @@ export function getBids(id){
   return axios.get(`${baseUrl}/jobs/${id}/bids`, headers())
 }
 
+//*Edit a bid
+export function editBid(id, bidId, formData){
+  return axios.put(`${baseUrl}/jobs/${id}/bids/${bidId}`, formData, headers())
+}
+
 //*Post a comment
 export function createComment(id, formdata){
   return axios.post(`${baseUrl}/jobs/${id}/comments`, formdata, headers())
@@ -85,3 +90,4 @@ export function createComment(id, formdata){
 export function getComments(id){
   return axios.get(`${baseUrl}/jobs/${id}/comments`, headers())
 }
+

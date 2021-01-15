@@ -191,6 +191,23 @@ async function jobBidDelete(req, res, next) {
   }
 }
 
+//*EDIT BID 
+async function jobBidEdit(req, res, next){
+  const { id, bidId } = req.params
+  try {
+    const job = await Job.findById(id)
+    const bidToEdit = job.jobBids.id(bidId)
+    bidToEdit.status = 'accepted'
+    await job.save()
+    return res.status(202).json(bidToEdit)
+  } catch (err){
+    next(err)
+  }
+}
+
+
+
+
 export default {
   index: jobIndex,
   create: jobCreate,
@@ -203,4 +220,5 @@ export default {
   createBid: jobBidCreate,
   getBids: jobBidIndex,
   deleteBid: jobBidDelete,
+  editBid: jobBidEdit,
 }
