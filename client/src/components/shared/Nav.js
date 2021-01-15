@@ -24,16 +24,20 @@ function Nav() {
           </Link>
         </div>
         <div className="navButtonsGroup">
-          <Link to="/jobs" className="btn">Jobs</Link>
-          <Link to="/users" className="btn">People</Link>
+          <Link to="/jobs" className="btn" style={{ padding: '10px' }}>Jobs</Link>
+          <Link to="/users" className="btn" style={{ padding: '10px' }}>People</Link>
           {!isLoggedIn ?
             <>
-              <Link to="/login" className="btn-secondary-xs">Login</Link>
-              <Link to="/register" className="btn-secondary-xs">Register</Link>
+              <Link to="/login" className="btn-secondary-xs" style={{ padding: '10px' }}>Login</Link>
+              <Link to="/register" className="btn-secondary-xs" style={{ padding: '10px' }}>Register</Link>
             </>
             :
-            <Link to="#" onClick={handleLogout}className="btn-secondary-xs">Log Out</Link>
-          }
+            <>
+              <Link to="/user" className="btn-secondary-xs" style={{ padding: '10px' }}>My Profile</Link>
+              <Link to="#" onClick={handleLogout}className="btn-secondary-xs" style={{ padding: '10px' }}>Log Out</Link>    
+            </>        
+          }            
+          
         </div>
 
       </nav>

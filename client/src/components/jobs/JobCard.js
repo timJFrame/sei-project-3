@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom'
 import RoundedButtons from '../../styles/components/RoundedButtons'
 
 function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee, jobIsLive }) {
+
+  console.log('jobOwner', jobOwner)
+
   return (
     <>
       {jobIsLive ?
-        <div className="card glass-morphism " >
+        <div className="card glass-morphism " style={{ width: '300px', height: '350px' }}>
           <div className="card-image-container">
             <div className="rounded-button">
               <RoundedButtons type={jobIsLive ? 'green' : 'red'} />
@@ -20,9 +23,14 @@ function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee, jobI
               <div className="">
                 <img src={jobPhoto} alt={jobTitle} className="card-user-avatar" />
               </div>
-              <div className="card-user-name">
-                <p className="">{jobOwner.name}</p>
-              </div>
+
+              {jobOwner ?
+                <div className="card-user-name">
+                  <p className="">{jobOwner.name}</p>
+                </div>
+                :
+                <div>This user has removed their account</div>}
+                
             </div>
             <div className="card-body-text">
               <Link to={`/jobs/${_id}`}>

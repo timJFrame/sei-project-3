@@ -6,7 +6,7 @@ import JobForm from './JobForm'
 
 
 
-function JobNew (){
+function JobNew() {
   const history = useHistory()
   const { formdata, handleChange, errors, setErrors } = useForm({
     jobTitle: '',
@@ -18,25 +18,28 @@ function JobNew (){
     jobFee: ''
   })
 
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       const { data } = await createJob(formdata)
       history.push(`/jobs/${data._id}`)
-    } catch (err){
+    } catch (err) {
       setErrors(err.response.data)
     }
   }
 
 
   return (
-    <JobForm 
-      handleChange={handleChange}
-      handleSubmit={handleSubmit}
-      formdata={formdata}
-      errors={errors}
-    />
+    <div className="container-general">
+
+      <JobForm
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        formdata={formdata}
+        errors={errors}
+      />
+    </div>
   )
 }
 

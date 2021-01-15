@@ -1,13 +1,13 @@
 import React from 'react'
 import ImageUpload from '../shared/ImageUpload'
 import Select from 'react-select'
-import { useLocation }  from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 
 function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, formdata, handleChange, errors }) {
 
   const { pathname } = useLocation()
-  
+
   console.log(userType)
   return (
     <>
@@ -80,8 +80,8 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
                   </>
                 }
               </div>
-              
-                
+
+
               <span className="divider" />
               <div className="card-side right">
 
@@ -111,19 +111,19 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
                   {errors.city && <p className="error-message">{errors.city}</p>}
                 </div>
                 {userType === 'auctioneer' &&
-                <div className="field" >
-                  <label className="label">Confirm if you are an Auctioneer</label>
-                  <div className="control">
+                  <div className="field" >
+                    <label className="label">Confirm if you are an Auctioneer</label>
+                    <div className="control">
 
 
-                    <input
-                      type="checkbox"
-                      name="isAuctioneer"
-                      onChange={handleChange}
-                      checked={formdata.isAuctioner}
-                    />
+                      <input
+                        type="checkbox"
+                        name="isAuctioneer"
+                        onChange={handleChange}
+                        checked={formdata.isAuctioner}
+                      />
+                    </div>
                   </div>
-                </div>
                 }
                 {userType === 'bidder' &&
                   <div>
@@ -170,15 +170,13 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
             </div>
 
             {pathname === '/register' ?
-              <>  
+              <>
                 {formdata.name && formdata.email && formdata.password && formdata.passwordConfirmation && formdata.bio && formdata.city && formdata.photo &&
 
-              <div className="field card-body card-body-foot">
-                <button type="submit" className="btn-submit-lg">Register</button>
-              </div>
+                  <div className="field card-body card-body-foot">
+                    <button type="submit" className="btn-submit-lg">Register</button>
+                  </div>
                 }
-            
-           
               </>
               :
               <div className="field card-body card-body-foot">

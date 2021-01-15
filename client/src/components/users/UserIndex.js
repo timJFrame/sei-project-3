@@ -17,6 +17,8 @@ function UserIndex() {
     getData()
   }, [])
 
+  console.log('users', users)
+
   return (
     <div className="container-general">
 
