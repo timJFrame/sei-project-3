@@ -2,18 +2,18 @@
 import React from 'react'
 import { useParams, Link, useHistory } from 'react-router-dom'
 import { getSingleJob, deleteJob, createBid, getBids, createComment, getComments } from '../../lib/api'
-import { isOwner } from '../../lib/auth'
+import { isOwner, getUserId, getAllUsers } from '../../lib/auth'
 import useform from '../../utils/useform'
 
 
 function JobShow() {
   const [job, setJob] = React.useState(null)
+  const [users, setUsers] = React.useState(null)
   const [bids, setBids] = React.useState(null)
   const [bidmessage, setBidmessage] = React.useState(null)
   const [comments, setComments] = React.useState(null)
   const [commentMessage, setCommentmessage] = React.useState(null)
   const isJobOwner = isOwner(job?.jobOwner._id)
-  console.log(isJobOwner)
   const { id } = useParams()
   const history = useHistory()
 
@@ -23,7 +23,9 @@ function JobShow() {
       try {
         const { data } = await getSingleJob(id)
         console.log(data)
+        const { users } = await getAllUsers()
         setJob(data)
+        setUsers(users)
       } catch (err) {
         console.log(err)
       }
@@ -244,6 +246,7 @@ function JobShow() {
                         <div key={bid._id} style={{
                           display: 'flex',
                           justifyContent: 'flex-start'
+
                         }}>
                           <div style={{
                             display: 'flex',
@@ -251,7 +254,8 @@ function JobShow() {
                             flexDirection: 'row',
                             justifyContent: 'space-between',
                             alignItems: 'center',
-                            width: '100%'
+                            width: '100%',
+                            padding: ' 0 10px'
                           }}>
                             <div >
                               <p>Bidder Name: <span>{bid.owner.name}</span></p>

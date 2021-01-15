@@ -1,22 +1,22 @@
 //*Gets a users token 
-export function setToken (token){
+export function setToken(token) {
   window.localStorage.setItem('token', token)
 }
 
 //*Retrives a token from storage
-export function getToken(){
+export function getToken() {
   return window.localStorage.getItem('token')
 }
 
 
 //*Log a user out
-export function logout(){
+export function logout() {
   window.localStorage.removeItem('token')
 }
 
 
 //*Gets payload
-function getPayload(){
+function getPayload() {
   const token = getToken()
   if (!token) return false
   const parts = token.split('.')
@@ -25,12 +25,12 @@ function getPayload(){
 }
 
 //*Gets user id
-export function  getUserId (){
+export function getUserId() {
   return getPayload().sub
 }
 
 //*Get Payload
-export function isAuthenticated(){
+export function isAuthenticated() {
   const payload = getPayload()
   if (!payload) return false
   const now = Math.round(Date.now() / 1000)
@@ -44,4 +44,7 @@ export function isOwner(userId) {
   if (!payload) return false
   return userId === payload.sub
 }
+
+
+
 
