@@ -38,7 +38,9 @@ function Login() {
 
   return (
     <div className="container-general">
-      <div className="glass-morphism card">
+      <div className="glass-morphism card" style={{
+        minWidth: '295px'
+      }}>
 
         <form className="login-form s-b" onSubmit={handleSubmit}>
           <div className="fields center">
@@ -71,7 +73,11 @@ function Login() {
             </div>
           </div>
           <div className="field card-body center half-height">
-            <button type="submit" className="btn-submit-lg half-width " style={{ margin: '0 0 0 4.5rem' }}>Login < BiLogInCircle /></button>
+            <button type="submit"
+              className="btn-submit-lg half-width "
+              style={{ margin: '0.5rem 0 0.5rem 4.5rem' }}>
+              Login < BiLogInCircle />
+            </button>
           </div>
         </form>
       </div>

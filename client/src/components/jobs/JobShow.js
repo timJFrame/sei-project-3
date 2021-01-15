@@ -104,7 +104,7 @@ function JobShow() {
           <>
             <div>
               <h2 style={{ margin: '20px 0' }}>{job.jobTitle}</h2>
-              <hr style={{ width: '60%' }} />
+              <hr style={{ width: '80%', marginLeft: '10%' }} />
               <div className="main-container">
                 <div className="container-row">
 
@@ -115,98 +115,131 @@ function JobShow() {
                       }}
                     />
                   </div>
-                  <p>{job.jobDescription}</p>
-                  <p>{job.jobDeadline}</p>
-                  <p>{job.jobCategory}</p>
-                  <p>{job.jobFee}</p>
+                  <div className="right-container">
+                    <div className="small-container" >
+                      <p>Description: <br /><span>{job.jobDescription}</span></p>
+                      <p style={{ marginTop: '5px' }}>Category: <span>{job.jobCategory}</span></p>
+                    </div>
+                    <div style={{ flexDirection: 'row', display: 'flex', justifyContent: 'space-between' }}>
+                      <div className="card-footer-element">
+                        <p>Deadline: <span>{job.jobDeadline}</span></p>
+                      </div>
+                      <div className="card-footer-element">
+                        <p>Fee: <span>{job.jobFee}£</span></p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="container-row">
+                  <div className="container-jobs-sm">
+                    {
+                      job.jobComments.map(comment => (
+                        <div key={comment._id} >
+                          <p style={{
+                            color: 'white',
+                            textAlign: 'left',
+                            marginLeft: '10%'
+                          }}>Comment: {comment.text}</p>
+                        </div>
+                      ))
+                    }
+                    <div className="comment-form-container" onSubmit={handleCommentSubmit}>
+                      <form className="comment-form" >
+                        <div className="field">
+                          <label>Add a comment</label>
+                          <div className="control">
+                            <textarea
+                              placeholder="Add comment here"
+                              name="text"
+                              value={commentdata.text}
+                              onChange={handleCommentChange}
+                            />
+                          </div>
+                        </div>
+                        <p>{commentMessage}</p>
+                        <div>
+                          <button type="submit" className="btn-submit">Submit Comment</button>
+                        </div>
+                      </form>
+                    </div>
 
+                  </div>
 
-                  {
-                    job.jobComments.map(comment => (
-                      <div key={comment._id}>
-                        <p>Comment: {comment.text}</p>
-                      </div>
-                    ))
-                  }
-                  {
-                    job.jobBids.map(bid => (
+                  <div className="container-jobs-sm">
+                    {job.jobBids.map(bid => (
                       <div key={bid._id}>
                         <p>Bidder Name: {bid.owner.name}</p>
                         <p>Amount Bidded: {bid.fee}</p>
                         <p>Bidder Message: {bid.text}</p>
                       </div>
                     ))
-                  }
+                    }
+                    <div className="job-bid-container" onSubmit={handleBidSubmit}>
+                      <form className="job-bid-form">
+                        <div className="field">
+                          <label className="bid-label">Place a Bid</label>
+                          <div className="control">
+                            <textarea
+                              placeholder="Any info about your bid"
+                              className="input"
+                              name="text"
+                              onChange={handleChange}
+                              value={formdata.text}
+                              style={{
+                                maxWidth: '200px',
+                                minHeight: '140px'
+                              }}
+                            />
+                          </div>
+                        </div>
 
-                  <div className="job-bid-container" onSubmit={handleBidSubmit}>
-                    <form className="job-bid-form">
-                      <div className="field">
-                        <label className="bid-label">Place a Bid</label>
-                        <div className="control">
-                          <textarea
-                            placeholder="Any info about your bid"
-                            className="input"
-                            name="text"
-                            onChange={handleChange}
-                            value={formdata.text}
-                          />
+
+
+                        <div className="field">
+                          <div className="bid-inputs">
+                            <label className="bid-label">Select a Value</label>
+                            <div className="control">
+                              <input
+                                placeholder="Bid Amount"
+                                className="input"
+                                name="fee"
+                                type="number"
+                                min="1"
+                                onChange={handleChange}
+                                value={formdata.fee}
+                                style={{
+                                  maxWidth: '140px'
+                                }}
+                              />
+                            </div>
+                          </div>
+                          <p>{bidmessage}</p>
+                          <div className="">
+                            <button type="submit"
+                              className="btn-submit"
+                              style={{
+                                marginTop: '5px'
+                              }} >Place Bid</button>
+                          </div>
                         </div>
-                      </div>
-                      <div className="field">
-                        <label className="bid-label">Place a Bid</label>
-                        <div className="control">
-                          <input
-                            placeholder="Bid Amount"
-                            className="input"
-                            name="fee"
-                            onChange={handleChange}
-                            value={formdata.fee}
-                          />
-                        </div>
-                      </div>
-                      <p>{bidmessage}</p>
-                      <div className="">
-                        <button type="submit" className="btn-submit">Place Bid</button>
-                      </div>
-                      <div className="show-bids-container">
-                      </div>
-                    </form>
-                  </div>
-                  <div className="comment-form-container" onSubmit={handleCommentSubmit}>
-                    <form className="comment-form" >
-                      <div className="field">
-                        <label>Add a comment</label>
-                        <div className="control">
-                          <textarea
-                            placeholder="Add comment here"
-                            name="text"
-                            value={commentdata.text}
-                            onChange={handleCommentChange}
-                          />
-                        </div>
-                      </div>
-                      <p>{commentMessage}</p>
-                      <div>
-                        <button type="submit" className="btn-submit">Submit Comment</button>
-                      </div>
-                    </form>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
+
               <div className="card-body" style={{
                 height: '120px',
                 justifyContent: 'center'
               }}>
                 <div className="job-show-buttons">
                   <button className="btn-cancel-lg" onClick={handleDelete}>
-                    Delete
+                    Delete Job
                   </button>
                   <button className="btn-secondary-lg">
                     <Link style={{ color: 'white' }} to={`/jobs/${id}/edit`}>
-                      Edit
+                      Edit Job
                     </Link>
                   </button>
                 </div>
