@@ -14,23 +14,28 @@ function ImageUpload({ onChange, name, value, labelText }) {
   }
 
   return (
-    <>
-      
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }}>
+
 
       <div style={{ width: '300px' }}>
-        <img src={value} alt="selected" style={{ width: '100%', height: 'auto' }} />
+        <img src={value} className="card-image" alt="selected" style={{ width: '100%', height: 'auto' }} />
       </div>
-        
-      <>
+
+      <di>
         <label className="label">{labelText || 'Upload Image'}</label>
         <input
           type="file"
           onChange={handleUpload}
           name={name}
         />
-      </>
-      
-    </>
+      </di>
+
+    </div>
 
   )
 }

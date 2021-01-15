@@ -1,11 +1,10 @@
 import React from 'react'
-import JobCarousel from '../jobs/JobCarousel'
 import { useParams, useHistory } from 'react-router-dom'
 import { getSingleJob, editJob } from '../../lib/api'
 import useForm from '../../utils/useform'
 import JobForm from './JobForm'
 
-function EditJob(){
+function EditJob() {
   const { id } = useParams()
   const history = useHistory()
   const { formdata, errors, handleChange, setFormdata, setErrors } = useForm({
@@ -34,21 +33,22 @@ function EditJob(){
       console.log('starting handle submit')
       await editJob(id, formdata)
       history.push(`/jobs/${id}`)
-    } catch (err){
+    } catch (err) {
       setErrors(err.response.data.errors)
     }
   }
 
   return (
     <>
-      <JobCarousel />
-      
-      <JobForm 
-        formdata={formdata}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        errors={errors}
-      />
+      <div className="container-general">
+
+        <JobForm
+          formdata={formdata}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          errors={errors}
+        />
+      </div>
     </>
   )
 }
