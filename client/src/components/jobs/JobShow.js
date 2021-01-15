@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { useParams, Link, useHistory } from 'react-router-dom'
-import { getSingleJob, deleteJob, createBid, getBids, createComment, getComments } from '../../lib/api'
+import { getSingleJob, deleteJob, createBid, getBids, createComment, getComments, editBid, editJob } from '../../lib/api'
 import { isOwner } from '../../lib/auth'
 import useform from '../../utils/useform'
 
@@ -88,6 +88,17 @@ function JobShow() {
     }
 
   }
+
+  const handleAcceptingBid = async (bidId) => {
+    try {
+      await editJob(id, { jobIsLive: false })
+      await editBid(id, bidId, { status: 'accepted' })
+      const { data } = await getSingleJob(id)
+    } catch (err){
+      console.log(err)
+    }
+  }
+
 
 
 
@@ -256,13 +267,14 @@ function JobShow() {
                             width: '100%',
                             padding: ' 0 10px'
                           }}>
-                            <div >
+                            <div>
                               <p>Bidder Name: <span>{bid.owner.name}</span></p>
                               <p>Amount Bidded: <span>{bid.fee}£</span></p>
                               <p>Bidder Message: <span>{bid.text}</span></p>
+                              <p>Bid Status: <span>{bid.status}</span></p>
                             </div>
                             <div className="button-accept">
-                              <button className="btn-submit">Accept this Bid</button>
+                              <button className="btn-submit" onClick={() => handleAcceptingBid(bid._id)}>Accept this Bid</button>
                             </div>
                           </div>
 
