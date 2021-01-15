@@ -2,7 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import RoundedButtons from '../../styles/components/RoundedButtons'
 
-function UserCard({ _id, name, city, bio, photo, favouritedBy, numberOfUsersWhoFavourited, isAuctioneer, createdJobs, bidderCategories, bidderIsAvailable }) {
+function UserCard({ _id, name, bio, photo, favouritedBy, numberOfUsersWhoFavourited, isAuctioneer, createdJobs, bidderCategories, bidderIsAvailable }) {
+
+  console.log('createdJobs', createdJobs)
+
   return (
     <div >
       <Link to={`/users/${_id}`}>
@@ -18,23 +21,21 @@ function UserCard({ _id, name, city, bio, photo, favouritedBy, numberOfUsersWhoF
             </div>
           }
 
-          <div className="card-image">
-            <div className="card-image-container" style={{ height: '210px', justifyContent: 'center' }}>
+          <div>
+            <div className="card-image-container">
               <img src={photo} alt={name} className="card-image" />
             </div>
           </div>
 
           <div className="card-header">
-            <div className="card-header-title">{bio}</div>
-          </div>
-
-          <div className="card-header">
-            <div className="card-header-title">From: {city}</div>
+            <p>{bio}</p>
           </div>
 
           {isAuctioneer ?
             <div className="card-header">
-              <div className="card-header-title">JOBS POSTED: {createdJobs}</div>
+              <p><strong>JOBS POSTED:</strong> {createdJobs.map(job => (
+                <p key={job._id}> {job.jobTitle}</p>
+              ))}</p>
             </div>
             :
             <div className="card-header">
@@ -44,16 +45,16 @@ function UserCard({ _id, name, city, bio, photo, favouritedBy, numberOfUsersWhoF
                 </strong></div>
             </div>
           }
-
+          <br />
           {!favouritedBy ?
             <div className="card-header">
-              <div className="card-header-title">Favourited by {numberOfUsersWhoFavourited} users: 
+              <p>❤️ Favourited by {numberOfUsersWhoFavourited} users: 
                 <div>{favouritedBy}</div>
-              </div>
+              </p>
             </div>
             :
             <div className="card-header">
-              <div className="card-header-title">{numberOfUsersWhoFavourited}</div>
+              <p><strong>❤️ {numberOfUsersWhoFavourited}</strong></p>
             </div>
           }
           
