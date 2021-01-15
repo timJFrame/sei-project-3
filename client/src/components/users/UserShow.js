@@ -53,8 +53,10 @@ function UserShow() {
                   }
                 </div>
               </div>
-              <div className="card-body-footer-container" style={{ height: '50px', justifyContent: 'center', alignItems: 'center' }}>
-                <hr />
+              <hr />
+              
+              <div className="card-body-footer-container" style={{ height: '50px', justifyContent: 'center', alignItems: 'center' , flexDirection: 'row' }}>
+
                 <button className="btn-secondary" style={{ maxWidth: '150px' }}>
                   <Link to="/users/edit" style={{ color: 'white' }}>Edit Profile</Link>
                 </button>

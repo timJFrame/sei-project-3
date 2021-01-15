@@ -67,10 +67,10 @@ async function favouriteUser (req, res, next) {
     if (!userToFavourite) throw new Error(notFound)
 
     // We declare an add favourite const carrying the favourited boolean and add the owner to it
-    const addFavourite = { ...req.body, owner: req.currentUser._id }
+    const favouriteToAdd = { owner: req.currentUser._id }
 
     //push this into the array of favouritedBy
-    userToFavourite.favouritedBy.push(addFavourite)
+    userToFavourite.favouritedBy.push(favouriteToAdd)
     await userToFavourite.save()
 
     return res.status(200).json(userToFavourite)

@@ -1,10 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import RoundedButtons from '../../styles/components/RoundedButtons'
+import { favouriteUser } from '../../lib/api'
 
-function UserCard({ _id, name, bio, photo, favouritedBy, numberOfUsersWhoFavourited, isAuctioneer, createdJobs, bidderCategories, bidderIsAvailable }) {
+function UserCard({ _id, name, bio, photo, favouritedBy, numberOfUsersWhoFavourited, isAuctioneer, createdJobs, bidderCategories, bidderIsAvailable, refreshData }) {
 
-  console.log('createdJobs', createdJobs)
+  const handleClick = async() => {
+    try {
+      const response = await favouriteUser(_id )
+      console.log('response' , response)
+      refreshData()
+
+    } catch (err){
+      console.log(err)
+    }
+  }
+
+
 
   return (
     <div >
@@ -33,9 +45,9 @@ function UserCard({ _id, name, bio, photo, favouritedBy, numberOfUsersWhoFavouri
 
           {isAuctioneer ?
             <div className="card-header">
-              <p><strong>JOBS POSTED:</strong> {createdJobs.map(job => (
+              <div><strong>JOBS POSTED:</strong> {createdJobs.map(job => (
                 <p key={job._id}> {job.jobTitle}</p>
-              ))}</p>
+              ))}</div>
             </div>
             :
             <div className="card-header">
@@ -46,17 +58,15 @@ function UserCard({ _id, name, bio, photo, favouritedBy, numberOfUsersWhoFavouri
             </div>
           }
           <br />
-          {!favouritedBy ?
+          {favouritedBy &&
             <div className="card-header">
-              <p>❤️ Favourited by {numberOfUsersWhoFavourited} users: 
-                <div>{favouritedBy}</div>
-              </p>
-            </div>
-            :
-            <div className="card-header">
-              <p><strong>❤️ {numberOfUsersWhoFavourited}</strong></p>
+              <div>❤️ {numberOfUsersWhoFavourited} 
+              </div>
             </div>
           }
+          
+          <button className="btn" onClick={handleClick}> Favourite
+          </button>
           
         </div>
       </Link>
