@@ -167,14 +167,7 @@ function JobShow() {
                   </div>
 
                   <div className="container-jobs-sm">
-                    {job.jobBids.map(bid => (
-                      <div key={bid._id}>
-                        <p>Bidder Name: {bid.owner.name}</p>
-                        <p>Amount Bidded: {bid.fee}</p>
-                        <p>Bidder Message: {bid.text}</p>
-                      </div>
-                    ))
-                    }
+
                     <div className="job-bid-container" onSubmit={handleBidSubmit}>
                       <form className="job-bid-form">
                         <div className="field">
@@ -228,11 +221,14 @@ function JobShow() {
                   </div>
                 </div>
               </div>
-              {isJobOwner &&
+              {!isJobOwner &&
+
                 <div className="card-body" style={{
-                  height: '120px',
-                  justifyContent: 'center'
+                  height: 'auto',
+                  justifyContent: 'center',
+                  padding: '5px'
                 }}>
+
                   <div className="job-show-buttons">
                     <button className="btn-cancel-lg" onClick={handleDelete}>
                       Delete Job
@@ -242,6 +238,35 @@ function JobShow() {
                         Edit Job
                       </Link>
                     </button>
+                    {job.jobBids.map(bid => (
+                      <>
+                        <hr />
+                        <div key={bid._id} style={{
+                          display: 'flex',
+                          justifyContent: 'flex-start'
+                        }}>
+                          <div style={{
+                            display: 'flex',
+                            textAlign: 'left',
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            width: '100%'
+                          }}>
+                            <div >
+                              <p>Bidder Name: <span>{bid.owner.name}</span></p>
+                              <p>Amount Bidded: <span>{bid.fee}£</span></p>
+                              <p>Bidder Message: <span>{bid.text}</span></p>
+                            </div>
+                            <div className="button-accept">
+                              <button className="btn-submit">Accept this Bid</button>
+                            </div>
+                          </div>
+
+                        </div>
+                      </>
+                    ))
+                    }
                   </div>
                 </div>
               }
@@ -252,7 +277,7 @@ function JobShow() {
           <h2>Loading</h2>
         }
       </div>
-    </div>
+    </div >
   )
 }
 export default JobShow
