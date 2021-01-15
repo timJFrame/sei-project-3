@@ -149,3 +149,8 @@ body{
 .about-text {
   text-align: 'center'!important;
 }
+
+
+img[src=""]{
+  display: none;
+}
