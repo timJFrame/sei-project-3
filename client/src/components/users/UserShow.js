@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams, Link, useHistory } from 'react-router-dom'
 import { deleteUser, getSingleUser } from '../../lib/api'
-import { isOwner } from '../../lib/auth'
+import { isOwner, logout } from '../../lib/auth'
 import { AiTwotoneDelete, AiOutlineEdit } from 'react-icons/ai'
 
 
@@ -10,13 +10,13 @@ function UserShow() {
   const [user, setUser] = React.useState(null)
   const { id } = useParams()
   const history = useHistory()
+  
 
   React.useEffect(() => {
     const getData = async () => {
       try {
         const { data } = await getSingleUser(id)
         setUser(data)
-        console.log(data)
       } catch (err) {
         console.log(err)
       }
@@ -24,10 +24,14 @@ function UserShow() {
     getData()
   }, [id])
 
+ 
+
+
   const handleDelete = async () => {
     try {
       await deleteUser(id)
-      history.push('/users')
+      logout()
+      history.push('/jobs')
     } catch (err) {
       console.log(err)
     }
@@ -59,15 +63,20 @@ function UserShow() {
               <hr />
 
               <div className="card-body-footer-container" style={{ height: '50px', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-
+                {user?.isAuctioneer &&
+                  <button className="btn-secondary" style={{ maxWidth: '150px' }}>
+                    <Link to="/jobs/new" style={{ color: 'white' }}>Create Job<AiOutlineEdit /></Link>
+                  </button>
+                }
                 <button className="btn-secondary" style={{ maxWidth: '150px' }}>
                   <Link to="/users/edit" style={{ color: 'white' }}>Edit Profile<AiOutlineEdit /></Link>
                 </button>
-
+                
                 {isOwner(user._id) &&
                   <button className="btn-cancel" style={{ maxWidth: '150px' }} onClick={handleDelete}>Delete User <AiTwotoneDelete />
                   </button>
                 }
+               
               </div>
             </div>
           </div>

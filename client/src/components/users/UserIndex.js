@@ -30,8 +30,6 @@ function UserIndex() {
     }
   }
 
-  console.log('users', users)
-
   return (
     <div className="container-general">
 

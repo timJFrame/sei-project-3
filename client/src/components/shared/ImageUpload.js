@@ -26,14 +26,14 @@ function ImageUpload({ onChange, name, value, labelText }) {
         <img src={value} className="card-image" alt="selected" style={{ width: '60%', height: 'auto' }} />
       </div>
 
-      <di>
+      <div>
         <label className="label">{labelText || 'Upload Image'}</label>
         <input
           type="file"
           onChange={handleUpload}
           name={name}
         />
-      </di>
+      </div>
 
     </div>
 

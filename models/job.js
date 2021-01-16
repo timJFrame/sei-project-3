@@ -28,7 +28,7 @@ const jobSchema = new mongoose.Schema({
   jobCategory: { type: String, required: true },
   jobFee: { type: Number, required: true, min: 1 },
   jobIsLive: { type: Boolean, required: true },
-  jobOwner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  jobOwner: { type: mongoose.Schema.ObjectId, ref: 'User' },
   jobBids: [jobBidsSchema],
   jobComments: [jobCommentsSchema],
 }, {

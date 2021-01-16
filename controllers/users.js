@@ -48,7 +48,7 @@ async function userUpdate (req, res, next){
     if (!userToEdit) throw new Error(notFound)
 
     Object.assign(userToEdit, req.body)
-    await userToEdit.subdoc.save()
+    await userToEdit.save()
     return res.status(202).json(userToEdit)
   } catch (err){
     next(err)

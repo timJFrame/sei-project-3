@@ -1,5 +1,5 @@
 import User from '../models/user.js'
-import { unauthorized, validationError } from '../lib/errorHandler.js'
+import { unauthorized } from '../lib/errorHandler.js'
 import jwt from 'jsonwebtoken'
 import { secret } from '../config/environment.js'
 
@@ -8,11 +8,7 @@ import { secret } from '../config/environment.js'
 async function registerUser(req, res, next) {
   try {
     const newUser = await User.create(req.body)
-    if (!req.body){
-      throw new Error(validationError)
-    }
-    return res.status(201).json({ message: `Welcome ${newUser.name}` })
-
+    return res.status(201).json({ message: `Welcome ${newUser.username}` })
   } catch (err) {
     next(err)
   }

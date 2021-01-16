@@ -10,7 +10,7 @@ function JobForm({ handleChange, handleSubmit, formdata, errors }) {
           <div className="control">
             <input
               placeholder="JobTitle"
-              className="input"
+              className={`input ${errors.jobTitle} ? 'error-input' : ''`}
               name="jobTitle"
               onChange={handleChange}
               value={formdata.jobTitle}

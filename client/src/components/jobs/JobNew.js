@@ -26,6 +26,7 @@ function JobNew() {
       history.push(`/jobs/${data._id}`)
     } catch (err) {
       setErrors(err.response.data)
+      console.log(err.response.data)
     }
   }
 

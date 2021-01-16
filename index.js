@@ -3,6 +3,7 @@ import { port } from './config/environment.js'
 import logger from './lib/logger.js'
 import connectToDatabase from './lib/connectToDB.js'
 import router from './config/router.js'
+import errorHandler from './lib/errorHandler.js'
 
 
 const app = express()
@@ -21,9 +22,13 @@ async function startServer() {
     //*Routes all routes
     app.use('/api', router)
 
-    app.listen(port, () => console.log(`Up and running on port ${port}`))
+    //*Handles errors
+    app.use(errorHandler)
+
+    app.listen(port, () => console.log(`🤖 Up and running on port ${port}`))
+
   } catch (err) {
-    console.log('Something went wrong when starting the app')
+    console.log('🤖 Something went wrong starting the App')
     console.log(err)
   }
 }

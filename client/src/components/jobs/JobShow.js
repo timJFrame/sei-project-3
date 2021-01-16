@@ -1,28 +1,25 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { useParams, Link, useHistory } from 'react-router-dom'
-import { getSingleJob, deleteJob, createBid, getBids, createComment, getComments, editBid, editJob } from '../../lib/api'
+import { getSingleJob, deleteJob, createBid, createComment, editBid, editJob } from '../../lib/api'
 import { isOwner } from '../../lib/auth'
 import useform from '../../utils/useform'
 
 
 function JobShow() {
   const [job, setJob] = React.useState(null)
-  const [users, setUsers] = React.useState(null)
-  const [bids, setBids] = React.useState(null)
   const [bidmessage, setBidmessage] = React.useState(null)
-  const [comments, setComments] = React.useState(null)
   const [commentMessage, setCommentmessage] = React.useState(null)
   const isJobOwner = isOwner(job?.jobOwner._id)
   const { id } = useParams()
   const history = useHistory()
+  const [noBids, setNoBids] = React.useState(null)
 
   //*Getting a single job
   React.useEffect(() => {
     const getData = async () => {
       try {
         const { data } = await getSingleJob(id)
-        console.log(data)
         setJob(data)
       } catch (err) {
         console.log(err)
@@ -73,6 +70,9 @@ function JobShow() {
     setCommentdata({ ...commentdata, [e.target.name]: e.target.value })
   }
 
+
+
+  
   //* Handles submitting new comments
   const handleCommentSubmit = async (e) => {
     try {
@@ -81,27 +81,24 @@ function JobShow() {
       setCommentmessage('Your comment was been made')
       setCommentdata({ text: '' })
       const { data } = await getSingleJob(id)
-      console.log(data)
       setJob(data)
     } catch (err) {
       console.log(err)
     }
-
   }
 
-  //*Handles accepting bids
+  //*Handles accepting bid
   const handleAcceptingBid = async (bidId) => {
     try {
       await editJob(id, { jobIsLive: false })
       await editBid(id, bidId, { status: 'accepted' })
       const { data } = await getSingleJob(id)
-    } catch (err) {
+      setNoBids(true)
+      setJob(data)
+    } catch (err){
       console.log(err)
     }
   }
-
-
-
 
 
   return (
@@ -127,6 +124,7 @@ function JobShow() {
                   <div className="right-container">
                     <div className="small-container" >
                       <p>Description: <br /><span>{job.jobDescription}</span></p>
+                      <p style={{ marginTop: '5px' }}>Job Owner: <span>{job.jobOwner.name}</span></p>
                       <p style={{ marginTop: '5px' }}>Category: <span>{job.jobCategory}</span></p>
                     </div>
                     <div style={{ flexDirection: 'row', display: 'flex', justifyContent: 'space-between' }}>
@@ -149,7 +147,13 @@ function JobShow() {
                             color: 'white',
                             textAlign: 'left',
                             marginLeft: '10%'
-                          }}>Comment: {comment.text}</p>
+                          }}><strong>{comment.owner.name} commented:</strong></p>
+                          <p style={{
+                            color: 'white',
+                            textAlign: 'left',
+                            marginLeft: '10%'
+                          }}>{comment.text}</p>
+                          <br/>
                         </div>
                       ))
                     }
@@ -166,7 +170,7 @@ function JobShow() {
                             />
                           </div>
                         </div>
-                        <p>{commentMessage}</p>
+                        <p style={{ color: 'white' }}>{commentMessage}</p>
                         <div>
                           <button type="submit" className="btn-submit">Submit Comment</button>
                         </div>
@@ -220,7 +224,7 @@ function JobShow() {
                               />
                             </div>
                           </div>
-                          <p>{bidmessage}</p>
+                          <p style={{ color: 'white' }}>{bidmessage}</p>
                           <div className="">
                             <button type="submit"
                               className="btn-submit"
@@ -274,9 +278,11 @@ function JobShow() {
                               <p>Bidder Message: <span>{bid.text}</span></p>
                               <p>Bid Status: <span>{bid.status}</span></p>
                             </div>
-                            <div className="button-accept">
-                              <button className="btn-submit" onClick={() => handleAcceptingBid(bid._id)}>Accept this Bid</button>
-                            </div>
+                            {!noBids &&
+                              <div className="button-accept">
+                                <button className="btn-submit" onClick={() => handleAcceptingBid(bid._id)}>Accept this Bid</button>
+                              </div>
+                            }
                           </div>
 
                         </div>

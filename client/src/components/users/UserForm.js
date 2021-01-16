@@ -9,7 +9,6 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
 
   const { pathname } = useLocation()
 
-  console.log(userType)
   return (
     <>
       <div className="">
@@ -32,7 +31,7 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
                       onChange={handleChange}
                     />
                   </div>
-                  {errors.name && <p className="field-error">{errors.name}</p>}
+                  {errors.name && <p className="error-message">{errors.name}</p>}
                 </div>
                 <div className="field">
                   <label className="label">Email</label>
@@ -172,12 +171,12 @@ function UserForm({ userType, selectOptions, handleMultiItems, handleSubmit, for
 
             {pathname === '/register' ?
               <>
-                {formdata.name && formdata.email && formdata.password && formdata.passwordConfirmation && formdata.bio && formdata.city && formdata.photo &&
+                {/* {formdata.name && formdata.email && formdata.password && formdata.passwordConfirmation && formdata.bio && formdata.city && formdata.photo && */}
 
-                  <div className="field card-body card-body-foot">
-                    <button type="submit" className="btn-submit-lg">Submit<BiLogInCircle /></button>
-                  </div>
-                }
+                <div className="field card-body card-body-foot">
+                  <button type="submit" className="btn-submit-lg">Submit<BiLogInCircle /></button>
+                </div>
+                {/* } */}
               </>
               :
               <div className="field card-body card-body-foot">

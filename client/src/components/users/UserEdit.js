@@ -57,9 +57,7 @@ function UserEdit() {
     try {
       await editUser(formdata)
       history.push('/user')
-
     } catch (err) {
-      console.log(err)
       setErrors(err.response.data.errors)
     }
   }
@@ -78,7 +76,6 @@ function UserEdit() {
           handleChange={handleChange}
           errors={errors}
           pathname={pathname}
-
         />
       </div>
 

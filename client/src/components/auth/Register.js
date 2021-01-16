@@ -48,10 +48,12 @@ function Register() {
       await registerUser(formdata)
       history.push('/login')
     } catch (err) {
-      console.log
       setErrors(err.response.data.errors)
     }
   }
+
+  
+
 
   return (
     <>

@@ -64,9 +64,11 @@ function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee, jobI
               <div className="">
                 <img src={jobPhoto} alt={jobTitle} className="card-user-avatar" />
               </div>
+              {jobOwner &&
               <div className="card-user-name">
                 <p className="">{jobOwner.name}</p>
               </div>
+              }
             </div>
             <div className="card-body-text">
               <Link to={`/jobs/${_id}`}>

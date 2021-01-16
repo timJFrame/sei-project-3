@@ -35,6 +35,7 @@ function EditJob() {
       history.push(`/jobs/${id}`)
     } catch (err) {
       setErrors(err.response.data.errors)
+      console.log(errors)
     }
   }
 
