@@ -96,3 +96,8 @@ export function getComments(id){
   return axios.get(`${baseUrl}/jobs/${id}/comments`, headers())
 }
 
+//*Message a user
+export function messageUser(id, formdata){
+  return axios.post(`${baseUrl}/users/${id}/message`, formdata, headers())
+}
+

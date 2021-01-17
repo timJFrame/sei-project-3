@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { useParams, Link, useHistory } from 'react-router-dom'
-import { getSingleJob, deleteJob, createBid, createComment, editBid, editJob } from '../../lib/api'
+import { getSingleJob, deleteJob, createBid, createComment, editBid, editJob, messageUser } from '../../lib/api'
 import { isOwner } from '../../lib/auth'
 import useform from '../../utils/useform'
 
@@ -21,6 +21,7 @@ function JobShow() {
       try {
         const { data } = await getSingleJob(id)
         setJob(data)
+        console.log(data)
       } catch (err) {
         console.log(err)
       }
@@ -28,6 +29,7 @@ function JobShow() {
     getData()
   }, [id])
 
+  
   //*Handling deleteing job
   const handleDelete = async () => {
     try {
@@ -88,10 +90,11 @@ function JobShow() {
   }
 
   //*Handles accepting bid
-  const handleAcceptingBid = async (bidId) => {
+  const handleAcceptingBid = async (bidId, bidOwnerId) => {
     try {
       await editJob(id, { jobIsLive: false })
       await editBid(id, bidId, { status: 'accepted' })
+      await messageUser(bidOwnerId, { text: 'your bid has been accpeted' })
       const { data } = await getSingleJob(id)
       setNoBids(true)
       setJob(data)
@@ -280,7 +283,7 @@ function JobShow() {
                             </div>
                             {!noBids &&
                               <div className="button-accept">
-                                <button className="btn-submit" onClick={() => handleAcceptingBid(bid._id)}>Accept this Bid</button>
+                                <button className="btn-submit" onClick={() => handleAcceptingBid(bid._id, bid.owner._id)}>Accept this Bid</button>
                               </div>
                             }
                           </div>

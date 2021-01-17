@@ -9,6 +9,13 @@ const favouritedBySchema = new mongoose.Schema({
   timestamps: true,
 })
 
+const messageSchema = new mongoose.Schema({
+  text: { type: String, default: true },
+  owner: { type: mongoose.Schema.ObjectId, ref: 'User' },
+}, {
+  timestamps: true,
+})
+
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true, maxlength: 40 },
   email: { type: String, required: true, unique: true },
@@ -20,6 +27,7 @@ const userSchema = new mongoose.Schema({
   bidderCategories: [{ type: String }], 
   bidderIsAvailable: { type: Boolean, default: false }, // * default to false
   favouritedBy: [favouritedBySchema], // Embedded relationship
+  message: [messageSchema],
 })
 
 // Go through all the jobs and find the ones where owner matches local _id field

@@ -199,7 +199,7 @@ async function jobBidEdit(req, res, next){
     const bidToEdit = job.jobBids.id(bidId)
     bidToEdit.status = 'accepted'
     await job.save()
-    return res.status(202).json(bidToEdit)
+    return res.status(201).json(bidToEdit)
   } catch (err){
     next(err)
   }

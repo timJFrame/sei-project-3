@@ -16,7 +16,7 @@ async function userIndex (req, res, next) {
 async function userProfile (req, res, next) {
   const { id } = req.params
   try {
-    const user = await User.findById(id).populate('createdJobs').populate('favouritedBy').populate('favouriteUsers')
+    const user = await User.findById(id).populate('createdJobs').populate('favouritedBy').populate('favouriteUsers').populate('message.owner')
     if (!user) throw new Error(notFound)
 
     return res.status(200).json(user)
@@ -79,10 +79,32 @@ async function favouriteUser (req, res, next) {
   }
 }
 
+async function messageUser(req, res, next){
+  const { id } = req.params
+  try {
+    // Search to user to messa
+    const userToMessage = await User.findById(id).populate('message').populate('message.owner')
+    // If a user is not found throw an error
+    if (!userToMessage) throw new Error(notFound)
+    // Capture info to be sent back to database
+    const newMessage = { ... req.body, owner: req.currentUser._id }
+    // Push data onto the message array
+    userToMessage.message.push(newMessage)
+    //Save the updated user infor
+    await userToMessage.save()
+    
+    return res.status(200).json(userToMessage)
+    
+  } catch (err){
+    next(err)
+  }
+}
+
 export default {
   index: userIndex,
   show: userProfile,
   delete: userDelete,
   update: userUpdate,
   favourite: favouriteUser,
+  message: messageUser,
 }
