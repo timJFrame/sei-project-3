@@ -1,8 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import RoundedButtons from '../../styles/components/RoundedButtons'
+import { isAuthenticated } from '../../lib/auth'
 
 function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee, jobIsLive }) {
+
+  const authenticateUser = isAuthenticated()
+  const history = useHistory()
+
+  const handleNoUser = () => {
+    if (!authenticateUser){
+      history.push('/register')
+    }
+  }
 
   return (
     <>
@@ -12,9 +22,11 @@ function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee, jobI
             <div className="rounded-button">
               <RoundedButtons type={jobIsLive ? 'green' : 'red'} />
             </div>
-            <Link to={`/jobs/${_id}`}>
-              <img src={jobPhoto} alt={jobTitle} className="card-image" />
-            </Link>
+            <div onClick={handleNoUser}>
+              <Link to={`/jobs/${_id}`} >
+                <img src={jobPhoto} alt={jobTitle} className="card-image" />
+              </Link>
+            </div>
           </div>
           <div className="card-body">
             <div className="card-body-user">
@@ -31,9 +43,11 @@ function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee, jobI
                 
             </div>
             <div className="card-body-text">
-              <Link to={`/jobs/${_id}`}>
-                <p>{jobTitle}</p>
-              </Link>
+              <div onClick={handleNoUser}>
+                <Link to={`/jobs/${_id}`} >
+                  <p>{jobTitle}</p>
+                </Link>
+              </div>
             </div>
             <div className="card-body-footer-container">
               <hr />
@@ -55,9 +69,11 @@ function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee, jobI
 
               <RoundedButtons type={jobIsLive ? 'green' : 'red'} />
             </div>
-            <Link to={`/jobs/${_id}`}>
-              <img src={jobPhoto} alt={jobTitle} className="card-image" />
-            </Link>
+            <div onClick={handleNoUser}>
+              <Link to={`/jobs/${_id}`} >
+                <img src={jobPhoto} alt={jobTitle} className="card-image" />
+              </Link>
+            </div>
           </div>
           <div className="card-body">
             <div className="card-body-user">
@@ -71,9 +87,11 @@ function JobCard({ _id, jobTitle, jobPhoto, jobOwner, numberOfBids, jobFee, jobI
               }
             </div>
             <div className="card-body-text">
-              <Link to={`/jobs/${_id}`}>
-                <p>{jobTitle}</p>
-              </Link>
+              <div onClick={handleNoUser}>
+                <Link to={`/jobs/${_id}`} >
+                  <p>{jobTitle}</p>
+                </Link>
+              </div>
             </div>
             <div className="card-body-footer-container">
               <hr />
