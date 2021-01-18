@@ -9,7 +9,7 @@ function Nav() {
   const history = useHistory()
   useLocation()
 
-  const  handleLogout = () => {
+  const handleLogout = () => {
     logout()
     history.push('/')
   }
@@ -18,8 +18,8 @@ function Nav() {
   return (
     <header>
       <nav className="glass-morphism">
-        <div>
-          <Link to="/" className="deverr-title">
+        <div style={{ margin: '5px 0 0 40px' }}>
+          <Link to="/">
             <img src={logo}></img>
           </Link>
         </div>
@@ -34,10 +34,10 @@ function Nav() {
             :
             <>
               <Link to="/user" className="btn-secondary-xs" style={{ padding: '10px' }}>My Profile</Link>
-              <Link to="#" onClick={handleLogout}className="btn-secondary-xs" style={{ padding: '10px' }}>Log Out</Link>    
-            </>        
-          }            
-          
+              <Link to="#" onClick={handleLogout} className="btn-secondary-xs" style={{ padding: '10px' }}>Log Out</Link>
+            </>
+          }
+
         </div>
 
       </nav>
