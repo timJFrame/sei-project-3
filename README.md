@@ -78,7 +78,7 @@ Inspired by the Fiverr website, the platform is based on a Bidding system where 
 # ![](readme-images/login-mock-up.jpg) 
 # ![](readme-images/profile-mock-up.jpg) 
 
-<p>We starting by creating the shell for back-end and then Sandra moved onto creating models and controllers. Testing each route in Insomnia as it was created. Once the back-end of the site was starting to take shape Sandra and I began creating seeding data for the jobs on the website and Alberto took charge of creating seeding data for the ‘Bidder’ and ‘Auctioneer’ profiles using ‘faker.js’</p>
+<p>We started by creating the shell for back-end and then Sandra moved onto creating models and controllers. Testing each route in Insomnia as it was created. Once the back-end of the site was starting to take shape Sandra and I began creating seeding data for the jobs on the website and Alberto took charge of creating seeding data for the ‘Bidder’ and ‘Auctioneer’ profiles using ‘faker.js’</p>
 
 
 
