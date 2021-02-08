@@ -9,6 +9,38 @@ by [Alberto Cerrone](www.linkedin.com/in/alberto-cerrone), [Sandra Spighel](http
 
 <p>This was the third project I completed in General Assembly's Immersive Software Engineering program. Project three was a group project. In project three we were tasked with building a full-stack MERN application over a 10 day time period.</p>
 
+<h2>Technologies used</h2>
+
+### Languages 
+* HTML
+* CSS
+* Javascript
+### Frameworks & Libraries
+* [React](https://reactjs.org/)
+* [React-Router-Dom] (https://reactrouter.com/ )
+* [React-Icons] (https://react-icons.github.io/react-icons/)
+* [React-Slick] (https://react-slick.neostack.com/)
+* [Styled-components] (https://styled-components.com)
+* [Node](https://nodejs.org/en/)
+
+### Dependencies & Components 
+* [Axios](https://github.com/axios/axios)
+* [Bcrypt] (https://pypi.org/project/bcrypt/) 
+* [Cloudinary](https://cloudinary.com/documentation)
+* [Express ](https://www.react.express/ )
+* [Faker.js] (https://www.npmjs.com/package/faker ) 
+* [JsonWebToken] (https://www.npmjs.com/package/jsonwebtoken )
+* [Nodemon ](https://nodemon.io/ )
+* [Mongoose ](https://mongoosejs.com/) 
+* [Mongoose-unique-validator] (https://mongoosejs.com/docs/validation.html) 
+* [MongoDB](https://www.mongodb.com/)
+---
+## Contributors
+* Alberto Cerrone [📧](mailto:cerrone.alberto93@gmail.com)
+* Sandra Spighel [📧](mailto:s.spighel@gmail.com)
+* Tim Frame [📧](mailto:t.f.retouching@gmail.com)
+---
+
 <h2>The App: Deverr</h2>
 <h3>App Overview</h3>
 <p>Deverr allows Developers to connect with companies or people advertsing jobs. On Deverr the people and companies advertsing jobs are referred to as Auctioners and the developes are referred to as Bidders.
@@ -80,49 +112,43 @@ Inspired by the Fiverr website, the platform is based on a Bidding system where 
 
 <p>We started by creating the shell for back-end and then Sandra moved onto creating models and controllers. Testing each route in Insomnia as it was created. Once the back-end of the site was starting to take shape Sandra and I began creating seeding data for the jobs on the website and Alberto took charge of creating seeding data for the ‘Bidder’ and ‘Auctioneer’ profiles using ‘faker.js’</p>
 
+<p>From there Alberto and I moved onto the front-end. I began by creating the shell for the home page, then moved to the register and login in forms, then to the user profile(user who is logged in), after that the job index view, then the live job view. At this point Sandra had finished working on the backend of the website and started working on refining the home page and creating a user index view. I moved onto adding the comment and bidding functionality. While Alberto continued to work on the styling.</p>
+
+<h2>Challenges</h2>
+
+<p>This was the first group project I did while at General Assembly. This brought about new challenges that I had not encountered before. The most prevalent being all working on one Github repository at the same time and avoiding merge conflicts, but we soon overcame this by using a Trello Board to track what each team member was working on and also have clear communication in the team throughout the whole project. </p>
+
+<p>The biggest challenge we ran into was the model for the user profile. Initially we had decided to have two different models, a model for the ‘Bidder’ and a model for the ‘Auctioneer’. We thought this approach would give more clarity and separation between the two types of users and the ‘Bidder’ model required additional information. Once we began building we found this wan’t the most practical approach as we would  need to repeat the same code twice for each user in multiple areas of this site. To solve the problem we decided to use one user model and make the additional fields required for the ‘Bidder’ profile not automatically required on the back-end. Then on the font end we would use conditional statements to hide and reveal what each user could see dependent on there profile type.</p>
 
 
-Auctioneers can view and publish jobs, comment on them and choose the winning bid from all bids received.  They can also favourite other users.
+<h2>Wins</h2>
 
-Bidders can browse all the jobs and filter them by category, place comments, bid for jobs and favourite other users.
-### Prerequisites
-The website is mobile friendly and the user can access it through the browser. 
-### How to navigate the website
-More in depth informaation is available via the extended ReadMe documentation: https://docs.google.com/document/d/1XGp4wVEdUBzMLSSu7ltRPjLcE1I3-e3xVfCZbchfyhY/edit?usp=sharing
+<p>I think the biggest win as a team was firstly how well we worked together throughout the project. We were able to communicate clearly  resulting in each team member having a voice in the decision making process. Secondly we could help each other out when we ran into blockers and have group coding sessions to get past it.</p>
 
----
+<p>Personally the biggest win for me was was working out how I could notify a ‘Bidder’ that they had the winning bid after it was chosen by the ‘Auctioneer’. As I was working on the ‘handleAcceptingBid’ function I realised that I had access to the id of the person who had created the bid. With the id I would be able to add an additional field to the user model called ‘Message’ </p>
 
-## Technology Used
+# ![](readme-images/submit-bid.png) 
 
-### Languages 
-* HTML
-* CSS
-* Javascript
-### Frameworks & Libraries
-* [React](https://reactjs.org/)
-* [React-Router-Dom] (https://reactrouter.com/ )
-* [React-Icons] (https://react-icons.github.io/react-icons/)
-* [React-Slick] (https://react-slick.neostack.com/)
-* [Styled-components] (https://styled-components.com)
-* [Node](https://nodejs.org/en/)
+# ![](readme-images/user-model.png) 
 
-### Dependencies & Components 
-* [Axios](https://github.com/axios/axios)
-* [Bcrypt] (https://pypi.org/project/bcrypt/) 
-* [Cloudinary](https://cloudinary.com/documentation)
-* [Express ](https://www.react.express/ )
-* [Faker.js] (https://www.npmjs.com/package/faker ) 
-* [JsonWebToken] (https://www.npmjs.com/package/jsonwebtoken )
-* [Nodemon ](https://nodemon.io/ )
-* [Mongoose ](https://mongoosejs.com/) 
-* [Mongoose-unique-validator] (https://mongoosejs.com/docs/validation.html) 
-* [MongoDB](https://www.mongodb.com/)
----
-## Contributors
-* Alberto Cerrone [📧](mailto:cerrone.alberto93@gmail.com)
-* Sandra Spighel [📧](mailto:s.spighel@gmail.com)
-* Tim Frame [📧](mailto:t.f.retouching@gmail.com)
----
+<p>Then add a new controller to ‘user.js’  controller file. That would push a new message onto the ‘message’ array of the ‘Bidder’ with the winning bid.</p>
+
+# ![](readme-images/message-controller.png) 
+
+
+<p>From there I displayed the message on the profile of the winning ‘Bidder’. Where they would be guaranteed to see the message because a user would always land on there user profile first after logging in.</p>
+
+# ![](readme-images/display-message.png) 
+
+<h3>Future Features</h3>
+<ul>
+<li>Change the messaging function so that it is viewable from any page on the website and make it more seamless</li>
+<li>Make the site more mobile responsive</li>
+<li>Add notification animations</li>
+ </ul>
+
+
+
 ## Contributing to this project
 If you have suggestions for improving this project, please [open an issue on GitHub](https://github.com/timJFrame/sei-project-3 link of the project).
 ---
