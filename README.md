@@ -43,14 +43,14 @@ by [Alberto Cerrone](www.linkedin.com/in/alberto-cerrone), [Sandra Spighel](http
 
 <h2>The App: Deverr</h2>
 <h3>App Overview</h3>
-<p>Deverr allows Developers to connect with companies or people advertsing jobs. On Deverr the people and companies advertsing jobs are referred to as Auctioners and the developes are referred to as Bidders.
+<p>Deverr allows Developers to connect with companies or people advertsing jobs. On Deverr the people and companies advertsing jobs are referred to as Auctioners and the developers are referred to as Bidders.
 Inspired by the Fiverr website, the platform is based on a Bidding system where Auctioneers post Jobs and interested Developers can 'bid' to win the contract.</p>
 
 ---
 <h2>How to use App</h2>
 
 <ol>
-<li>When a user first lands on the site they are taken to the home page. A this point that can choose from one of four options. If don't have an account they can click the register button to create an account. If they have an account they can click the login button. Alternatively they can click the jobs button and they taken to page where they can view all jobs currently on the site. Lastly they can click the people button and will be taken to a page where they can see all the current users of the site.</li>
+<li>When a user first lands on the site they are taken to the home page. At this point that can choose from one of four options. If don't have an account they can click the register button to create an account. If they have an account they can click the login button. Alternatively they can click the jobs button and they taken to page where they can view all jobs currently on the site. Lastly they can click the people button and will be taken to a page where they can see all the current users of the site.</li>
 
 # ![](readme-images/home-page.png)  
 
@@ -84,7 +84,7 @@ Inspired by the Fiverr website, the platform is based on a Bidding system where 
 
 # ![](readme-images/live-job.png) 
 
-<li>If a 'Bidder' clicks the jobs button located in the navigation bar they are taken to the jobs index. Here a bidder can view all jobs currently on the site or filter jobs by catergoty using the carrseole at the top of the page.  <li>
+<li>If a 'Bidder' clicks the jobs button located in the navigation bar they are taken to the jobs index. Here a bidder can view all jobs currently on the site or filter jobs by catergoty using the carousel at the top of the page.  <li>
 
 # ![](readme-images/jobs.png) 
 
@@ -103,7 +103,7 @@ Inspired by the Fiverr website, the platform is based on a Bidding system where 
 
 <h2>Creating The App</h2>
 
-<p>Once we had a clear idea for the project and how the app could potentially work we moved on to the planning phase. We began by creating wire frames to get a feel for how the flow of the site and created a Trello board to track how we were building the site and who was responsible for what. It was at this point that each team member took ownership of an specfic area: Alberto was responsible for styling, I was responsible for the front-end and Sandra was responsible for the back-end.</p>
+<p>Once we had a clear idea for the project and how the app could potentially work we moved on to the planning phase. We began by creating wire frames to get a feel for the flow of the site and created a Trello board to track how we were building the site and who was responsible for what. It was at this point that each team member took ownership of an specfic area: Alberto was responsible for styling, I was responsible for the front-end and Sandra was responsible for the back-end.</p>
 
 # ![](readme-images/home-mockup.jpg) 
 # ![](readme-images/register-mock-up.jpg) 
@@ -116,7 +116,7 @@ Inspired by the Fiverr website, the platform is based on a Bidding system where 
 
 <h2>Challenges</h2>
 
-<p>This was the first group project I did while at General Assembly. This brought about new challenges that I had not encountered before. The most prevalent being all working on one Github repository at the same time and avoiding merge conflicts, but we soon overcame this by using a Trello Board to track what each team member was working on and also have clear communication in the team throughout the whole project. </p>
+<p>This was the first group project I did while at General Assembly. This brought about new challenges that I had not encountered before. The most prevalent being all working on one Github repository at the same time and avoiding merge conflicts, but we soon overcame this by using a Trello Board to track what each team member was working on and also having clear communication in the team throughout the whole project. </p>
 
 <p>The biggest challenge we ran into was the model for the user profile. Initially we had decided to have two different models, a model for the ‘Bidder’ and a model for the ‘Auctioneer’. We thought this approach would give more clarity and separation between the two types of users and the ‘Bidder’ model required additional information. Once we began building we found this wan’t the most practical approach as we would  need to repeat the same code twice for each user in multiple areas of this site. To solve the problem we decided to use one user model and make the additional fields required for the ‘Bidder’ profile not automatically required on the back-end. Then on the font end we would use conditional statements to hide and reveal what each user could see dependent on there profile type.</p>
 
