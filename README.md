@@ -110,9 +110,71 @@ Inspired by the Fiverr website, the platform is based on a Bidding system where 
 # ![](readme-images/login-mock-up.jpg) 
 # ![](readme-images/profile-mock-up.jpg) 
 
-<p>We started by creating the shell for back-end and then Sandra moved onto creating models and controllers. Testing each route in Insomnia as it was created. Once the back-end of the site was starting to take shape Sandra and I began creating seeding data for the jobs on the website and Alberto took charge of creating seeding data for the ‘Bidder’ and ‘Auctioneer’ profiles using ‘faker.js’</p>
+<p>In the planning phase we had worked out that we would need to create 40 ‘Auctioneer Profiles’ and 60 ‘Bidder’ profiles. Alberto had found a React dependency called ‘Faker.js’ that could create dummy users. Alberto took charge of creating the dummy users and incorporating ‘Faker.js’ into the data seeding process.</p>
 
-<p>From there Alberto and I moved onto the front-end. I began by creating the shell for the home page, then moved to the register and login in forms, then to the user profile(user who is logged in), after that the job index view, then the live job view. At this point Sandra had finished working on the backend of the website and started working on refining the home page and creating a user index view. I moved onto adding the comment and bidding functionality. While Alberto continued to work on the styling.</p>
+
+
+<p>We had decided on having 6 types of job categories Android Developer, Apple Developer, Back-end Developer, Front-end Developer, Game Developer and UI Developer. For each category we would create 10 jobs. 60 jobs in total. Sandra started working on creating the job seeds and I moved on to creating the shell for the back-end of the site.</p>
+
+<p>The code snippet below is an example of a job seed</p>
+
+# ![](readme-images/job-seed.png)
+
+<p>I started off by creating a new package.json file, touching a new ‘index.js’ file and installing the dependencies I would need to get the project started that included nodemon, express and mongoose. I then added a script to the ‘package.json’ to start nodemon for hot reloading. Then I moved on to creating the ‘startServer’ function in ‘index.js.  The ‘startServer’ function tested if the server was running on port 4000 and was connecting to the database. At this point I passed on creating the back-end to Sandra and began working on the remaining job seeds.</p>
+
+# ![](readme-images/start-server.png)
+
+<p>Sandra started creating the models for the user and the jobs. Then moved onto to the controllers and router. Testing each each controller as it was created using Insomnia to make API requests. Once it was established the API requests were working correctly Sandra implemented a secure route that would check if a user was logged into the website before giving them access to creating a job. With the secure route in place, a custom error handler was implemented to handle different types of errors the back-end might encounter while a user was a making a request.</p>
+
+<p>The code snippet below is the user model </p>
+
+# ![](readme-images/start-server.png)
+
+<p>The image below are routes Sandra made in Insomnia to test routes </p>
+
+# ![](readme-images/insomnia.png)
+
+<p>While Sandra was working on the back-end Alberto started to work on the, 'seedDatabase' function that would be used to add all the dummy data to the site and would be used to drop all the current data and refresh it with new data.</p>
+
+<p>The code snippet below is 'seedDatabase' function</p>
+
+# ![](readme-images/seed-database.png)
+
+<p>With Sandra working on the backend. I moved onto starting the front end and Alberto began styling the site.</p>
+
+<p>I started off by creating a basic navigation, home, register and login component that only returned the name of each page. From there I imported those components into 'App.js' and imported 'react-router-dom' and began creating the routing for the website. Then moved onto the 'Nav' component and set-up the navigation bar. With the 'Nav' component working correctly I moved onto filling the 'Home' component with placeholder data that Alberto would change as he worked his way through styling the site. </p>
+
+<p>My next task was to create the register page to capture a users information and send a post request to the database. I created a new folder called lib and in the lib folder a file called 'api.js' that would store all the API requests made to the server and could be imported to another file as needed. We used 'Axios' to make all of our requests. Next I made another new file called, 'utils' and inside utils made a custom hook that would handle capturing users input and setting it into state. It also dealt with catching an error if a user had incorrecly filled in a form field.</p>
+
+<p>The code snippet below is the custom hook used in login and register page</p>
+
+# ![](readme-images/custom-hook.png)
+
+<p>From here I moved to the, ‘Login’ component. For logging a user in I  created a new file inside the ‘lib’ folder called ‘auth.js’, ‘auth.js’ would hold all the functions that would were used to authenticate a user. Inside ‘auth.js’ I added a ‘setToken’ and ‘getToken function’, the ‘setToken’ function was used to store the token that was sent back from the server when a user logged in, into local storage. I then added a logout function to the ‘Nav’ component. Creating a new function in ‘auth.js’ that removes a users token from local storage. Then a user is pushed back to the home page. From here I added functionality that would hide the login and register button and show the log out button if a user is logged in and vice versa if a user was logged out.<p>
+
+<p>The code snippet below are the functions from, 'auth.js' to get, set and remove a users token.</p>
+
+# ![](readme-images/tokens.png)
+
+<p>Moving to creating the ‘UserShow’ component that would show the profile of the user who was currently logged in. This was only visible to that user. Creating a new GET request that used a users token to validate they were the current user. At this point Sandra had completed the back end and moved onto helping in the front-end working on the home page and creating the ‘UserIndex’ component that showed all the current users of the site. Alberto continued to work on the styling, he would a style page after I had added all the content to it.</p>
+
+<p>Next was the, ‘JobIndex’ component that made a get request to the server to get all the jobs currently on the site. The data received back from the database was mapped over and each job was passed into its own component. Once all the data was displaying correctly I moved onto creating the ‘JobShow’ component that would show a detailed break down of a job when it was clicked by the user. This involved capturing the id of a job when it was clicked and passing the id in a post request to database and retrieving the information of that job.</p>
+
+<p>The code snippet below is from the 'JobNew' component and shows the function to that captures the job information from a user and the post request that is sent to database.</p>
+
+# ![](readme-images/create-job.png)
+
+<p>At this point the main pages of the site had been created. From here I went back through and added editing functionality to user profiles and jobs. They both used a get request to get the information of that user or job from the database that was in turn used to pre-populate a form for a user to edit. Taking the changes made by a user and making a put request to save the changes.</p>
+
+
+<p>The code snippet below is from the 'JobEdit' component and shows the get request to pre-populate a from, the function to capture the changes to a job and the put request to update the changes.</p>
+
+# ![](readme-images/edit-job.png)
+
+
+<p>Lastly adding additional functionality to the ‘JobShow’ component this involved adding the functionality to allow a bidder to comment on a job using a put request. Then the bidding functionality that allowed a bidder to place a bid via another put request on a job. After that is was the accepting a bid functionality that sent a put request to a job and changed the status of a job to false. It also sent a post request to a user that alerted a user that there bid had been accepted. </p>
+
+
 
 <h2>Challenges</h2>
 
@@ -140,7 +202,15 @@ Inspired by the Fiverr website, the platform is based on a Bidding system where 
 
 # ![](readme-images/display-message.png) 
 
-<h3>Future Features</h3>
+
+<h2>Learnings</h2>
+<ul>
+<li>The importance of clearly thinking database models through. Not just the information they will contain but how that information will effect other areas of the site.</li>
+<li>Clear communication when working as a team is essential </li>
+</ul>
+
+<h2>Future Features</h2>
+<p>If I had more time I would like to:</p>
 <ul>
 <li>Change the messaging function so that it is viewable from any page on the website and make it more seamless</li>
 <li>Make the site more mobile responsive</li>
