@@ -1,4 +1,4 @@
-# <h1>SEI-Project Two: Deverr</h1>
+# <h1>SEI-Project Three: Deverr</h1>
 by [Alberto Cerrone](www.linkedin.com/in/alberto-cerrone), [Sandra Spighel](https://www.linkedin.com/in/sandraspighel/) & [Tim Frame](https://www.linkedin.com/in/tim-frame-187241100/) AKA SpicyKiwiPizza
 ![img](https://img.shields.io/badge/version-v%201.0.0-blue)
 
