@@ -30,7 +30,6 @@ function EditJob() {
   const handleSubmit = async e => {
     e.preventDefault()
     try {
-      console.log('starting handle submit')
       await editJob(id, formdata)
       history.push(`/jobs/${id}`)
     } catch (err) {

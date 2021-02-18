@@ -21,7 +21,6 @@ function JobShow() {
       try {
         const { data } = await getSingleJob(id)
         setJob(data)
-        console.log(data)
       } catch (err) {
         console.log(err)
       }
@@ -52,7 +51,6 @@ function JobShow() {
     try {
       e.preventDefault()
       const { data } = await createBid(id, formdata)
-      console.log(data.job)
       setBidmessage(`Your bid of £${formdata.fee} has been placed`)
       setFormdata({ text: '', fee: '' })
     } catch (err) {
