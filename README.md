@@ -3,7 +3,7 @@ by [Alberto Cerrone](www.linkedin.com/in/alberto-cerrone), [Sandra Spighel](http
 ![img](https://img.shields.io/badge/version-v%201.0.0-blue)
 
 
-👉 [<b>TRY ME</b>](#website link) 👈
+You can find a live version of the app here: [Deverr]( https://deverr-v1.herokuapp.com/)
 
 <h2>Project Brief</h2>
 
