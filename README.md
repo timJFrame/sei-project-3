@@ -1,3 +1,6 @@
+<link rel="stylesheet" type="text/css" media="all" href="readme_styles.css" />
+
+
 # <h1>SEI-Project Three: Deverr</h1>
 by [Alberto Cerrone](www.linkedin.com/in/alberto-cerrone), [Sandra Spighel](https://www.linkedin.com/in/sandraspighel/) & [Tim Frame](https://www.linkedin.com/in/tim-frame-187241100/) AKA SpicyKiwiPizza
 ![img](https://img.shields.io/badge/version-v%201.0.0-blue)
@@ -116,29 +119,113 @@ Inspired by the Fiverr website, the platform is based on a Bidding system where 
 
 <p>We decided on having 6 types of job categories Android Developer, Apple Developer, Back-end Developer, Front-end Developer, Game Developer and UI Developer. For each category we would create 10 jobs. 60 jobs in total. Sandra started working on creating the job seeds and I moved on to creating the shell for the back-end of the site.</p>
 
-<p>The code snippet below is an example of a job seed.</p>
+<p class="code-snippet">The code snippet below is an example of a job seed.</p>
 
-# ![](readme-images/job-seed.png)
+``` 
+{
+  jobTitle: 'UI Designer required for 3 month project',
+  jobDescription: 'Looking for an experienced Product designer with a passion for creating intuitive and delightful user experiences. Opportunity to join a fast-growing and highly visible team. 1+ years of design experience with a strong portfolio showcasing complex platforms turned into engaging user interfaces',
+  jobDeadline: '90 days',
+  jobPhoto: 'https://cdn.wccftech.com/wp-content/uploads/2016/10/Front-End-Development-Bundle.jpg',
+  jobCategory: 'UI-Dev',
+  jobFee: 6000,
+  jobIsLive: true,
+}
+
+```
+
+
 
 <p>I started off by creating a new package.json file, touching a new ‘index.js’ file and installing the dependencies I would need to get the project started that included nodemon, express and mongoose. I then added a script to the ‘package.json’ to start nodemon for hot reloading. Then I moved on to creating the ‘startServer’ function in ‘index.js.  The ‘startServer’ function tested if the server was running on port 4000 and was connecting to the database. At this point I passed on creating the back-end to Sandra and began working on the remaining job seeds.</p>
 
-# ![](readme-images/start-server.png)
+<p class="code-snippet">The code snippet below is the start sever function</p>
+
+```async function startServer() {
+  try {
+    await mongoose.connect(dbURI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+    console.log('🤖 Database has connected')
+    app.listen(port, () => console.log(`🤖 Up and running on port ${port}`))
+  } catch (err) {
+    console.log('🤖 Something went wrong starting the App')
+    console.log(err)
+  }
+}
+```
 
 <p>Sandra started creating the models for the user and the jobs. Then moved onto to the controllers and router. Testing each each controller as it was created using Insomnia to make API requests. Once it was established the API requests were working correctly Sandra implemented a secure route that would check if a user was logged into the website before giving them access to creating a job. With the secure route in place, a custom error handler was implemented to handle different types of errors the back-end might encounter while a user was a making a request.</p>
 
-<p>The code snippet below is the user model.</p>
+<p class="code-snippet">The code snippet below is the user model.</p>
 
-# ![](readme-images/start-server.png)
+```
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true, unique: true, maxlength: 40 },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  bio: { type: String, required: true },
+  photo: { type: String, required: true },
+  city: { type: String },
+  isAuctioneer: { type: Boolean, default: false }, // * default to false
+  bidderCategories: [{ type: String }], 
+  bidderIsAvailable: { type: Boolean, default: false }, // * default to false
+  favouritedBy: [favouritedBySchema], // Embedded relationship
+  message: [messageSchema],
+})
+```
 
-<p>The image below are routes Sandra made in Insomnia to test routes.</p>
+<p class="code-snippet">The image below are routes Sandra made in Insomnia to test routes.</p>
 
 # ![](readme-images/insomnia.png)
 
 <p>While Sandra was working on the back-end Alberto started to work on the, 'seedDatabase' function that would be used to add all the dummy data to the site and drop all the current data and refresh it with new data.</p>
 
-<p>The code snippet below is 'seedDatabase' function.</p>
+<p class="code-snippet">The code snippet below is the 'seedDatabase' function.</p>
 
-# ![](readme-images/seed-database.png)
+```
+sync function seedDatabase() {
+  try {
+
+    // Connect to db
+    await connectToDatabase()
+    console.log('🤖 Database Connected')
+    
+    await mongoose.connection.db.dropDatabase()
+    console.log('🤖 Database dropped')
+
+    // CREATING AUCTIONEERS DB
+    const auctioneers = auctioneersSeed()
+    const createdAuctioneers = await User.create(auctioneers) // ! then pass that users array
+    console.log(`😎 Created ${createdAuctioneers.length} Auctioneers`)
+
+    // CREATING BIDDERS DB
+    const bidders = biddersSeed()
+    const createdBidders = await User.create(bidders) // ! then pass that users array
+    console.log(`😎 Created ${createdBidders.length} Bidders`)
+
+    // MAP THROUGH JOBS DB, FOR EACH JOB ASSIGN A KEY NAMED JOB OWNER REFERENCING AUCTIONEERS DB
+    const jobDataWithOwners = jobsData.map(job => {
+      // Creating a random index number var
+      const randomIndexNumber = Math.round(Math.random() * (createdAuctioneers.length - 1))
+      // Assign each job to a random auctioneer
+      job.jobOwner = createdAuctioneers[randomIndexNumber]._id
+      return job
+    })
+
+    // CREATE JOBS
+    const jobs = await Job.create(jobDataWithOwners)
+    console.log(`POW! Fresh Database containing ${jobs.length} jobs`)
+  
+    await mongoose.connection.close()
+    console.log('🤖 Goodbye')
+    
+  } catch (err) {
+    console.log('😞 Something went wrong')
+    console.log(err)
+    
+    await mongoose.connection.close()
+    console.log('👋🏼 Goodbye')
+  }
+}
+```
 
 <p>With Sandra working on the backend. I moved onto starting the front end and Alberto began styling the site.</p>
 
@@ -146,30 +233,126 @@ Inspired by the Fiverr website, the platform is based on a Bidding system where 
 
 <p>My next task was to create the register page to capture a users information and send a post request to the database. I created a new folder called lib and in the lib folder a file called 'api.js' that would store all the API requests made to the server and could be imported to other files as needed. We used 'Axios' to make all of our requests. Next I made another new file called, 'utils' and inside utils made a custom hook that would handle capturing users input and setting it into state. It also dealt with catching an error if a user had incorrecly filled in a form field.</p>
 
-<p>The code snippet below is the custom hook used in login and register page.</p>
+<p class="code-snippet">The code snippet below is the custom hook used in login and register page.</p>
 
-# ![](readme-images/custom-hook.png)
+```
+function useform(intialState) {
+  const [formdata, setFormdata] = React.useState(intialState)
+  const [errors, setErrors] = React.useState(intialState)
+
+
+  const handleChange = (e) => {
+    const value = e.target.type === 'checkbox' ? e.target.checked :
+      e.target.value
+    const nextState = { ...formdata, [e.target.name]: value }
+    const nextErrorState = { ... errors, [e.target.name]: '' }
+    setFormdata(nextState)
+    setErrors(nextErrorState)
+  }
+	
+  return {
+    formdata,
+    errors,
+    handleChange,
+    setFormdata,
+    setErrors
+  }
+}
+```
 
 <p>From here I moved to the, ‘Login’ component. To log a user in I  created a new file inside the ‘lib’ folder called ‘auth.js’, ‘auth.js’ held all the functions that were used to authenticate a user. Inside ‘auth.js’ I added a ‘setToken’ and ‘getToken function’, the ‘setToken’ function stored a users authentication token into local storage. I then added a logout function to the ‘Nav’ component. Creating a new function in ‘auth.js’ that removes a users token from local storage. Then a user is pushed back to the home page. From here I added functionality that would hide the login and register button and show the log out button if a user is logged in and vice versa if a user was logged out.<p>
 
-<p>The code snippet below are the functions from the, 'auth.js' file to get, set and remove a users token.</p>
+<p class="code-snippet">The code snippet below are the functions from the, 'auth.js' file to get, set and remove a users token.</p>
 
-# ![](readme-images/tokens.png)
+```
+/*Gets a users token 
+export function setToken(token) {
+  window.localStorage.setItem('token', token)
+}
+
+//*Retrives a token from storage
+export function getToken() {
+  return window.localStorage.getItem('token')
+}
+
+//*Log a user out
+export function logout() {
+  window.localStorage.removeItem('token')
+}
+```
 
 <p>Moving on to creating the ‘UserShow’ component that would show the profile of the user who is currently logged in. This was only visible to that user. Creating a new GET request that used a users token to validate they were the current user. At this point Sandra had completed the back end and moved onto helping in the front-end working on the home page and creating the ‘UserIndex’ component that showed all the current users of the site. Alberto continued to work on the styling, he would a style page after I had added all the content to it.</p>
 
 <p>Next was the, ‘JobIndex’ component that made a get request to the server to get all the jobs currently on the site. The data received back from the database was mapped over and each job was passed into its own component. Once all the data was displaying correctly I moved onto creating the ‘JobShow’ component that would show a detailed break down of a job when it was clicked by a user. This involved capturing the id of a job when it was clicked and passing the id in a post request to database and retrieving the information of that job.</p>
 
-<p>The code snippet below is from the 'JobNew' component and shows the function that captures the job information from a user and the post request that is sent to database.</p>
+<p class="code-snippet">The code snippet below is from the 'JobNew' component and shows the function that captures the job information from a user and the post request that is sent to database.</p>
 
-# ![](readme-images/create-job.png)
+```
+function JobNew() {
+  const history = useHistory()
+  const { formdata, handleChange, errors, setErrors } = useForm({
+    jobTitle: '',
+    jobDescription: '',
+    jobDeadline: '',
+    jobPhoto: '',
+    jobCategory: '',
+    jobIsLive: 'true',
+    jobFee: ''
+  })
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const { data } = await createJob(formdata)
+      history.push(`/jobs/${data._id}`)
+    } catch (err) {
+      setErrors(err.response.data)
+      console.log(err.response.data)
+    }
+  }
+```
 
 <p>At this point the main pages of the site had been created. From here I went back through and added editing functionality to user profiles and jobs. They both used a get request to get the information of that user or job from the database that was in turn used to pre-populate a form for a user to edit. Taking the changes made by a user and making a PUT request to save the changes.</p>
 
 
-<p>The code snippet below is from the 'JobEdit' component and shows the GET request to pre-populate a from, the function to capture the changes to a job and the PUT request to update the changes.</p>
+<p class="code-snippet">The code snippet below is from the 'JobEdit' component and shows the GET request to pre-populate a from, the function to capture the changes to a job and the PUT request to update the changes.</p>
 
-# ![](readme-images/edit-job.png)
+```
+function EditJob() {
+  const { id } = useParams()
+  const history = useHistory()
+  const { formdata, errors, handleChange, setFormdata, setErrors } = useForm({
+    jobTitle: '',
+    jobDescription: '',
+    jobDeadline: '',
+    jobPhoto: '',
+    jobCategory: '',
+    jobIsLive: 'true',
+    jobFee: ''
+  })
+
+
+  React.useEffect(() => {
+    const getData = async () => {
+      const { data } = await getSingleJob(id)
+      setFormdata(data)
+    }
+    getData()
+  }, [id, setFormdata])
+
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    try {
+      await editJob(id, formdata)
+      history.push(`/jobs/${id}`)
+    } catch (err) {
+      setErrors(err.response.data.errors)
+      console.log(errors)
+    }
+  }
+```
 
 
 <p>Lastly adding additional functionality to the ‘JobShow’ component this involved adding the functionality to allow a bidder to comment on a job using a put request. Then the bidding functionality that allowed a, 'Bidder' to place a bid via another put request on a job. After that is was the accepting a bid functionality that sent a PUT request to a job and changed the status of a job to false. It also sent a POST request to a, 'Bidder' that alerted the 'Bidder' that there bid had been accepted. </p>
@@ -189,18 +372,27 @@ Inspired by the Fiverr website, the platform is based on a Bidding system where 
 
 <p>Personally the biggest win for me was was working out how I could notify a ‘Bidder’ that they had the winning bid after it was chosen by the ‘Auctioneer’. As I was working on the ‘handleAcceptingBid’ function I realised that I had access to the id of the person who had created the bid. With the id I would be able to add an additional field to the user model called ‘Message’.</p>
 
-# ![](readme-images/submit-bid.png) 
+<p style class="code-snippet">The code snippet below is the 'handleAcceptingBid' function from the, 'jobShow' component</p>
 
-# ![](readme-images/user-model.png) 
+```
+  //*Handles accepting bid
+  const handleAcceptingBid = async (bidId, bidOwnerId) => {
+    try {
+      await editJob(id, { jobIsLive: false })
+      await editBid(id, bidId, { status: 'accepted' })
+      await messageUser(bidOwnerId, { text: 'your bid has been accpeted' })
+      const { data } = await getSingleJob(id)
+      setNoBids(true)
+      setJob(data)
+    } catch (err){
+      console.log(err)
+    }
+  }
+```
 
-<p>Then add a new controller to ‘user.js’  controller file. That would push a new message onto the ‘message’ array of the ‘Bidder’ with the winning bid.</p>
-
-# ![](readme-images/message-controller.png) 
+<p>Then add a new controller to ‘user.js’  controller file. That would push a new message onto the ‘message’ array of the ‘Bidder’ with the winning bid. From there I displayed the message on the profile of the winning ‘Bidder’. Where they would be guaranteed to see the message because a user would always land on there user profile first after logging in.</p>
 
 
-<p>From there I displayed the message on the profile of the winning ‘Bidder’. Where they would be guaranteed to see the message because a user would always land on there user profile first after logging in.</p>
-
-# ![](readme-images/display-message.png) 
 
 
 <h2>Learnings</h2>
